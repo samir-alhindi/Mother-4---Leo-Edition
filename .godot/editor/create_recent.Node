@@ -1,0 +1,14 @@
+TextureRect
+Control
+Sprite2D
+HBoxContainer
+AnimatedSprite2D
+Label
+MarginContainer
+VBoxContainer
+TextureProgressBar
+TextureButton
+Button
+TextEdit
+CanvasLayer
+CollisionShape2D

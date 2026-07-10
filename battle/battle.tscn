@@ -1,0 +1,27 @@
+[gd_scene format=3 uid="uid://ba7fj5bmq4wfb"]
+
+[ext_resource type="Script" uid="uid://6178htxl168n" path="res://battle/battle.gd" id="1_mqutd"]
+[ext_resource type="Resource" uid="uid://na48ltq35jw6" path="res://battle_data/test_battle.tres" id="2_tiqy5"]
+
+[node name="Battle" type="Node2D" unique_id=1547738634]
+script = ExtResource("1_mqutd")
+data = ExtResource("2_tiqy5")
+
+[node name="Background" type="Sprite2D" parent="." unique_id=1921660302]
+unique_name_in_owner = true
+position = Vector2(160, 90)
+
+[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=370247321]
+
+[node name="AllyDataUIs" type="HBoxContainer" parent="CanvasLayer" unique_id=18872493]
+unique_name_in_owner = true
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -20.0
+offset_top = -40.0
+offset_right = 20.0
+grow_horizontal = 2
+grow_vertical = 0

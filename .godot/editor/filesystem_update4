@@ -1,0 +1,10 @@
+res://enemy_battler/enemy_battler.tscn
+res://ally_battler/ally_battler.tscn
+res://battle/battle.tscn
+res://battle/battle.gd
+res://ally_battler/ally_data_ui/ally_data_ui.gd
+res://ally_battler/ally_battler.gd
+res://battler/battler.tscn
+res://battler/battler.gd
+res://enemy_battler/enemy_battler.gd
+res://ally_battler/ally_data_ui/ally_data_ui.tscn

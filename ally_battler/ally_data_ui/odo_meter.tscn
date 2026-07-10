@@ -1,0 +1,21 @@
+[gd_scene format=3 uid="uid://bu4ervv2rr53"]
+
+[ext_resource type="PackedScene" uid="uid://ckoxt2sxknnsl" path="res://ally_battler/ally_data_ui/odo_meter_digit.tscn" id="1_7x517"]
+[ext_resource type="Script" uid="uid://l4nshfnn6nnk" path="res://ally_battler/ally_data_ui/odo_meter_digit.gd" id="2_3y3m2"]
+
+[node name="OdoMeter" type="Control" unique_id=1648443960]
+layout_mode = 3
+anchors_preset = 0
+
+[node name="OdoMeterDigit" parent="." unique_id=481857826 instance=ExtResource("1_7x517")]
+position = Vector2(17, 1)
+centered = false
+script = ExtResource("2_3y3m2")
+
+[node name="OdoMeterDigit2" parent="." unique_id=897664260 instance=ExtResource("1_7x517")]
+position = Vector2(9, 1)
+centered = false
+
+[node name="OdoMeterDigit3" parent="." unique_id=1070598994 instance=ExtResource("1_7x517")]
+position = Vector2(1, 1)
+centered = false

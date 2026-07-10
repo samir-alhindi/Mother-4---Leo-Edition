@@ -1,0 +1,213 @@
+[gd_scene format=3 uid="uid://qx3qpnsq13hi"]
+
+[ext_resource type="Script" uid="uid://co4qcmsjlkdtg" path="res://ally_battler/ally_battler.gd" id="2_6evvq"]
+[ext_resource type="Texture2D" uid="uid://d1wliwq8o1hqy" path="res://battle_ui/bash.png" id="2_liyr4"]
+[ext_resource type="Texture2D" uid="uid://bf6ldcbgawvgc" path="res://battle_ui/psi.png" id="3_6evvq"]
+[ext_resource type="Texture2D" uid="uid://caq8rvuq6lf6r" path="res://battle_ui/defend.png" id="4_7pvb6"]
+[ext_resource type="Texture2D" uid="uid://7yvk5k226pk6" path="res://battle_ui/battleui.dat.png" id="7_v1bk8"]
+[ext_resource type="PackedScene" uid="uid://ckoxt2sxknnsl" path="res://ally_battler/ally_data_ui/odo_meter_digit.tscn" id="8_v4ran"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2bvwm"]
+atlas = ExtResource("2_liyr4")
+region = Rect2(0, 0, 42, 28)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_v1bk8"]
+atlas = ExtResource("2_liyr4")
+region = Rect2(42, 0, 42, 28)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7pvb6"]
+atlas = ExtResource("3_6evvq")
+region = Rect2(0, 0, 42, 28)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6logg"]
+atlas = ExtResource("3_6evvq")
+region = Rect2(42, 0, 42, 28)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_s0x1t"]
+atlas = ExtResource("4_7pvb6")
+region = Rect2(0, 0, 42, 28)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_14ci8"]
+atlas = ExtResource("4_7pvb6")
+region = Rect2(42, 0, 42, 28)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_hjm2g"]
+atlas = ExtResource("7_v1bk8")
+region = Rect2(199, 0, 59, 55)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_87o2e"]
+atlas = ExtResource("7_v1bk8")
+region = Rect2(224, 111, 15, 8)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_v72ib"]
+atlas = ExtResource("7_v1bk8")
+region = Rect2(198, 111, 25, 10)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_dsr1b"]
+atlas = ExtResource("7_v1bk8")
+region = Rect2(240, 111, 15, 8)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2fwon"]
+atlas = ExtResource("7_v1bk8")
+region = Rect2(199, 57, 59, 53)
+
+[node name="AllyBattler" type="Control" unique_id=847787726]
+custom_minimum_size = Vector2(59, 55)
+layout_mode = 3
+anchors_preset = 0
+script = ExtResource("2_6evvq")
+
+[node name="Ui" type="CanvasLayer" parent="." unique_id=679049332]
+unique_name_in_owner = true
+
+[node name="Buttons" type="HBoxContainer" parent="Ui" unique_id=181549462]
+unique_name_in_owner = true
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -20.0
+offset_right = 20.0
+offset_bottom = 40.0
+grow_horizontal = 2
+
+[node name="BashButton" type="TextureButton" parent="Ui/Buttons" unique_id=1050985075]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+texture_normal = SubResource("AtlasTexture_2bvwm")
+texture_focused = SubResource("AtlasTexture_v1bk8")
+
+[node name="PsiButton" type="TextureButton" parent="Ui/Buttons" unique_id=1431312329]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+texture_normal = SubResource("AtlasTexture_7pvb6")
+texture_focused = SubResource("AtlasTexture_6logg")
+
+[node name="DefendButton" type="TextureButton" parent="Ui/Buttons" unique_id=1294042294]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_vertical = 4
+texture_normal = SubResource("AtlasTexture_s0x1t")
+texture_focused = SubResource("AtlasTexture_14ci8")
+
+[node name="HUD" type="Control" parent="." unique_id=768513236]
+custom_minimum_size = Vector2(59, 55)
+layout_mode = 1
+anchor_right = 0.177
+anchor_bottom = 0.29200003
+offset_right = -56.64
+offset_bottom = -52.560005
+
+[node name="BackGround" type="TextureRect" parent="HUD" unique_id=1306905088]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+texture = SubResource("AtlasTexture_hjm2g")
+
+[node name="MarginContainer" type="MarginContainer" parent="HUD/BackGround" unique_id=1044603822]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 5
+theme_override_constants/margin_top = 9
+theme_override_constants/margin_right = 5
+theme_override_constants/margin_bottom = 5
+
+[node name="VBoxContainer" type="VBoxContainer" parent="HUD/BackGround/MarginContainer" unique_id=1882473315]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 0
+theme_override_constants/separation = 1
+alignment = 1
+
+[node name="NameLabel" type="Label" parent="HUD/BackGround/MarginContainer/VBoxContainer" unique_id=1873715587]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+text = "Travis"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="HpHBoxContainer" type="HBoxContainer" parent="HUD/BackGround/MarginContainer/VBoxContainer" unique_id=2135754971]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 8
+
+[node name="HP" type="TextureRect" parent="HUD/BackGround/MarginContainer/VBoxContainer/HpHBoxContainer" unique_id=2090197014]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+texture = SubResource("AtlasTexture_87o2e")
+
+[node name="RollingHpBar" type="TextureRect" parent="HUD/BackGround/MarginContainer/VBoxContainer/HpHBoxContainer" unique_id=146583014]
+texture_filter = 1
+layout_mode = 2
+texture = SubResource("AtlasTexture_v72ib")
+
+[node name="Digits" type="Control" parent="HUD/BackGround/MarginContainer/VBoxContainer/HpHBoxContainer/RollingHpBar" unique_id=414012095]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="OdoMeterDigit" parent="HUD/BackGround/MarginContainer/VBoxContainer/HpHBoxContainer/RollingHpBar/Digits" unique_id=481857826 instance=ExtResource("8_v4ran")]
+position = Vector2(17, 1)
+centered = false
+
+[node name="OdoMeterDigit2" parent="HUD/BackGround/MarginContainer/VBoxContainer/HpHBoxContainer/RollingHpBar/Digits" unique_id=1583227351 instance=ExtResource("8_v4ran")]
+position = Vector2(9, 1)
+centered = false
+
+[node name="OdoMeterDigit3" parent="HUD/BackGround/MarginContainer/VBoxContainer/HpHBoxContainer/RollingHpBar/Digits" unique_id=1889601123 instance=ExtResource("8_v4ran")]
+position = Vector2(1, 1)
+centered = false
+
+[node name="PpHBoxContainer" type="HBoxContainer" parent="HUD/BackGround/MarginContainer/VBoxContainer" unique_id=709605921]
+layout_mode = 2
+
+[node name="PP" type="TextureRect" parent="HUD/BackGround/MarginContainer/VBoxContainer/PpHBoxContainer" unique_id=1641602386]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+texture = SubResource("AtlasTexture_dsr1b")
+
+[node name="RollingPpBar" type="TextureRect" parent="HUD/BackGround/MarginContainer/VBoxContainer/PpHBoxContainer" unique_id=1104015586]
+layout_mode = 2
+texture = SubResource("AtlasTexture_v72ib")
+
+[node name="Digits" type="Control" parent="HUD/BackGround/MarginContainer/VBoxContainer/PpHBoxContainer/RollingPpBar" unique_id=1316926620]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="OdoMeterDigit" parent="HUD/BackGround/MarginContainer/VBoxContainer/PpHBoxContainer/RollingPpBar/Digits" unique_id=1432778678 instance=ExtResource("8_v4ran")]
+position = Vector2(17, 1)
+centered = false
+
+[node name="OdoMeterDigit2" parent="HUD/BackGround/MarginContainer/VBoxContainer/PpHBoxContainer/RollingPpBar/Digits" unique_id=2051020058 instance=ExtResource("8_v4ran")]
+position = Vector2(9, 1)
+centered = false
+
+[node name="OdoMeterDigit3" parent="HUD/BackGround/MarginContainer/VBoxContainer/PpHBoxContainer/RollingPpBar/Digits" unique_id=742641292 instance=ExtResource("8_v4ran")]
+position = Vector2(1, 1)
+centered = false
+
+[node name="GroovyProgress" type="TextureProgressBar" parent="HUD" unique_id=1344588548]
+layout_mode = 0
+offset_right = 59.0
+offset_bottom = 53.0
+value = 50.0
+fill_mode = 3
+texture_progress = SubResource("AtlasTexture_2fwon")

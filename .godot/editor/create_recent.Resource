@@ -1,0 +1,3 @@
+AllyBattlerData
+EnemyBattlerData
+BattleData

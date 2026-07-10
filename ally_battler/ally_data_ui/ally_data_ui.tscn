@@ -1,0 +1,143 @@
+[gd_scene format=3 uid="uid://dk5ks732bfvhc"]
+
+[ext_resource type="Texture2D" uid="uid://7yvk5k226pk6" path="res://battle_ui/battleui.dat.png" id="1_2fwon"]
+[ext_resource type="PackedScene" uid="uid://ckoxt2sxknnsl" path="res://ally_battler/ally_data_ui/odo_meter_digit.tscn" id="2_hjm2g"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_hjm2g"]
+atlas = ExtResource("1_2fwon")
+region = Rect2(199, 0, 59, 55)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_87o2e"]
+atlas = ExtResource("1_2fwon")
+region = Rect2(224, 111, 15, 8)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_v72ib"]
+atlas = ExtResource("1_2fwon")
+region = Rect2(198, 111, 25, 10)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_dsr1b"]
+atlas = ExtResource("1_2fwon")
+region = Rect2(240, 111, 15, 8)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2fwon"]
+atlas = ExtResource("1_2fwon")
+region = Rect2(199, 57, 59, 53)
+
+[node name="AllyDataUI" type="Control" unique_id=768513236]
+custom_minimum_size = Vector2(59, 55)
+layout_mode = 3
+anchor_right = 0.177
+anchor_bottom = 0.29200003
+offset_right = -56.64
+offset_bottom = -52.560005
+
+[node name="BackGround" type="TextureRect" parent="." unique_id=1306905088]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+texture = SubResource("AtlasTexture_hjm2g")
+
+[node name="MarginContainer" type="MarginContainer" parent="BackGround" unique_id=1044603822]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 5
+theme_override_constants/margin_top = 9
+theme_override_constants/margin_right = 5
+theme_override_constants/margin_bottom = 5
+
+[node name="VBoxContainer" type="VBoxContainer" parent="BackGround/MarginContainer" unique_id=1882473315]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 0
+theme_override_constants/separation = 1
+alignment = 1
+
+[node name="NameLabel" type="Label" parent="BackGround/MarginContainer/VBoxContainer" unique_id=1873715587]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+text = "Travis"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="HpHBoxContainer" type="HBoxContainer" parent="BackGround/MarginContainer/VBoxContainer" unique_id=2135754971]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 8
+
+[node name="HP" type="TextureRect" parent="BackGround/MarginContainer/VBoxContainer/HpHBoxContainer" unique_id=2090197014]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+texture = SubResource("AtlasTexture_87o2e")
+
+[node name="RollingHpBar" type="TextureRect" parent="BackGround/MarginContainer/VBoxContainer/HpHBoxContainer" unique_id=146583014]
+texture_filter = 1
+layout_mode = 2
+texture = SubResource("AtlasTexture_v72ib")
+
+[node name="Digits" type="Control" parent="BackGround/MarginContainer/VBoxContainer/HpHBoxContainer/RollingHpBar" unique_id=414012095]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="OdoMeterDigit" parent="BackGround/MarginContainer/VBoxContainer/HpHBoxContainer/RollingHpBar/Digits" unique_id=481857826 instance=ExtResource("2_hjm2g")]
+position = Vector2(17, 1)
+centered = false
+
+[node name="OdoMeterDigit2" parent="BackGround/MarginContainer/VBoxContainer/HpHBoxContainer/RollingHpBar/Digits" unique_id=1583227351 instance=ExtResource("2_hjm2g")]
+position = Vector2(9, 1)
+centered = false
+
+[node name="OdoMeterDigit3" parent="BackGround/MarginContainer/VBoxContainer/HpHBoxContainer/RollingHpBar/Digits" unique_id=1889601123 instance=ExtResource("2_hjm2g")]
+position = Vector2(1, 1)
+centered = false
+
+[node name="PpHBoxContainer" type="HBoxContainer" parent="BackGround/MarginContainer/VBoxContainer" unique_id=709605921]
+layout_mode = 2
+
+[node name="PP" type="TextureRect" parent="BackGround/MarginContainer/VBoxContainer/PpHBoxContainer" unique_id=1641602386]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+texture = SubResource("AtlasTexture_dsr1b")
+
+[node name="RollingPpBar" type="TextureRect" parent="BackGround/MarginContainer/VBoxContainer/PpHBoxContainer" unique_id=1104015586]
+layout_mode = 2
+texture = SubResource("AtlasTexture_v72ib")
+
+[node name="Digits" type="Control" parent="BackGround/MarginContainer/VBoxContainer/PpHBoxContainer/RollingPpBar" unique_id=1316926620]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="OdoMeterDigit" parent="BackGround/MarginContainer/VBoxContainer/PpHBoxContainer/RollingPpBar/Digits" unique_id=1432778678 instance=ExtResource("2_hjm2g")]
+position = Vector2(17, 1)
+centered = false
+
+[node name="OdoMeterDigit2" parent="BackGround/MarginContainer/VBoxContainer/PpHBoxContainer/RollingPpBar/Digits" unique_id=2051020058 instance=ExtResource("2_hjm2g")]
+position = Vector2(9, 1)
+centered = false
+
+[node name="OdoMeterDigit3" parent="BackGround/MarginContainer/VBoxContainer/PpHBoxContainer/RollingPpBar/Digits" unique_id=742641292 instance=ExtResource("2_hjm2g")]
+position = Vector2(1, 1)
+centered = false
+
+[node name="GroovyProgress" type="TextureProgressBar" parent="." unique_id=1344588548]
+layout_mode = 0
+offset_right = 59.0
+offset_bottom = 53.0
+value = 50.0
+fill_mode = 3
+texture_progress = SubResource("AtlasTexture_2fwon")

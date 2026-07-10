@@ -1,0 +1,1 @@
+class_name EnemyBattler extends Battler

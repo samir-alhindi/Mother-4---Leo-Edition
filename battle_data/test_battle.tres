@@ -1,0 +1,16 @@
+[gd_resource type="Resource" script_class="BattleData" format=3 uid="uid://na48ltq35jw6"]
+
+[ext_resource type="Script" uid="uid://dg72lty02kan7" path="res://resource_scripts/ally_battler_data.gd" id="1_ely3r"]
+[ext_resource type="Script" uid="uid://dqj3kgxgxg16h" path="res://resource_scripts/enemy_battler_data.gd" id="2_igtnq"]
+[ext_resource type="Resource" uid="uid://f0tq4v43rx3k" path="res://battler_data/allies_data/travis.tres" id="2_pp3xk"]
+[ext_resource type="Script" uid="uid://3tlnqby8bnsa" path="res://resource_scripts/battle_data.gd" id="3_gd2bl"]
+[ext_resource type="Resource" uid="uid://b78esr3oxqfqj" path="res://battler_data/allies_data/floyd.tres" id="3_nd3vh"]
+[ext_resource type="Texture2D" uid="uid://ctk6tvffk3c4n" path="res://cosmic.png" id="3_pp3xk"]
+[ext_resource type="Resource" uid="uid://b5861ufra6m8" path="res://battler_data/enemies_data/atomicpowerrobo.tres" id="5_pp3xk"]
+
+[resource]
+script = ExtResource("3_gd2bl")
+allies_data = Array[ExtResource("1_ely3r")]([ExtResource("2_pp3xk"), ExtResource("3_nd3vh")])
+enemies_data = Array[ExtResource("2_igtnq")]([ExtResource("5_pp3xk")])
+battle_background = ExtResource("3_pp3xk")
+metadata/_custom_type_script = "uid://3tlnqby8bnsa"

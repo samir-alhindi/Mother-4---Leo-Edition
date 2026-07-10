@@ -1,0 +1,13 @@
+[gd_scene format=3 uid="uid://dqrkk0wiq41jw"]
+
+[ext_resource type="Script" uid="uid://fhl48ticapbl" path="res://enemy_battler/enemy_battler.gd" id="2_uhnwk"]
+
+[node name="EnemyBattler" type="Control" unique_id=1916119787]
+layout_mode = 3
+anchors_preset = 0
+script = ExtResource("2_uhnwk")
+
+[node name="TextureRect" type="TextureRect" parent="." unique_id=84217879]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
