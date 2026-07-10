@@ -1,35 +1,59 @@
 [gd_scene format=3 uid="uid://qx3qpnsq13hi"]
 
 [ext_resource type="Script" uid="uid://co4qcmsjlkdtg" path="res://ally_battler/ally_battler.gd" id="2_6evvq"]
-[ext_resource type="Texture2D" uid="uid://d1wliwq8o1hqy" path="res://battle_ui/bash.png" id="2_liyr4"]
-[ext_resource type="Texture2D" uid="uid://bf6ldcbgawvgc" path="res://battle_ui/psi.png" id="3_6evvq"]
-[ext_resource type="Texture2D" uid="uid://caq8rvuq6lf6r" path="res://battle_ui/defend.png" id="4_7pvb6"]
+[ext_resource type="Texture2D" uid="uid://pca3uio6r18g" path="res://potential.png" id="2_s0x1t"]
+[ext_resource type="AudioStream" uid="uid://bdc5uhftyt6lc" path="res://sfx/cursorx.wav" id="5_2bvwm"]
+[ext_resource type="AudioStream" uid="uid://degcuuss6x3l7" path="res://sfx/confirm.wav" id="6_6logg"]
 [ext_resource type="Texture2D" uid="uid://byqulc5fhnctb" path="res://battle_ui/odometer.png" id="6_s0x1t"]
 [ext_resource type="Texture2D" uid="uid://7yvk5k226pk6" path="res://battle_ui/battleui.dat.png" id="7_v1bk8"]
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_2bvwm"]
-atlas = ExtResource("2_liyr4")
-region = Rect2(0, 0, 42, 28)
+[sub_resource type="AtlasTexture" id="AtlasTexture_e1yxm"]
+atlas = ExtResource("2_s0x1t")
+region = Rect2(0, 0, 57, 15)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_v1bk8"]
-atlas = ExtResource("2_liyr4")
-region = Rect2(42, 0, 42, 28)
+atlas = ExtResource("2_s0x1t")
+region = Rect2(58, 0, 57, 15)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_7pvb6"]
-atlas = ExtResource("3_6evvq")
-region = Rect2(0, 0, 42, 28)
+atlas = ExtResource("2_s0x1t")
+region = Rect2(0, 16, 40, 15)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_6logg"]
-atlas = ExtResource("3_6evvq")
-region = Rect2(42, 0, 42, 28)
+atlas = ExtResource("2_s0x1t")
+region = Rect2(41, 16, 40, 15)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_s0x1t"]
-atlas = ExtResource("4_7pvb6")
-region = Rect2(0, 0, 42, 28)
+atlas = ExtResource("2_s0x1t")
+region = Rect2(0, 48, 64, 15)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_14ci8"]
-atlas = ExtResource("4_7pvb6")
-region = Rect2(42, 0, 42, 28)
+atlas = ExtResource("2_s0x1t")
+region = Rect2(65, 48, 64, 15)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jn50p"]
+atlas = ExtResource("2_s0x1t")
+region = Rect2(0, 32, 64, 15)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xv44e"]
+atlas = ExtResource("2_s0x1t")
+region = Rect2(65, 32, 64, 15)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jy1p1"]
+atlas = ExtResource("2_s0x1t")
+region = Rect2(0, 80, 52, 15)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_bw4lb"]
+atlas = ExtResource("2_s0x1t")
+region = Rect2(53, 80, 52, 15)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2bvwm"]
+atlas = ExtResource("2_s0x1t")
+region = Rect2(0, 64, 45, 15)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0c1ty"]
+atlas = ExtResource("2_s0x1t")
+region = Rect2(46, 64, 45, 15)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_v4ran"]
 resource_local_to_scene = true
@@ -694,6 +718,7 @@ region = Rect2(199, 57, 59, 53)
 custom_minimum_size = Vector2(59, 55)
 layout_mode = 3
 anchors_preset = 0
+size_flags_vertical = 8
 script = ExtResource("2_6evvq")
 
 [node name="Ui" type="CanvasLayer" parent="." unique_id=679049332]
@@ -704,33 +729,57 @@ unique_name_in_owner = true
 anchors_preset = 5
 anchor_left = 0.5
 anchor_right = 0.5
-offset_left = -20.0
-offset_right = 20.0
-offset_bottom = 40.0
+offset_left = -121.0
+offset_top = 5.0
+offset_right = 121.0
+offset_bottom = 45.0
 grow_horizontal = 2
 
 [node name="BashButton" type="TextureButton" parent="Ui/Buttons" unique_id=1050985075]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 4
-size_flags_vertical = 4
-texture_normal = SubResource("AtlasTexture_2bvwm")
+size_flags_vertical = 0
+texture_normal = SubResource("AtlasTexture_e1yxm")
 texture_focused = SubResource("AtlasTexture_v1bk8")
 
 [node name="PsiButton" type="TextureButton" parent="Ui/Buttons" unique_id=1431312329]
 unique_name_in_owner = true
+visible = false
 layout_mode = 2
 size_flags_horizontal = 4
-size_flags_vertical = 4
+size_flags_vertical = 0
 texture_normal = SubResource("AtlasTexture_7pvb6")
 texture_focused = SubResource("AtlasTexture_6logg")
 
-[node name="DefendButton" type="TextureButton" parent="Ui/Buttons" unique_id=1294042294]
+[node name="GuardButton" type="TextureButton" parent="Ui/Buttons" unique_id=1294042294]
 unique_name_in_owner = true
 layout_mode = 2
-size_flags_vertical = 4
+size_flags_vertical = 0
 texture_normal = SubResource("AtlasTexture_s0x1t")
 texture_focused = SubResource("AtlasTexture_14ci8")
+
+[node name="GoodsButton" type="TextureButton" parent="Ui/Buttons" unique_id=2085185196]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_vertical = 0
+texture_normal = SubResource("AtlasTexture_jn50p")
+texture_focused = SubResource("AtlasTexture_xv44e")
+
+[node name="TalkButton" type="TextureButton" parent="Ui/Buttons" unique_id=516972350]
+unique_name_in_owner = true
+visible = false
+layout_mode = 2
+size_flags_vertical = 0
+texture_normal = SubResource("AtlasTexture_jy1p1")
+texture_focused = SubResource("AtlasTexture_bw4lb")
+
+[node name="RunButton" type="TextureButton" parent="Ui/Buttons" unique_id=1244390663]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_vertical = 0
+texture_normal = SubResource("AtlasTexture_2bvwm")
+texture_focused = SubResource("AtlasTexture_0c1ty")
 
 [node name="HUD" type="Control" parent="." unique_id=768513236]
 unique_name_in_owner = true
@@ -889,6 +938,15 @@ offset_right = 40.0
 offset_bottom = 13.0
 text = "HP=%d"
 
+[node name="ButtonFocusSound" type="AudioStreamPlayer" parent="." unique_id=1156110958]
+unique_name_in_owner = true
+stream = ExtResource("5_2bvwm")
+
+[node name="ButtonPressedSound" type="AudioStreamPlayer" parent="." unique_id=383900979]
+unique_name_in_owner = true
+stream = ExtResource("6_6logg")
+
+[connection signal="pressed" from="Ui/Buttons/BashButton" to="." method="_on_bash_button_pressed"]
 [connection signal="frame_changed" from="HUD/HudBackGround/MarginContainer/VBoxContainer/HpHBoxContainer/HpOdometer/Digits/HpOnesPlace" to="." method="_on_hp_ones_place_frame_changed"]
 [connection signal="frame_changed" from="HUD/HudBackGround/MarginContainer/VBoxContainer/HpHBoxContainer/HpOdometer/Digits/HpTensPlace" to="." method="_on_hp_tens_place_frame_changed"]
 [connection signal="frame_changed" from="HUD/HudBackGround/MarginContainer/VBoxContainer/HpHBoxContainer/HpOdometer/Digits/HpHundredsPlace" to="." method="_on_hp_hundreds_place_frame_changed"]

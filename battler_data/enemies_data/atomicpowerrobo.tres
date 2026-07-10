@@ -1,7 +1,7 @@
 [gd_resource type="Resource" script_class="EnemyBattlerData" format=3 uid="uid://b5861ufra6m8"]
 
 [ext_resource type="Script" uid="uid://dqj3kgxgxg16h" path="res://resource_scripts/enemy_battler_data.gd" id="1_k4y1x"]
-[ext_resource type="Texture2D" uid="uid://bux2w8m1eiksd" path="res://atomicpowerrobo.dat.png" id="2_eqcj5"]
+[ext_resource type="Texture2D" uid="uid://cbkg77geseapj" path="res://MrRoadblock.png" id="2_eqcj5"]
 
 [resource]
 script = ExtResource("1_k4y1x")

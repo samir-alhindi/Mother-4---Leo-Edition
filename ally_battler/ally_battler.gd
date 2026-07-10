@@ -1,9 +1,16 @@
 class_name AllyBattler extends Battler
 
+signal finished_deciding_action
+signal move_cursor_to(pos: Vector2)
+
 @onready var bash_button: TextureButton = %BashButton
 @onready var name_label: Label = %NameLabel
 @onready var ui: CanvasLayer = %Ui
-
+@onready var psi_button: TextureButton = %PsiButton
+@onready var talk_button: TextureButton = %TalkButton
+@onready var button_focus_sound: AudioStreamPlayer = %ButtonFocusSound
+@onready var buttons: HBoxContainer = %Buttons
+@onready var button_pressed_sound: AudioStreamPlayer = %ButtonPressedSound
 @onready var hp_ones_place: AnimatedSprite2D = %HpOnesPlace
 @onready var hp_tens_place: AnimatedSprite2D = %HpTensPlace
 @onready var hp_hundreds_place: AnimatedSprite2D = %HpHundredsPlace
@@ -15,16 +22,26 @@ const ODOMETER_FRAME_COUNT := 9
 var data: AllyBattlerData
 var frames_to_roll: int
 var hp_odometer_speed_scale := 1
+var pp: int
+var psi: Array
+var state := States.NONE
+var selection_index := 0
 
-static func create(data: AllyBattlerData) -> AllyBattler:
-	const ALLY_BATTLER = preload("uid://qx3qpnsq13hi")
-	var ally: AllyBattler = ALLY_BATTLER.instantiate()
-	ally.data = data
-	ally.hp = data.hp
-	return ally
+enum States {
+	NONE,
+	SELECTING,
+}
 
 func _ready() -> void:
-	ui.show()
+	for button in buttons.get_children():
+		if button is BaseButton:
+			button.focus_exited.connect(_on_button_focus_entered)
+			button.pressed.connect(_on_button_pressed)
+	if data.can_talk:
+		talk_button.show()
+	if not data.psi.is_empty():
+		psi_button.show()
+	ui.hide()
 	name_label.text = data.name
 	bash_button.grab_focus()
 	
@@ -89,3 +106,32 @@ func is_taking_damage() -> bool:
 
 func _process(delta: float) -> void:
 	%HpLabel.text = "HP=%d" % hp
+
+func decide_action() -> void:
+	ui.show()
+	self.size_flags_vertical = VERTICAL_ALIGNMENT_TOP
+	bash_button.grab_focus()
+
+func perform_action() -> void:
+	pass
+
+func _on_button_focus_entered() -> void:
+	button_focus_sound.play()
+
+func _on_button_pressed() -> void:
+	button_pressed_sound.play()
+
+func _on_bash_button_pressed() -> void:
+	buttons.hide()
+	state = States.SELECTING
+	selection_index = 0
+	var enemy := get_valid_enemy()
+	enemy.sprite_flash()
+	move_cursor_to.emit(enemy.global_position)
+
+func get_valid_enemy() -> EnemyBattler:
+	var enemy := enemies[selection_index % enemies.size()]
+	while not enemy.is_alive:
+		selection_index += 1
+		enemy = enemies[selection_index % enemies.size()]
+	return enemy

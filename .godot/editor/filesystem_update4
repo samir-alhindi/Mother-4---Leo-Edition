@@ -10,3 +10,9 @@ res://enemy_battler/enemy_battler.gd
 res://ally_battler/ally_data_ui/ally_data_ui.tscn
 res://battler_data/allies_data/floyd.tres
 res://battler_data/allies_data/travis.tres
+res://resource_scripts/ally_battler_data.gd
+res://battler_data/enemies_data/modern_mind.tres
+res://battle_data/test_battle.tres
+res://battle/battle.gdshader
+res://battle/other_shader.gdshader
+res://battler_data/enemies_data/atomicpowerrobo.tres
