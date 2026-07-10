@@ -1,4 +1,4 @@
-[gd_scene format=3 uid="uid://ckoxt2sxknnsl"]
+[gd_scene format=3 uid="uid://dgit107lnpl4o"]
 
 [ext_resource type="Texture2D" uid="uid://byqulc5fhnctb" path="res://battle_ui/odometer.png" id="1_yacpl"]
 
@@ -644,4 +644,4 @@ animations = [{
 texture_filter = 1
 sprite_frames = SubResource("SpriteFrames_k5y0q")
 autoplay = "default"
-frame_progress = 0.02240548
+frame_progress = 0.42870992

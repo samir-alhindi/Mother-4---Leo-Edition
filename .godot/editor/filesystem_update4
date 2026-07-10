@@ -8,3 +8,5 @@ res://battler/battler.tscn
 res://battler/battler.gd
 res://enemy_battler/enemy_battler.gd
 res://ally_battler/ally_data_ui/ally_data_ui.tscn
+res://battler_data/allies_data/floyd.tres
+res://battler_data/allies_data/travis.tres

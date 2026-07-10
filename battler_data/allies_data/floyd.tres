@@ -5,7 +5,7 @@
 [resource]
 script = ExtResource("1_r4s56")
 name = "Floyd"
-hp = 100
+hp = 180
 offense = 12
 defense = 13
 speed = 12

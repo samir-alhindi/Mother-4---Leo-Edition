@@ -5,6 +5,8 @@ class_name Battle extends Node2D
 
 @export var data: BattleData
 
+var allies: Array[AllyBattler]
+
 static func create(data: BattleData) -> Battle:
 	const BATTLE = preload("uid://ba7fj5bmq4wfb")
 	var battle: Battle = BATTLE.instantiate()
@@ -16,3 +18,7 @@ func _ready() -> void:
 	for ally_data in data.allies_data:
 		var ally := AllyBattler.create(ally_data)
 		ally_data_ui.add_child(ally)
+		allies.append(ally)
+	await get_tree().create_timer(0.5).timeout
+	allies[0].heal(120)
+	#allies[1].take_damage(300)
