@@ -1,0 +1,114 @@
+[gd_scene format=3 uid="uid://cc4uxh21j1kww"]
+
+[ext_resource type="Texture2D" uid="uid://c6oceot1aha3s" path="res://pk_fire/frame_000.png" id="1_klvpt"]
+[ext_resource type="Texture2D" uid="uid://byytoq0e0xr7s" path="res://pk_fire/frame_001.png" id="2_qb2ij"]
+[ext_resource type="Texture2D" uid="uid://xm2ph1gxo81l" path="res://pk_fire/frame_002.png" id="3_4fb2c"]
+[ext_resource type="Texture2D" uid="uid://onvdbqiceaei" path="res://pk_fire/frame_003.png" id="4_w3aus"]
+[ext_resource type="Texture2D" uid="uid://b65oevvfyq1m1" path="res://pk_fire/frame_004.png" id="5_3wupi"]
+[ext_resource type="Texture2D" uid="uid://d2eq8ijxicd8j" path="res://pk_fire/frame_005.png" id="6_wt08x"]
+[ext_resource type="Texture2D" uid="uid://yoo2ol5etvyo" path="res://pk_fire/frame_006.png" id="7_irlge"]
+[ext_resource type="Texture2D" uid="uid://dhb8f2r7hlb6u" path="res://pk_fire/frame_007.png" id="8_qxhgs"]
+[ext_resource type="Texture2D" uid="uid://bux1won6u1t61" path="res://pk_fire/frame_008.png" id="9_pvlus"]
+[ext_resource type="Texture2D" uid="uid://fshh8rye1g3" path="res://pk_fire/frame_009.png" id="10_ie3ov"]
+[ext_resource type="Texture2D" uid="uid://b35exfhcgrhrr" path="res://pk_fire/frame_010.png" id="11_fahdw"]
+[ext_resource type="Texture2D" uid="uid://caovfvvu2yaiv" path="res://pk_fire/frame_011.png" id="12_bkfl7"]
+[ext_resource type="Texture2D" uid="uid://chnrbgsldhhw2" path="res://pk_fire/frame_012.png" id="13_3i82x"]
+[ext_resource type="Texture2D" uid="uid://coma4w3q5seqi" path="res://pk_fire/frame_013.png" id="14_g138g"]
+[ext_resource type="Texture2D" uid="uid://bkc31gkjwo7e0" path="res://pk_fire/frame_014.png" id="15_5qw0m"]
+[ext_resource type="Texture2D" uid="uid://boksr4oewhue8" path="res://pk_fire/frame_015.png" id="16_hplme"]
+[ext_resource type="Texture2D" uid="uid://dmqd0c37s2fch" path="res://pk_fire/frame_016.png" id="17_hfgvc"]
+[ext_resource type="Texture2D" uid="uid://f17m61lxg7fh" path="res://pk_fire/frame_017.png" id="18_dwa18"]
+[ext_resource type="Texture2D" uid="uid://d145rj7bcigjk" path="res://pk_fire/frame_018.png" id="19_cppsc"]
+[ext_resource type="Texture2D" uid="uid://c0q1i1d15rgcp" path="res://pk_fire/frame_019.png" id="20_xqx8a"]
+[ext_resource type="Texture2D" uid="uid://dn2d8pbadcdng" path="res://pk_fire/frame_020.png" id="21_8ar4n"]
+[ext_resource type="Texture2D" uid="uid://u3lvcqdax8lr" path="res://pk_fire/frame_021.png" id="22_d05fj"]
+[ext_resource type="Texture2D" uid="uid://d0wvalyr07sah" path="res://pk_fire/frame_022.png" id="23_g5tg1"]
+[ext_resource type="Texture2D" uid="uid://b4mf4lu7yq5vt" path="res://pk_fire/frame_023.png" id="24_yno22"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_7ligu"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_klvpt")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_qb2ij")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_4fb2c")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_w3aus")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_3wupi")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_wt08x")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7_irlge")
+}, {
+"duration": 1.0,
+"texture": ExtResource("8_qxhgs")
+}, {
+"duration": 1.0,
+"texture": ExtResource("9_pvlus")
+}, {
+"duration": 1.0,
+"texture": ExtResource("10_ie3ov")
+}, {
+"duration": 1.0,
+"texture": ExtResource("11_fahdw")
+}, {
+"duration": 1.0,
+"texture": ExtResource("12_bkfl7")
+}, {
+"duration": 1.0,
+"texture": ExtResource("13_3i82x")
+}, {
+"duration": 1.0,
+"texture": ExtResource("14_g138g")
+}, {
+"duration": 1.0,
+"texture": ExtResource("15_5qw0m")
+}, {
+"duration": 1.0,
+"texture": ExtResource("16_hplme")
+}, {
+"duration": 1.0,
+"texture": ExtResource("17_hfgvc")
+}, {
+"duration": 1.0,
+"texture": ExtResource("18_dwa18")
+}, {
+"duration": 1.0,
+"texture": ExtResource("19_cppsc")
+}, {
+"duration": 1.0,
+"texture": ExtResource("20_xqx8a")
+}, {
+"duration": 1.0,
+"texture": ExtResource("21_8ar4n")
+}, {
+"duration": 1.0,
+"texture": ExtResource("22_d05fj")
+}, {
+"duration": 1.0,
+"texture": ExtResource("23_g5tg1")
+}, {
+"duration": 1.0,
+"texture": ExtResource("24_yno22")
+}],
+"loop": true,
+"name": &"default",
+"speed": 30.0
+}]
+
+[node name="PkFire" type="AnimatedSprite2D" unique_id=2128226321]
+texture_filter = 1
+position = Vector2(160, 90)
+scale = Vector2(0.5, 0.5)
+sprite_frames = SubResource("SpriteFrames_7ligu")
+autoplay = "default"
+frame_progress = 0.20787859

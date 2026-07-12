@@ -30,7 +30,11 @@ static func create(data: BattlerData, allies: Array[AllyBattler], enemies: Array
 	battler.speed = data.speed
 	battler.allies = allies
 	battler.enemies = enemies
+	battler.battler_name = data.name
 	return battler
 
 @abstract
 func perform_action() -> void
+
+@abstract
+func take_damage(amount: int) -> void

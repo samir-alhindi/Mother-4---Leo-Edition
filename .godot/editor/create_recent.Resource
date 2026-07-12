@@ -1,4 +1,4 @@
-Shader
-EnemyBattlerData
 AllyBattlerData
+EnemyBattlerData
+Shader
 BattleData

@@ -5,6 +5,8 @@
 [ext_resource type="Shader" uid="uid://c478xmggly1q3" path="res://battle/other_shader.gdshader" id="3_6hnvb"]
 [ext_resource type="Texture2D" uid="uid://c0p42eebesm4e" path="res://Grid1.PNG" id="4_6hnvb"]
 [ext_resource type="Texture2D" uid="uid://b66w2n8hd16if" path="res://realcursor.dat.png" id="5_4mnim"]
+[ext_resource type="Texture2D" uid="uid://bllwe05cltxdf" path="res://battle_ui/textbox2.png" id="6_7fucf"]
+[ext_resource type="Texture2D" uid="uid://x8ugvpjcx5ol" path="res://battle_ui/textbox.png" id="6_l1kiu"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_6hnvb"]
 shader = ExtResource("3_6hnvb")
@@ -66,7 +68,7 @@ texture = ExtResource("4_6hnvb")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=370247321]
 
-[node name="AllyDataUIs" type="HBoxContainer" parent="CanvasLayer" unique_id=18872493]
+[node name="Allies" type="HBoxContainer" parent="CanvasLayer" unique_id=1993965410]
 unique_name_in_owner = true
 anchors_preset = 12
 anchor_top = 1.0
@@ -80,8 +82,58 @@ size_flags_horizontal = 4
 size_flags_vertical = 4
 alignment = 1
 
-[node name="Enemies" type="Node2D" parent="." unique_id=581525979]
+[node name="TextBox" type="Control" parent="CanvasLayer" unique_id=1914717578]
 unique_name_in_owner = true
+visible = false
+layout_mode = 3
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -20.0
+offset_right = 20.0
+offset_bottom = 40.0
+grow_horizontal = 2
+
+[node name="TextBoxTop" type="TextureRect" parent="CanvasLayer/TextBox" unique_id=776068677]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -144.0
+offset_top = 7.0
+offset_right = 144.0
+offset_bottom = 56.0
+grow_horizontal = 2
+texture = ExtResource("6_l1kiu")
+
+[node name="TextBoxBottom" type="TextureRect" parent="CanvasLayer/TextBox" unique_id=1968355194]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -144.0
+offset_right = 144.0
+offset_bottom = 49.0
+grow_horizontal = 2
+texture = ExtResource("6_7fucf")
+
+[node name="TextLabel" type="Label" parent="CanvasLayer/TextBox" unique_id=159045569]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_left = -114.0
+offset_top = -11.0
+offset_right = 155.0
+offset_bottom = 27.0
+grow_vertical = 2
+text = "Blah Blah Blah Blah....."
+
+[node name="TextBoxTimer" type="Timer" parent="CanvasLayer" unique_id=1465574312]
+unique_name_in_owner = true
+wait_time = 0.02
+one_shot = true
 
 [node name="BlackBoxDown" type="ColorRect" parent="." unique_id=1510778951]
 anchors_preset = 12
@@ -114,3 +166,8 @@ texture_filter = 1
 sprite_frames = SubResource("SpriteFrames_vlrs1")
 autoplay = "default"
 frame_progress = 0.10077586
+
+[node name="Enemies" type="Node2D" parent="." unique_id=1329638567]
+unique_name_in_owner = true
+
+[connection signal="timeout" from="CanvasLayer/TextBoxTimer" to="." method="_on_text_box_timer_timeout"]

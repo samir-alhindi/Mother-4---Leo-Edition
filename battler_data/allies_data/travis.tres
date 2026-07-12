@@ -6,7 +6,7 @@
 script = ExtResource("1_meos8")
 pp = 35
 name = "Travis"
-hp = 120
+hp = 220
 offense = 35
 defense = 20
 speed = 10

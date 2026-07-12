@@ -15,6 +15,10 @@ run/main_scene="uid://ba7fj5bmq4wfb"
 config/features=PackedStringArray("4.6", "GL Compatibility")
 config/icon="res://battle_ui/icon.svg"
 
+[autoload]
+
+EventBus="*uid://fxsv0brbu58w"
+
 [debug]
 
 gdscript/warnings/shadowed_variable=0

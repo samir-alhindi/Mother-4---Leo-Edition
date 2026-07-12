@@ -1,6 +1,8 @@
 [gd_scene format=3 uid="uid://dqrkk0wiq41jw"]
 
+[ext_resource type="Texture2D" uid="uid://bux2w8m1eiksd" path="res://atomicpowerrobo.dat.png" id="2_rmqpo"]
 [ext_resource type="Script" uid="uid://fhl48ticapbl" path="res://enemy_battler/enemy_battler.gd" id="2_uhnwk"]
+[ext_resource type="AudioStream" uid="uid://cs218gclj2f8c" path="res://sfx/preEnemyAttack.wav" id="3_rmqpo"]
 
 [sub_resource type="Animation" id="Animation_fc1jj"]
 length = 0.001
@@ -41,11 +43,19 @@ _data = {
 [node name="EnemyBattler" type="Control" unique_id=1916119787]
 layout_mode = 3
 anchors_preset = 0
+size_flags_horizontal = 4
+size_flags_vertical = 4
 script = ExtResource("2_uhnwk")
 
-[node name="TextureRect" type="Sprite2D" parent="." unique_id=1993716927]
+[node name="TextureRect" type="Sprite2D" parent="." unique_id=1875638595]
 unique_name_in_owner = true
 texture_filter = 1
+texture = ExtResource("2_rmqpo")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=1042999667]
+unique_name_in_owner = true
 libraries/ = SubResource("AnimationLibrary_rmqpo")
+
+[node name="PreAttackSound" type="AudioStreamPlayer" parent="." unique_id=1755447558]
+unique_name_in_owner = true
+stream = ExtResource("3_rmqpo")

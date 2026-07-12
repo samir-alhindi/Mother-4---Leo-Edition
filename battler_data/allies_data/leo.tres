@@ -1,0 +1,13 @@
+[gd_resource type="Resource" script_class="AllyBattlerData" format=3 uid="uid://bf150y3s3gwcj"]
+
+[ext_resource type="Script" uid="uid://dg72lty02kan7" path="res://resource_scripts/ally_battler_data.gd" id="1_5cftm"]
+
+[resource]
+script = ExtResource("1_5cftm")
+pp = 40
+name = "Leo"
+hp = 120
+offense = 12
+defense = 12
+speed = 12
+metadata/_custom_type_script = "uid://dg72lty02kan7"

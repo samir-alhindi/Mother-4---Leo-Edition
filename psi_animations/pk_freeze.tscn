@@ -1,0 +1,72 @@
+[gd_scene format=3 uid="uid://bqy2eqdmxrrkb"]
+
+[ext_resource type="Texture2D" uid="uid://baxm8c2o8i4ye" path="res://pk_freeze/frame_000.png" id="1_vo2hs"]
+[ext_resource type="Texture2D" uid="uid://ceq8pcu068ld8" path="res://pk_freeze/frame_001.png" id="2_vbusp"]
+[ext_resource type="Texture2D" uid="uid://cpdha5sj3mv11" path="res://pk_freeze/frame_002.png" id="3_xopoa"]
+[ext_resource type="Texture2D" uid="uid://ot5rnmh2yul8" path="res://pk_freeze/frame_003.png" id="4_3h865"]
+[ext_resource type="Texture2D" uid="uid://bajqjbsad05vv" path="res://pk_freeze/frame_004.png" id="5_uaup4"]
+[ext_resource type="Texture2D" uid="uid://c1oypjxfodppx" path="res://pk_freeze/frame_005.png" id="6_nwnye"]
+[ext_resource type="Texture2D" uid="uid://nyhel5rtt7n5" path="res://pk_freeze/frame_006.png" id="7_jl6xx"]
+[ext_resource type="Texture2D" uid="uid://bvlig7aegg7eb" path="res://pk_freeze/frame_007.png" id="8_erlx5"]
+[ext_resource type="Texture2D" uid="uid://ep5hfvmbdavu" path="res://pk_freeze/frame_008.png" id="9_htbqm"]
+[ext_resource type="Texture2D" uid="uid://be6lovp7p6dmo" path="res://pk_freeze/frame_009.png" id="10_j8ins"]
+[ext_resource type="Texture2D" uid="uid://cksth3ocqi83f" path="res://pk_freeze/frame_010.png" id="11_nouuq"]
+[ext_resource type="Texture2D" uid="uid://c72mq5jkt1huf" path="res://pk_freeze/frame_011.png" id="12_7cfdx"]
+[ext_resource type="Texture2D" uid="uid://3bms5rgict74" path="res://pk_freeze/frame_012.png" id="13_x0r2t"]
+[ext_resource type="Texture2D" uid="uid://dltewn0478jry" path="res://pk_freeze/frame_013.png" id="14_sllw1"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_gdk4s"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_vo2hs")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_vbusp")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_xopoa")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_3h865")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_uaup4")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_nwnye")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7_jl6xx")
+}, {
+"duration": 1.0,
+"texture": ExtResource("8_erlx5")
+}, {
+"duration": 1.0,
+"texture": ExtResource("9_htbqm")
+}, {
+"duration": 1.0,
+"texture": ExtResource("10_j8ins")
+}, {
+"duration": 1.0,
+"texture": ExtResource("11_nouuq")
+}, {
+"duration": 1.0,
+"texture": ExtResource("12_7cfdx")
+}, {
+"duration": 1.0,
+"texture": ExtResource("13_x0r2t")
+}, {
+"duration": 1.0,
+"texture": ExtResource("14_sllw1")
+}],
+"loop": true,
+"name": &"default",
+"speed": 25.0
+}]
+
+[node name="PkFreeze" type="AnimatedSprite2D" unique_id=597526262]
+position = Vector2(145, 80)
+sprite_frames = SubResource("SpriteFrames_gdk4s")
+autoplay = "default"
+frame_progress = 0.6772744
