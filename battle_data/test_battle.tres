@@ -2,16 +2,19 @@
 
 [ext_resource type="Script" uid="uid://dg72lty02kan7" path="res://resource_scripts/ally_battler_data.gd" id="1_ely3r"]
 [ext_resource type="Script" uid="uid://dqj3kgxgxg16h" path="res://resource_scripts/enemy_battler_data.gd" id="2_igtnq"]
-[ext_resource type="Resource" uid="uid://f0tq4v43rx3k" path="res://battler_data/allies_data/travis.tres" id="2_pp3xk"]
+[ext_resource type="Resource" uid="uid://f0tq4v43rx3k" path="res://allies_data/travis.tres" id="2_pp3xk"]
 [ext_resource type="Script" uid="uid://3tlnqby8bnsa" path="res://resource_scripts/battle_data.gd" id="3_gd2bl"]
-[ext_resource type="Texture2D" uid="uid://c0p42eebesm4e" path="res://Grid1.PNG" id="4_nd3vh"]
-[ext_resource type="Resource" uid="uid://b5861ufra6m8" path="res://battler_data/enemies_data/atomicpowerrobo.tres" id="5_pp3xk"]
-[ext_resource type="Resource" uid="uid://c0kl6gfuiuwcs" path="res://battler_data/enemies_data/modern_mind.tres" id="7_qw34m"]
-[ext_resource type="Resource" uid="uid://bqsv54fmeev6x" path="res://battler_data/enemies_data/mr_roadbloack.tres" id="8_hqspx"]
+[ext_resource type="Resource" uid="uid://bwi51gf2y6aj2" path="res://allies_data/meryl.tres" id="3_hqspx"]
+[ext_resource type="Resource" uid="uid://bf150y3s3gwcj" path="res://allies_data/leo.tres" id="4_a0afs"]
+[ext_resource type="Texture2D" uid="uid://c0p42eebesm4e" path="res://battle_backgrounds/Grid1.PNG" id="4_nd3vh"]
+[ext_resource type="Resource" uid="uid://b5861ufra6m8" path="res://enemies_data/atomicpowerrobo.tres" id="5_pp3xk"]
+[ext_resource type="Resource" uid="uid://c0kl6gfuiuwcs" path="res://enemies_data/modern_mind.tres" id="7_qw34m"]
+[ext_resource type="Resource" uid="uid://bqsv54fmeev6x" path="res://enemies_data/mr_roadbloack.tres" id="8_hqspx"]
 
 [resource]
 script = ExtResource("3_gd2bl")
-allies_data = Array[ExtResource("1_ely3r")]([ExtResource("2_pp3xk")])
+name = "Testing Battle"
+allies_data = Array[ExtResource("1_ely3r")]([ExtResource("2_pp3xk"), ExtResource("3_hqspx"), ExtResource("4_a0afs")])
 enemies_data = Array[ExtResource("2_igtnq")]([ExtResource("5_pp3xk"), ExtResource("7_qw34m"), ExtResource("8_hqspx")])
 battle_background = ExtResource("4_nd3vh")
 metadata/_custom_type_script = "uid://3tlnqby8bnsa"

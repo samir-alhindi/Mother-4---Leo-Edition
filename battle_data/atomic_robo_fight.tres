@@ -1,0 +1,18 @@
+[gd_resource type="Resource" script_class="BattleData" format=3 uid="uid://bbrgjyry4r68l"]
+
+[ext_resource type="Script" uid="uid://dg72lty02kan7" path="res://resource_scripts/ally_battler_data.gd" id="1_60cgi"]
+[ext_resource type="Script" uid="uid://dqj3kgxgxg16h" path="res://resource_scripts/enemy_battler_data.gd" id="2_sf340"]
+[ext_resource type="Resource" uid="uid://bf150y3s3gwcj" path="res://allies_data/leo.tres" id="2_ylqmi"]
+[ext_resource type="Texture2D" uid="uid://cmk8jpn6bey3t" path="res://battle_backgrounds/Technodrome.png" id="3_wdqhe"]
+[ext_resource type="Script" uid="uid://3tlnqby8bnsa" path="res://resource_scripts/battle_data.gd" id="3_ylqmi"]
+[ext_resource type="AudioStream" uid="uid://7qqw8wfc8svv" path="res://battle_songs/Battle Against a Familiar Foe.wav" id="4_b5f05"]
+[ext_resource type="Resource" uid="uid://b5861ufra6m8" path="res://enemies_data/atomicpowerrobo.tres" id="4_ylqmi"]
+
+[resource]
+script = ExtResource("3_ylqmi")
+name = "Leo Vs. Atomic Robot"
+allies_data = Array[ExtResource("1_60cgi")]([ExtResource("2_ylqmi")])
+enemies_data = Array[ExtResource("2_sf340")]([ExtResource("4_ylqmi")])
+battle_music = ExtResource("4_b5f05")
+battle_background = ExtResource("3_wdqhe")
+metadata/_custom_type_script = "uid://3tlnqby8bnsa"

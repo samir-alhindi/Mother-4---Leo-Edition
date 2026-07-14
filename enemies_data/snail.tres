@@ -1,0 +1,14 @@
+[gd_resource type="Resource" script_class="EnemyBattlerData" format=3 uid="uid://dqmes6mdmnfpr"]
+
+[ext_resource type="Script" uid="uid://dqj3kgxgxg16h" path="res://resource_scripts/enemy_battler_data.gd" id="1_twg6r"]
+[ext_resource type="Texture2D" uid="uid://bff734arblht2" path="res://enemy_sprites/magicsnail.dat.png" id="2_ivt78"]
+
+[resource]
+script = ExtResource("1_twg6r")
+sprite = ExtResource("2_ivt78")
+name = "Magic Snail"
+hp = 111
+offense = 11
+defense = 11
+speed = 11
+metadata/_custom_type_script = "uid://dqj3kgxgxg16h"

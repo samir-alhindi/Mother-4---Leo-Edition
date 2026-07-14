@@ -12,12 +12,7 @@ func _ready() -> void:
 
 func perform_action() -> void:
 	pre_attack_sound.play()
-	var tween := create_tween().set_ease(Tween.EASE_IN_OUT).set_trans(Tween.TRANS_BOUNCE)
-	tween.set_loops(2)
-	tween.tween_property(texture_rect, "modulate:a", 0, 0.1)
-	tween.tween_property(texture_rect, "modulate:a", 1, 0.1)
-	await tween.finished
-	
+	await blink()
 	var target: AllyBattler = allies.pick_random()
 	EventBus.display_text.emit("%s attacked %s" % [battler_name, target.battler_name])
 	await EventBus.textbox_closed
@@ -34,10 +29,18 @@ func stop_flash() -> void:
 	tween.kill()
 	texture_rect.modulate.v = 1.0
 
+func blink() -> void:
+	tween = create_tween().set_ease(Tween.EASE_IN_OUT).set_trans(Tween.TRANS_BOUNCE)
+	tween.set_loops(2)
+	tween.tween_property(texture_rect, "modulate:a", 0, 0.1)
+	tween.tween_property(texture_rect, "modulate:a", 1, 0.15)
+	await tween.finished
+
+func shake() -> void:
+	var tween := create_tween().set_ease(Tween.EASE_IN_OUT).set_trans(Tween.TRANS_BOUNCE)
+	tween.tween_property(texture_rect, "rotation_degrees", -10, 0.1)
+	tween.tween_property(texture_rect, "rotation_degrees", 0, 0.2)
+	await tween.finished
+
 func take_damage(amount: int) -> void:
 	hp -= amount
-	var tween := create_tween().set_ease(Tween.EASE_IN_OUT).set_trans(Tween.TRANS_BOUNCE)
-	var og_pos := texture_rect.position.y
-	tween.tween_property(texture_rect, "position:y", og_pos-10, 0.1)
-	tween.tween_property(texture_rect, "position:y", og_pos, 0.2)
-	await tween.finished

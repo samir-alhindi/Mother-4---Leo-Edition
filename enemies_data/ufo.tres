@@ -1,0 +1,14 @@
+[gd_resource type="Resource" script_class="EnemyBattlerData" format=3 uid="uid://b4qvh25neirx7"]
+
+[ext_resource type="Script" uid="uid://dqj3kgxgxg16h" path="res://resource_scripts/enemy_battler_data.gd" id="1_o8mjm"]
+[ext_resource type="Texture2D" uid="uid://dj7ncn6dhoew6" path="res://enemy_sprites/AnxiousUFO.png" id="2_vpvbo"]
+
+[resource]
+script = ExtResource("1_o8mjm")
+sprite = ExtResource("2_vpvbo")
+name = "Anxious"
+hp = 111
+offense = 11
+defense = 11
+speed = 11
+metadata/_custom_type_script = "uid://dqj3kgxgxg16h"

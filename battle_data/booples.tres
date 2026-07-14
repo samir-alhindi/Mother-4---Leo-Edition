@@ -1,0 +1,32 @@
+[gd_resource type="Resource" script_class="BattleData" format=3 uid="uid://bxmlte1nwymdf"]
+
+[ext_resource type="Script" uid="uid://dg72lty02kan7" path="res://resource_scripts/ally_battler_data.gd" id="1_ii1qv"]
+[ext_resource type="Resource" uid="uid://f0tq4v43rx3k" path="res://allies_data/travis.tres" id="2_msx37"]
+[ext_resource type="Script" uid="uid://dqj3kgxgxg16h" path="res://resource_scripts/enemy_battler_data.gd" id="2_q5n0g"]
+[ext_resource type="Texture2D" uid="uid://3rc84nbxg5dl" path="res://battle_backgrounds/Bopples.PNG" id="2_wp707"]
+[ext_resource type="Resource" uid="uid://b78esr3oxqfqj" path="res://allies_data/floyd.tres" id="3_7e6kw"]
+[ext_resource type="Script" uid="uid://3tlnqby8bnsa" path="res://resource_scripts/battle_data.gd" id="3_wp707"]
+[ext_resource type="Resource" uid="uid://bwi51gf2y6aj2" path="res://allies_data/meryl.tres" id="4_y824o"]
+[ext_resource type="Shader" uid="uid://c478xmggly1q3" path="res://battle/other_shader.gdshader" id="5_3dyo3"]
+[ext_resource type="AudioStream" uid="uid://cs10h2au4d6br" path="res://battle_songs/Battle Against an Intense Opponent.wav" id="6_8fvey"]
+[ext_resource type="Resource" uid="uid://bksqrmrryld5l" path="res://enemies_data/flamingo.tres" id="7_y824o"]
+[ext_resource type="Resource" uid="uid://b0qqj0s1ghspx" path="res://enemies_data/hermit_crab.tres" id="8_8fvey"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_id2p1"]
+shader = ExtResource("5_3dyo3")
+shader_parameter/horizontal_oscillation = 0.01
+shader_parameter/vertical_oscillation = 0.01
+shader_parameter/scanline_wave_frequency = 40.0
+shader_parameter/scanline_wave_speed = 2.0
+shader_parameter/alternate_direction = false
+shader_parameter/viewport_size = Vector2(320, 180)
+
+[resource]
+script = ExtResource("3_wp707")
+name = "Flamingo And Hermit Can"
+allies_data = Array[ExtResource("1_ii1qv")]([ExtResource("2_msx37"), ExtResource("3_7e6kw"), ExtResource("4_y824o")])
+enemies_data = Array[ExtResource("2_q5n0g")]([ExtResource("7_y824o"), ExtResource("8_8fvey")])
+battle_music = ExtResource("6_8fvey")
+battle_background = ExtResource("2_wp707")
+background_shader = SubResource("ShaderMaterial_id2p1")
+metadata/_custom_type_script = "uid://3tlnqby8bnsa"

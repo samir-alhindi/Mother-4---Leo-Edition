@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://qx3qpnsq13hi"]
 
 [ext_resource type="Script" uid="uid://co4qcmsjlkdtg" path="res://ally_battler/ally_battler.gd" id="2_6evvq"]
-[ext_resource type="Texture2D" uid="uid://pca3uio6r18g" path="res://potential.png" id="2_s0x1t"]
+[ext_resource type="Texture2D" uid="uid://pca3uio6r18g" path="res://battle_ui/potential.png" id="2_s0x1t"]
 [ext_resource type="AudioStream" uid="uid://bdc5uhftyt6lc" path="res://sfx/cursorx.wav" id="5_2bvwm"]
 [ext_resource type="AudioStream" uid="uid://degcuuss6x3l7" path="res://sfx/confirm.wav" id="6_6logg"]
 [ext_resource type="Texture2D" uid="uid://byqulc5fhnctb" path="res://battle_ui/odometer.png" id="6_s0x1t"]
@@ -9,6 +9,7 @@
 [ext_resource type="Texture2D" uid="uid://7yvk5k226pk6" path="res://battle_ui/battleui.dat.png" id="7_v1bk8"]
 [ext_resource type="AudioStream" uid="uid://cujdnnn87hqxi" path="res://sfx/hitA.wav" id="8_14ci8"]
 [ext_resource type="AudioStream" uid="uid://r7fopcvl2t03" path="res://sfx/046 Player hurt.wav" id="9_v1bk8"]
+[ext_resource type="AudioStream" uid="uid://dyt3wbsuhapaf" path="res://sfx/prePsi.wav" id="10_v4ran"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_e1yxm"]
 atlas = ExtResource("2_s0x1t")
@@ -721,6 +722,7 @@ region = Rect2(199, 57, 59, 53)
 custom_minimum_size = Vector2(59, 55)
 layout_mode = 3
 anchors_preset = 0
+pivot_offset_ratio = Vector2(0.5, 0.5)
 size_flags_vertical = 8
 script = ExtResource("2_6evvq")
 
@@ -932,6 +934,7 @@ wait_time = 0.1
 
 [node name="HpLabel" type="Label" parent="." unique_id=937244159]
 unique_name_in_owner = true
+visible = false
 layout_mode = 0
 offset_left = 11.0
 offset_top = -15.0
@@ -960,7 +963,18 @@ unique_name_in_owner = true
 stream = ExtResource("9_v1bk8")
 volume_db = 15.0
 
+[node name="PsiAnimation" type="AnimatedSprite2D" parent="." unique_id=256478557]
+unique_name_in_owner = true
+
+[node name="PrePsiSound" type="AudioStreamPlayer" parent="." unique_id=296266745]
+unique_name_in_owner = true
+stream = ExtResource("10_v4ran")
+
+[node name="PsiSound" type="AudioStreamPlayer" parent="." unique_id=1701619136]
+unique_name_in_owner = true
+
 [connection signal="pressed" from="Ui/Buttons/BashButton" to="." method="_on_bash_button_pressed"]
+[connection signal="pressed" from="Ui/Buttons/PsiButton" to="." method="_on_psi_button_pressed"]
 [connection signal="frame_changed" from="HUD/HudBackGround/MarginContainer/VBoxContainer/HpHBoxContainer/HpOdometer/Digits/HpOnesPlace" to="." method="_on_hp_ones_place_frame_changed"]
 [connection signal="frame_changed" from="HUD/HudBackGround/MarginContainer/VBoxContainer/HpHBoxContainer/HpOdometer/Digits/HpTensPlace" to="." method="_on_hp_tens_place_frame_changed"]
 [connection signal="frame_changed" from="HUD/HudBackGround/MarginContainer/VBoxContainer/HpHBoxContainer/HpOdometer/Digits/HpHundredsPlace" to="." method="_on_hp_hundreds_place_frame_changed"]

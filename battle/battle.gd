@@ -7,21 +7,20 @@ class_name Battle extends Node2D
 @onready var text_box: Control = %TextBox
 @onready var text_label: Label = %TextLabel
 @onready var text_box_timer: Timer = %TextBoxTimer
+@onready var music: AudioStreamPlayer = %Music
 
-@export var data: BattleData
+static var data: BattleData
 
 var allies: Array[AllyBattler]
 var enemies: Array[EnemyBattler]
 
-static func create(data: BattleData) -> Battle:
-	const BATTLE = preload("uid://ba7fj5bmq4wfb")
-	var battle: Battle = BATTLE.instantiate()
-	battle.data = data
-	return battle
-
 func _ready() -> void:
 	EventBus.display_text.connect(_on_display_text)
 	background.texture = data.battle_background
+	music.stream = data.battle_music
+	music.play()
+	if data.background_shader:
+		background.material = data.background_shader
 	
 	for i in (data.allies_data.size()):
 		var ally := Battler.create(data.allies_data[i], allies, enemies) as AllyBattler
@@ -37,7 +36,10 @@ func _ready() -> void:
 		var enemy := Battler.create(data.enemies_data[i], allies, enemies)
 		enemies.append(enemy)
 		enemies_parent.add_child(enemy)
-		enemy.global_position = Vector2(step*i+smaller_screen_width/2, screen_size.y/2)
+		if data.enemies_data.size() == 1:
+			enemy.global_position = screen_size / 2
+		else:
+			enemy.global_position = Vector2(step*i+smaller_screen_width/2, screen_size.y/2)
 	
 	while true:
 		for ally in allies:
@@ -79,9 +81,18 @@ func _process(delta: float) -> void:
 	if text_box.visible and Input.is_action_just_pressed("ui_accept"):
 		text_box.hide()
 		EventBus.textbox_closed.emit()
+	
+	if Input.is_action_just_pressed("exit"):
+		get_tree().change_scene_to_file("res://title_screen/title_screen.tscn")
 
 func _on_text_box_timer_timeout() -> void:
 	if text_label.visible_ratio == 1.0:
 		return
 	text_label.visible_characters += 1
 	text_box_timer.start()
+
+func _on_damage_button_pressed() -> void:
+	allies[0].take_damage(20)
+
+func _on_heal_button_pressed() -> void:
+	allies[0].heal(20)

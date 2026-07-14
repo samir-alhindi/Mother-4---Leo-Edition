@@ -1,0 +1,16 @@
+[gd_resource type="Resource" script_class="AllyBattlerData" format=3 uid="uid://bwi51gf2y6aj2"]
+
+[ext_resource type="Script" uid="uid://lxo20rbxhpf0" path="res://resource_scripts/psi.gd" id="1_1abyr"]
+[ext_resource type="Script" uid="uid://dg72lty02kan7" path="res://resource_scripts/ally_battler_data.gd" id="1_edpil"]
+[ext_resource type="Resource" uid="uid://bgwugbftj460x" path="res://psi/pk_freeze.tres" id="2_scskn"]
+
+[resource]
+script = ExtResource("1_edpil")
+pp = 40
+psi = Array[ExtResource("1_1abyr")]([ExtResource("2_scskn")])
+name = "Meryl"
+hp = 120
+offense = 12
+defense = 14
+speed = 12
+metadata/_custom_type_script = "uid://dg72lty02kan7"

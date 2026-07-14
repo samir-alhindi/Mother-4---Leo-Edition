@@ -1,0 +1,76 @@
+[gd_resource type="Resource" script_class="Psi" format=3 uid="uid://bgwugbftj460x"]
+
+[ext_resource type="Script" uid="uid://lxo20rbxhpf0" path="res://resource_scripts/psi.gd" id="1_nak30"]
+[ext_resource type="AudioStream" uid="uid://c3443k42m42xh" path="res://sfx/pkFreezeA.wav" id="2_vntn7"]
+[ext_resource type="Texture2D" uid="uid://baxm8c2o8i4ye" path="res://psi_animations/pk_freeze/frame_000.png" id="3_0tw17"]
+[ext_resource type="Texture2D" uid="uid://ceq8pcu068ld8" path="res://psi_animations/pk_freeze/frame_001.png" id="4_03yqx"]
+[ext_resource type="Texture2D" uid="uid://cpdha5sj3mv11" path="res://psi_animations/pk_freeze/frame_002.png" id="5_6nal8"]
+[ext_resource type="Texture2D" uid="uid://ot5rnmh2yul8" path="res://psi_animations/pk_freeze/frame_003.png" id="6_5osbn"]
+[ext_resource type="Texture2D" uid="uid://bajqjbsad05vv" path="res://psi_animations/pk_freeze/frame_004.png" id="7_tiak7"]
+[ext_resource type="Texture2D" uid="uid://c1oypjxfodppx" path="res://psi_animations/pk_freeze/frame_005.png" id="8_gxw57"]
+[ext_resource type="Texture2D" uid="uid://nyhel5rtt7n5" path="res://psi_animations/pk_freeze/frame_006.png" id="9_bi2cu"]
+[ext_resource type="Texture2D" uid="uid://bvlig7aegg7eb" path="res://psi_animations/pk_freeze/frame_007.png" id="10_50c5g"]
+[ext_resource type="Texture2D" uid="uid://ep5hfvmbdavu" path="res://psi_animations/pk_freeze/frame_008.png" id="11_h4ynu"]
+[ext_resource type="Texture2D" uid="uid://be6lovp7p6dmo" path="res://psi_animations/pk_freeze/frame_009.png" id="12_mvjij"]
+[ext_resource type="Texture2D" uid="uid://cksth3ocqi83f" path="res://psi_animations/pk_freeze/frame_010.png" id="13_dfqo0"]
+[ext_resource type="Texture2D" uid="uid://c72mq5jkt1huf" path="res://psi_animations/pk_freeze/frame_011.png" id="14_nt1i6"]
+[ext_resource type="Texture2D" uid="uid://3bms5rgict74" path="res://psi_animations/pk_freeze/frame_012.png" id="15_athgi"]
+[ext_resource type="Texture2D" uid="uid://dltewn0478jry" path="res://psi_animations/pk_freeze/frame_013.png" id="16_7b3u0"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_lghvd"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("3_0tw17")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_03yqx")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_6nal8")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_5osbn")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7_tiak7")
+}, {
+"duration": 1.0,
+"texture": ExtResource("8_gxw57")
+}, {
+"duration": 1.0,
+"texture": ExtResource("9_bi2cu")
+}, {
+"duration": 1.0,
+"texture": ExtResource("10_50c5g")
+}, {
+"duration": 1.0,
+"texture": ExtResource("11_h4ynu")
+}, {
+"duration": 1.0,
+"texture": ExtResource("12_mvjij")
+}, {
+"duration": 1.0,
+"texture": ExtResource("13_dfqo0")
+}, {
+"duration": 1.0,
+"texture": ExtResource("14_nt1i6")
+}, {
+"duration": 1.0,
+"texture": ExtResource("15_athgi")
+}, {
+"duration": 1.0,
+"texture": ExtResource("16_7b3u0")
+}],
+"loop": false,
+"name": &"default",
+"speed": 25.0
+}]
+
+[resource]
+script = ExtResource("1_nak30")
+name = "PK Freeze β"
+sprite_frames = SubResource("SpriteFrames_lghvd")
+strength = 75
+sound = ExtResource("2_vntn7")
+metadata/_custom_type_script = "uid://lxo20rbxhpf0"

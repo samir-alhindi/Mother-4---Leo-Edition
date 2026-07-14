@@ -1,0 +1,21 @@
+[gd_resource type="Resource" script_class="BattleData" format=3 uid="uid://cb7i7jwhna8ih"]
+
+[ext_resource type="Script" uid="uid://dg72lty02kan7" path="res://resource_scripts/ally_battler_data.gd" id="1_63wpf"]
+[ext_resource type="Resource" uid="uid://f0tq4v43rx3k" path="res://allies_data/travis.tres" id="2_atob2"]
+[ext_resource type="Script" uid="uid://dqj3kgxgxg16h" path="res://resource_scripts/enemy_battler_data.gd" id="2_pq3fr"]
+[ext_resource type="Resource" uid="uid://b78esr3oxqfqj" path="res://allies_data/floyd.tres" id="3_6phvy"]
+[ext_resource type="Script" uid="uid://3tlnqby8bnsa" path="res://resource_scripts/battle_data.gd" id="3_qtkdg"]
+[ext_resource type="Resource" uid="uid://bwi51gf2y6aj2" path="res://allies_data/meryl.tres" id="4_0j2a8"]
+[ext_resource type="AudioStream" uid="uid://ciu4n8ioes06a" path="res://battle_songs/Battle Against a Far Away Foe.mp3" id="5_noxrh"]
+[ext_resource type="Texture2D" uid="uid://cq8iqfysc02mu" path="res://battle_backgrounds/RolledGold.png" id="5_wgmk5"]
+[ext_resource type="Resource" uid="uid://byl7m40qoeqkb" path="res://enemies_data/scorpion.tres" id="6_0j2a8"]
+[ext_resource type="Resource" uid="uid://b4qvh25neirx7" path="res://enemies_data/ufo.tres" id="7_noxrh"]
+
+[resource]
+script = ExtResource("3_qtkdg")
+name = "The Desert"
+allies_data = Array[ExtResource("1_63wpf")]([ExtResource("2_atob2"), ExtResource("3_6phvy"), ExtResource("4_0j2a8")])
+enemies_data = Array[ExtResource("2_pq3fr")]([ExtResource("6_0j2a8"), ExtResource("7_noxrh"), ExtResource("6_0j2a8")])
+battle_music = ExtResource("5_noxrh")
+battle_background = ExtResource("5_wgmk5")
+metadata/_custom_type_script = "uid://3tlnqby8bnsa"

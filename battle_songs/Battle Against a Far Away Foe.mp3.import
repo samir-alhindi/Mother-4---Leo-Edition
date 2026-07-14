@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://ciu4n8ioes06a"
+path="res://.godot/imported/Battle Against a Far Away Foe.mp3-eb8d4360df1f6c9937b988bdd26b70fa.mp3str"
+
+[deps]
+
+source_file="res://battle_songs/Battle Against a Far Away Foe.mp3"
+dest_files=["res://.godot/imported/Battle Against a Far Away Foe.mp3-eb8d4360df1f6c9937b988bdd26b70fa.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

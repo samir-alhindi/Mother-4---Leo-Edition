@@ -20,6 +20,9 @@ signal hide_cursor
 @onready var hud: Control = %HUD
 @onready var hit_sound: AudioStreamPlayer = %HitSound
 @onready var hurt_sound: AudioStreamPlayer = %HurtSound
+@onready var psi_animation: AnimatedSprite2D = %PsiAnimation
+@onready var pre_psi_sound: AudioStreamPlayer = %PrePsiSound
+@onready var psi_sound: AudioStreamPlayer = %PsiSound
 
 const HUD_ALIVE_REGION = Vector2(198, 0)
 const HUD_DEAD_REGION = Vector2(263, 0)
@@ -33,7 +36,7 @@ var state := States.NONE
 var action_type: ActionType
 var selection_index := 0
 var target_battler: Battler
-var target_battlers: Array[Battler]
+var target_battlers: Array[EnemyBattler]
 
 enum States {
 	NONE,
@@ -70,21 +73,33 @@ func _ready() -> void:
 	hp_hundreds_place.frame = int(hp_digits[0]) * ODOMETER_FRAME_COUNT
 
 func heal(amount: int) -> void:
-	frames_to_roll = amount * ODOMETER_FRAME_COUNT
-	hp_odometer_speed_scale = 1
-	hp_ones_place.play("default", hp_odometer_speed_scale)
+	if is_healing():
+		await hp_ones_place.frame_changed
+		frames_to_roll += amount * ODOMETER_FRAME_COUNT
+	elif is_taking_damage():
+		await hp_ones_place.frame_changed
+		hp_odometer_speed_scale = 1
+		frames_to_roll = amount * ODOMETER_FRAME_COUNT
+	else:
+		frames_to_roll = amount * ODOMETER_FRAME_COUNT
+		hp_odometer_speed_scale = 1
+		hp_ones_place.play("default", hp_odometer_speed_scale)
 
 func take_damage(amount: int) -> void:
 	hurt_sound.play()
 	var tween := create_tween()
-	tween.set_loops(3)
-	tween.tween_property(self, "modulate:a", 0, 0.1)
-	tween.tween_property(self, "modulate:a", 1, 0.1)
+	tween.set_loops(1)
+	tween.tween_property(self, "scale", Vector2.ONE*1.3, 0.1)
+	tween.tween_property(self, "scale", Vector2.ONE, 0.2)
 	await tween.finished
 	
 	if is_taking_damage():
 		await hp_ones_place.frame_changed
 		frames_to_roll += amount * ODOMETER_FRAME_COUNT
+	elif is_healing():
+		await hp_ones_place.frame_changed
+		hp_odometer_speed_scale = -1
+		frames_to_roll = amount * ODOMETER_FRAME_COUNT
 	else:
 		frames_to_roll = amount * ODOMETER_FRAME_COUNT
 		hp_odometer_speed_scale = -1
@@ -112,13 +127,6 @@ func _on_hp_ones_place_frame_changed() -> void:
 		(hud_back_ground.texture as AtlasTexture).region.position = HUD_DEAD_REGION
 		return
 	
-	#if is_taking_damage():
-		#if hp_ones_place.frame == 9 * ODOMETER_FRAME_COUNT:
-			#hp_tens_place.play("default", hp_odometer_speed_scale)
-	#else:
-		#if hp_ones_place.frame == 0:
-			#hp_tens_place.play("default", hp_odometer_speed_scale)
-	
 	frames_to_roll -= 1
 	if frames_to_roll == 0:
 		hp_ones_place.pause()
@@ -126,12 +134,6 @@ func _on_hp_ones_place_frame_changed() -> void:
 func _on_hp_tens_place_frame_changed() -> void:
 	if hp_tens_place.frame % ODOMETER_FRAME_COUNT == 0:
 		hp_tens_place.pause()
-		#if is_taking_damage():
-			#if hp_tens_place.frame == ODOMETER_FRAME_COUNT * 9:
-				#hp_hundreds_place.play("default", hp_odometer_speed_scale)
-		#else:
-			#if hp_tens_place.frame == 0:
-				#hp_hundreds_place.play("default", hp_odometer_speed_scale)
 
 func _on_hp_hundreds_place_frame_changed() -> void:
 	if hp_hundreds_place.frame % 9 == 0:
@@ -157,8 +159,42 @@ func perform_action() -> void:
 		pre_attack_sound.play()
 		EventBus.display_text.emit("%s attacked %s" % [battler_name, target_battler.battler_name])
 		await EventBus.textbox_closed
+		target_battler.take_damage(offense)
 		hit_sound.play()
-		await target_battler.take_damage(offense)
+		target_battler.shake()
+		self.size_flags_vertical = Control.SIZE_SHRINK_END
+		finished_performing_action.emit()
+	elif action_type == ActionType.PSI:
+		var psi := data.psi[0]
+		pre_psi_sound.play()
+		EventBus.display_text.emit("%s tried %s" % [battler_name, psi.name])
+		await EventBus.textbox_closed
+		if psi.target_all_enemies:
+			psi_animation.global_position = Vector2.ZERO
+			psi_animation.centered = false
+		else:
+			psi_animation.global_position = get_valid_enemy().global_position
+			psi_animation.centered = true
+		psi_animation.sprite_frames = psi.sprite_frames
+		psi_animation.show()
+		psi_animation.scale = psi.animation_scale
+		psi_animation.play()
+		psi_sound.stream = psi.sound
+		psi_sound.play()
+		await psi_animation.animation_finished
+		psi_animation.hide()
+		if psi.target_all_enemies:
+			for i in range(enemies.size()-1):
+				enemies[i].take_damage(psi.strength)
+				enemies[i].blink()
+			enemies[enemies.size()-1].take_damage(psi.strength)
+			hit_sound.play()
+			await enemies[enemies.size()-1].blink()
+		else:
+			var enemy := get_valid_enemy()
+			enemy.take_damage(psi.strength)
+			hit_sound.play()
+			await enemy.blink()
 		self.size_flags_vertical = Control.SIZE_SHRINK_END
 		finished_performing_action.emit()
 
@@ -169,6 +205,7 @@ func _on_button_pressed() -> void:
 	button_pressed_sound.play()
 
 func _on_bash_button_pressed() -> void:
+	action_type = ActionType.BASH
 	ui.hide()
 	state = States.SELECTING
 	selection_index = 0
@@ -198,7 +235,6 @@ func _input(event: InputEvent) -> void:
 			move_cursor_to.emit(get_valid_enemy().global_position)
 			button_focus_sound.play()
 		elif event.is_action_pressed("ui_accept"):
-			action_type = ActionType.BASH
 			hide_cursor.emit()
 			state = States.NONE
 			self.size_flags_vertical = Control.SIZE_SHRINK_END
@@ -208,3 +244,19 @@ func _input(event: InputEvent) -> void:
 			target_battler = enemy
 			ui.hide()
 			finished_deciding_action.emit()
+
+func _on_psi_button_pressed() -> void:
+	action_type = ActionType.PSI
+	var psi := data.psi[0]
+	if psi.target_all_enemies:
+		self.size_flags_vertical = Control.SIZE_SHRINK_END
+		target_battlers = enemies
+		ui.hide()
+		finished_deciding_action.emit()
+		return
+	ui.hide()
+	state = States.SELECTING
+	selection_index = 0
+	var enemy := get_valid_enemy()
+	enemy.sprite_flash()
+	move_cursor_to.emit(enemy.global_position)

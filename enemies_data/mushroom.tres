@@ -1,0 +1,14 @@
+[gd_resource type="Resource" script_class="EnemyBattlerData" format=3 uid="uid://bn1di80bxipdr"]
+
+[ext_resource type="Script" uid="uid://dqj3kgxgxg16h" path="res://resource_scripts/enemy_battler_data.gd" id="1_mom4g"]
+[ext_resource type="Texture2D" uid="uid://oun8x1pds077" path="res://enemy_sprites/ramblingmushroom.png" id="2_bb1eb"]
+
+[resource]
+script = ExtResource("1_mom4g")
+sprite = ExtResource("2_bb1eb")
+name = "Rambling Mushroom"
+hp = 111
+offense = 11
+defense = 11
+speed = 11
+metadata/_custom_type_script = "uid://dqj3kgxgxg16h"

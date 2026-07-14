@@ -1,0 +1,14 @@
+[gd_resource type="Resource" script_class="EnemyBattlerData" format=3 uid="uid://b0qqj0s1ghspx"]
+
+[ext_resource type="Script" uid="uid://dqj3kgxgxg16h" path="res://resource_scripts/enemy_battler_data.gd" id="1_y0pvg"]
+[ext_resource type="Texture2D" uid="uid://dgdmdllhphdle" path="res://enemy_sprites/hermitcan.png" id="2_t2oio"]
+
+[resource]
+script = ExtResource("1_y0pvg")
+sprite = ExtResource("2_t2oio")
+name = "Hermit Can"
+hp = 100
+offense = 12
+defense = 12
+speed = 12
+metadata/_custom_type_script = "uid://dqj3kgxgxg16h"

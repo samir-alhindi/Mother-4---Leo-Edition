@@ -1,0 +1,14 @@
+[gd_resource type="Resource" script_class="EnemyBattlerData" format=3 uid="uid://b3udjwxnle0mr"]
+
+[ext_resource type="Script" uid="uid://dqj3kgxgxg16h" path="res://resource_scripts/enemy_battler_data.gd" id="1_avjj3"]
+[ext_resource type="Texture2D" uid="uid://ci4hhwfp7jstc" path="res://enemy_sprites/carbonpup.dat.png" id="2_lu781"]
+
+[resource]
+script = ExtResource("1_avjj3")
+sprite = ExtResource("2_lu781")
+name = "Carbon Pup"
+hp = 111
+offense = 11
+defense = 11
+speed = 20
+metadata/_custom_type_script = "uid://dqj3kgxgxg16h"

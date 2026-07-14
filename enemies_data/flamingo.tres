@@ -1,0 +1,14 @@
+[gd_resource type="Resource" script_class="EnemyBattlerData" format=3 uid="uid://bksqrmrryld5l"]
+
+[ext_resource type="Script" uid="uid://dqj3kgxgxg16h" path="res://resource_scripts/enemy_battler_data.gd" id="1_lvahk"]
+[ext_resource type="Texture2D" uid="uid://cqa77tbjryjyn" path="res://enemy_sprites/flamingo.dat.png" id="2_wfkn7"]
+
+[resource]
+script = ExtResource("1_lvahk")
+sprite = ExtResource("2_wfkn7")
+name = "Flamingo"
+hp = 110
+offense = 12
+defense = 12
+speed = 11
+metadata/_custom_type_script = "uid://dqj3kgxgxg16h"

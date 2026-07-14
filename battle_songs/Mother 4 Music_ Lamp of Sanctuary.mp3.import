@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://cs6t5fel0dlb7"
+path="res://.godot/imported/Mother 4 Music_ Lamp of Sanctuary.mp3-71a807770f3bd9edb0478a6824a4b7fc.mp3str"
+
+[deps]
+
+source_file="res://battle_songs/Mother 4 Music_ Lamp of Sanctuary.mp3"
+dest_files=["res://.godot/imported/Mother 4 Music_ Lamp of Sanctuary.mp3-71a807770f3bd9edb0478a6824a4b7fc.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

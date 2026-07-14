@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://cilmlu4rev24p"
+path="res://.godot/imported/Battle Against a Confident Foe.mp3-03eb8a4f5a3bab5b159fe6516adbc7d4.mp3str"
+
+[deps]
+
+source_file="res://battle_songs/Battle Against a Confident Foe.mp3"
+dest_files=["res://.godot/imported/Battle Against a Confident Foe.mp3-03eb8a4f5a3bab5b159fe6516adbc7d4.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

@@ -1,0 +1,14 @@
+[gd_resource type="Resource" script_class="EnemyBattlerData" format=3 uid="uid://byl7m40qoeqkb"]
+
+[ext_resource type="Script" uid="uid://dqj3kgxgxg16h" path="res://resource_scripts/enemy_battler_data.gd" id="1_wk43o"]
+[ext_resource type="Texture2D" uid="uid://cbg2phjo8cxwd" path="res://enemy_sprites/Scorpion.png" id="2_cr58o"]
+
+[resource]
+script = ExtResource("1_wk43o")
+sprite = ExtResource("2_cr58o")
+name = "Scorpion"
+hp = 111
+offense = 11
+defense = 11
+speed = 11
+metadata/_custom_type_script = "uid://dqj3kgxgxg16h"

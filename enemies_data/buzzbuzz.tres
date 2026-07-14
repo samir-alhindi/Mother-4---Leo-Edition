@@ -1,0 +1,14 @@
+[gd_resource type="Resource" script_class="EnemyBattlerData" format=3 uid="uid://duif80w2lrjhk"]
+
+[ext_resource type="Script" uid="uid://dqj3kgxgxg16h" path="res://resource_scripts/enemy_battler_data.gd" id="1_0381f"]
+[ext_resource type="Texture2D" uid="uid://cvoyrg4o0dfp6" path="res://enemy_sprites/BuzzBuzz.png" id="2_4l4l4"]
+
+[resource]
+script = ExtResource("1_0381f")
+sprite = ExtResource("2_4l4l4")
+name = "Buzz Buzz"
+hp = 111
+offense = 11
+defense = 11
+speed = 11
+metadata/_custom_type_script = "uid://dqj3kgxgxg16h"

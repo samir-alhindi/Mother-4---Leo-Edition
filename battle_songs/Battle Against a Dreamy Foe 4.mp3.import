@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://bi7pu3tsgpkv0"
+path="res://.godot/imported/Battle Against a Dreamy Foe 4.mp3-021652ec82f2a65d86ebbdc4f329a4a3.mp3str"
+
+[deps]
+
+source_file="res://battle_songs/Battle Against a Dreamy Foe 4.mp3"
+dest_files=["res://.godot/imported/Battle Against a Dreamy Foe 4.mp3-021652ec82f2a65d86ebbdc4f329a4a3.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

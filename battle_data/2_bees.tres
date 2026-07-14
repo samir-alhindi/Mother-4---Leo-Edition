@@ -1,0 +1,21 @@
+[gd_resource type="Resource" script_class="BattleData" format=3 uid="uid://ba0hmt8n5ocal"]
+
+[ext_resource type="Script" uid="uid://dg72lty02kan7" path="res://resource_scripts/ally_battler_data.gd" id="1_qtqrd"]
+[ext_resource type="Resource" uid="uid://f0tq4v43rx3k" path="res://allies_data/travis.tres" id="2_f3iya"]
+[ext_resource type="Script" uid="uid://dqj3kgxgxg16h" path="res://resource_scripts/enemy_battler_data.gd" id="2_hm8iq"]
+[ext_resource type="Resource" uid="uid://b78esr3oxqfqj" path="res://allies_data/floyd.tres" id="3_r2m7j"]
+[ext_resource type="Script" uid="uid://3tlnqby8bnsa" path="res://resource_scripts/battle_data.gd" id="3_tgogu"]
+[ext_resource type="Resource" uid="uid://bwi51gf2y6aj2" path="res://allies_data/meryl.tres" id="4_8jjwt"]
+[ext_resource type="Resource" uid="uid://bf150y3s3gwcj" path="res://allies_data/leo.tres" id="5_8ymfy"]
+[ext_resource type="AudioStream" uid="uid://cilmlu4rev24p" path="res://battle_songs/Battle Against a Confident Foe.mp3" id="6_8jjwt"]
+[ext_resource type="Texture2D" uid="uid://dkrjt1h0tbjkn" path="res://battle_backgrounds/Screens.png" id="6_8ymfy"]
+[ext_resource type="Resource" uid="uid://duif80w2lrjhk" path="res://enemies_data/buzzbuzz.tres" id="7_r2m7j"]
+
+[resource]
+script = ExtResource("3_tgogu")
+name = "BuzzBuzz Duo"
+allies_data = Array[ExtResource("1_qtqrd")]([ExtResource("2_f3iya"), ExtResource("3_r2m7j"), ExtResource("4_8jjwt"), ExtResource("5_8ymfy")])
+enemies_data = Array[ExtResource("2_hm8iq")]([ExtResource("7_r2m7j"), ExtResource("7_r2m7j")])
+battle_music = ExtResource("6_8jjwt")
+battle_background = ExtResource("6_8ymfy")
+metadata/_custom_type_script = "uid://3tlnqby8bnsa"

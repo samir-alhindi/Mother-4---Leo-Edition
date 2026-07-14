@@ -1,0 +1,119 @@
+[gd_resource type="Resource" script_class="Psi" format=3 uid="uid://bn75xnmokn2vx"]
+
+[ext_resource type="Script" uid="uid://lxo20rbxhpf0" path="res://resource_scripts/psi.gd" id="1_52xn1"]
+[ext_resource type="Texture2D" uid="uid://c6oceot1aha3s" path="res://psi_animations/pk_fire/frame_000.png" id="2_52xn1"]
+[ext_resource type="AudioStream" uid="uid://ctn7gg2wkswte" path="res://sfx/pkFireA.wav" id="2_its6v"]
+[ext_resource type="Texture2D" uid="uid://byytoq0e0xr7s" path="res://psi_animations/pk_fire/frame_001.png" id="3_its6v"]
+[ext_resource type="Texture2D" uid="uid://xm2ph1gxo81l" path="res://psi_animations/pk_fire/frame_002.png" id="4_mq0qt"]
+[ext_resource type="Texture2D" uid="uid://onvdbqiceaei" path="res://psi_animations/pk_fire/frame_003.png" id="5_p0044"]
+[ext_resource type="Texture2D" uid="uid://b65oevvfyq1m1" path="res://psi_animations/pk_fire/frame_004.png" id="6_638gc"]
+[ext_resource type="Texture2D" uid="uid://d2eq8ijxicd8j" path="res://psi_animations/pk_fire/frame_005.png" id="7_c7e63"]
+[ext_resource type="Texture2D" uid="uid://yoo2ol5etvyo" path="res://psi_animations/pk_fire/frame_006.png" id="8_uxo6n"]
+[ext_resource type="Texture2D" uid="uid://dhb8f2r7hlb6u" path="res://psi_animations/pk_fire/frame_007.png" id="9_tmveu"]
+[ext_resource type="Texture2D" uid="uid://bux1won6u1t61" path="res://psi_animations/pk_fire/frame_008.png" id="10_c7l6j"]
+[ext_resource type="Texture2D" uid="uid://fshh8rye1g3" path="res://psi_animations/pk_fire/frame_009.png" id="11_q5ef2"]
+[ext_resource type="Texture2D" uid="uid://b35exfhcgrhrr" path="res://psi_animations/pk_fire/frame_010.png" id="12_pusnb"]
+[ext_resource type="Texture2D" uid="uid://caovfvvu2yaiv" path="res://psi_animations/pk_fire/frame_011.png" id="13_wf1so"]
+[ext_resource type="Texture2D" uid="uid://chnrbgsldhhw2" path="res://psi_animations/pk_fire/frame_012.png" id="14_l3i7t"]
+[ext_resource type="Texture2D" uid="uid://coma4w3q5seqi" path="res://psi_animations/pk_fire/frame_013.png" id="15_qeskb"]
+[ext_resource type="Texture2D" uid="uid://bkc31gkjwo7e0" path="res://psi_animations/pk_fire/frame_014.png" id="16_do6yh"]
+[ext_resource type="Texture2D" uid="uid://boksr4oewhue8" path="res://psi_animations/pk_fire/frame_015.png" id="17_hmjs6"]
+[ext_resource type="Texture2D" uid="uid://dmqd0c37s2fch" path="res://psi_animations/pk_fire/frame_016.png" id="18_saia8"]
+[ext_resource type="Texture2D" uid="uid://f17m61lxg7fh" path="res://psi_animations/pk_fire/frame_017.png" id="19_m3qsv"]
+[ext_resource type="Texture2D" uid="uid://d145rj7bcigjk" path="res://psi_animations/pk_fire/frame_018.png" id="20_2osih"]
+[ext_resource type="Texture2D" uid="uid://c0q1i1d15rgcp" path="res://psi_animations/pk_fire/frame_019.png" id="21_ktnbw"]
+[ext_resource type="Texture2D" uid="uid://dn2d8pbadcdng" path="res://psi_animations/pk_fire/frame_020.png" id="22_h8nei"]
+[ext_resource type="Texture2D" uid="uid://u3lvcqdax8lr" path="res://psi_animations/pk_fire/frame_021.png" id="23_ucaxm"]
+[ext_resource type="Texture2D" uid="uid://d0wvalyr07sah" path="res://psi_animations/pk_fire/frame_022.png" id="24_gg0dx"]
+[ext_resource type="Texture2D" uid="uid://b4mf4lu7yq5vt" path="res://psi_animations/pk_fire/frame_023.png" id="25_5grjg"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_7ligu"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_52xn1")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_its6v")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_mq0qt")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_p0044")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_638gc")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7_c7e63")
+}, {
+"duration": 1.0,
+"texture": ExtResource("8_uxo6n")
+}, {
+"duration": 1.0,
+"texture": ExtResource("9_tmveu")
+}, {
+"duration": 1.0,
+"texture": ExtResource("10_c7l6j")
+}, {
+"duration": 1.0,
+"texture": ExtResource("11_q5ef2")
+}, {
+"duration": 1.0,
+"texture": ExtResource("12_pusnb")
+}, {
+"duration": 1.0,
+"texture": ExtResource("13_wf1so")
+}, {
+"duration": 1.0,
+"texture": ExtResource("14_l3i7t")
+}, {
+"duration": 1.0,
+"texture": ExtResource("15_qeskb")
+}, {
+"duration": 1.0,
+"texture": ExtResource("16_do6yh")
+}, {
+"duration": 1.0,
+"texture": ExtResource("17_hmjs6")
+}, {
+"duration": 1.0,
+"texture": ExtResource("18_saia8")
+}, {
+"duration": 1.0,
+"texture": ExtResource("19_m3qsv")
+}, {
+"duration": 1.0,
+"texture": ExtResource("20_2osih")
+}, {
+"duration": 1.0,
+"texture": ExtResource("21_ktnbw")
+}, {
+"duration": 1.0,
+"texture": ExtResource("22_h8nei")
+}, {
+"duration": 1.0,
+"texture": ExtResource("23_ucaxm")
+}, {
+"duration": 1.0,
+"texture": ExtResource("24_gg0dx")
+}, {
+"duration": 1.0,
+"texture": ExtResource("25_5grjg")
+}],
+"loop": false,
+"name": &"default",
+"speed": 30.0
+}]
+
+[resource]
+script = ExtResource("1_52xn1")
+name = "PK Fire α"
+pp_cost = 7
+sprite_frames = SubResource("SpriteFrames_7ligu")
+strength = 45
+sound = ExtResource("2_its6v")
+target_all_enemies = true
+animation_scale = Vector2(0.5, 0.5)
+metadata/_custom_type_script = "uid://lxo20rbxhpf0"

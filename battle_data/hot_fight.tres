@@ -1,0 +1,20 @@
+[gd_resource type="Resource" script_class="BattleData" format=3 uid="uid://pu3hyoilqb32"]
+
+[ext_resource type="Script" uid="uid://dg72lty02kan7" path="res://resource_scripts/ally_battler_data.gd" id="1_o3721"]
+[ext_resource type="Script" uid="uid://dqj3kgxgxg16h" path="res://resource_scripts/enemy_battler_data.gd" id="2_c6v76"]
+[ext_resource type="Resource" uid="uid://f0tq4v43rx3k" path="res://allies_data/travis.tres" id="2_uxmfm"]
+[ext_resource type="Script" uid="uid://3tlnqby8bnsa" path="res://resource_scripts/battle_data.gd" id="3_12mtv"]
+[ext_resource type="Resource" uid="uid://b78esr3oxqfqj" path="res://allies_data/floyd.tres" id="3_57j8w"]
+[ext_resource type="Resource" uid="uid://bwi51gf2y6aj2" path="res://allies_data/meryl.tres" id="4_5wk64"]
+[ext_resource type="Texture2D" uid="uid://dclsh8nsthfoq" path="res://battle_backgrounds/Diamondine1.PNG" id="5_1w6jv"]
+[ext_resource type="AudioStream" uid="uid://c6h1mowolcumh" path="res://battle_songs/Battle Against a Hot Opponent.wav" id="5_5wk64"]
+[ext_resource type="Resource" uid="uid://b3udjwxnle0mr" path="res://enemies_data/carbon_pup.tres" id="6_57j8w"]
+
+[resource]
+script = ExtResource("3_12mtv")
+name = "Carbon Puppies"
+allies_data = Array[ExtResource("1_o3721")]([ExtResource("2_uxmfm"), ExtResource("3_57j8w"), ExtResource("4_5wk64")])
+enemies_data = Array[ExtResource("2_c6v76")]([ExtResource("6_57j8w"), ExtResource("6_57j8w")])
+battle_music = ExtResource("5_5wk64")
+battle_background = ExtResource("5_1w6jv")
+metadata/_custom_type_script = "uid://3tlnqby8bnsa"

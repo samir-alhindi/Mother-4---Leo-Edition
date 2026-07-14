@@ -1,0 +1,30 @@
+[gd_resource type="Resource" script_class="BattleData" format=3 uid="uid://cmfnocte4elp8"]
+
+[ext_resource type="Script" uid="uid://dg72lty02kan7" path="res://resource_scripts/ally_battler_data.gd" id="1_2ihy8"]
+[ext_resource type="Resource" uid="uid://f0tq4v43rx3k" path="res://allies_data/travis.tres" id="2_d61vv"]
+[ext_resource type="Script" uid="uid://dqj3kgxgxg16h" path="res://resource_scripts/enemy_battler_data.gd" id="2_p7hnp"]
+[ext_resource type="Script" uid="uid://3tlnqby8bnsa" path="res://resource_scripts/battle_data.gd" id="3_d61vv"]
+[ext_resource type="Resource" uid="uid://b78esr3oxqfqj" path="res://allies_data/floyd.tres" id="3_taudr"]
+[ext_resource type="AudioStream" uid="uid://dp3vaheqtt5jx" path="res://battle_songs/Battle Against a Clueless Foe.wav" id="4_mqmss"]
+[ext_resource type="Texture2D" uid="uid://cy522no6txp6a" path="res://battle_backgrounds/Rainbowband.png" id="4_ufr0w"]
+[ext_resource type="Shader" uid="uid://c478xmggly1q3" path="res://battle/other_shader.gdshader" id="4_v6hbi"]
+[ext_resource type="Resource" uid="uid://dqmes6mdmnfpr" path="res://enemies_data/snail.tres" id="5_taudr"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_m8m3a"]
+shader = ExtResource("4_v6hbi")
+shader_parameter/horizontal_oscillation = 0.01
+shader_parameter/vertical_oscillation = 0.01
+shader_parameter/scanline_wave_frequency = 40.0
+shader_parameter/scanline_wave_speed = 2.0
+shader_parameter/alternate_direction = false
+shader_parameter/viewport_size = Vector2(320, 180)
+
+[resource]
+script = ExtResource("3_d61vv")
+name = "Magic Snails"
+allies_data = Array[ExtResource("1_2ihy8")]([ExtResource("2_d61vv"), ExtResource("3_taudr")])
+enemies_data = Array[ExtResource("2_p7hnp")]([ExtResource("5_taudr"), ExtResource("5_taudr"), ExtResource("5_taudr")])
+battle_music = ExtResource("4_mqmss")
+battle_background = ExtResource("4_ufr0w")
+background_shader = SubResource("ShaderMaterial_m8m3a")
+metadata/_custom_type_script = "uid://3tlnqby8bnsa"

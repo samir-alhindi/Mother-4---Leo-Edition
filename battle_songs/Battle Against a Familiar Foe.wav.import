@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://7qqw8wfc8svv"
+path="res://.godot/imported/Battle Against a Familiar Foe.wav-592358f092d56e1b9d6196c68ce78414.sample"
+
+[deps]
+
+source_file="res://battle_songs/Battle Against a Familiar Foe.wav"
+dest_files=["res://.godot/imported/Battle Against a Familiar Foe.wav-592358f092d56e1b9d6196c68ce78414.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=2

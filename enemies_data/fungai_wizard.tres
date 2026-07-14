@@ -1,0 +1,14 @@
+[gd_resource type="Resource" script_class="EnemyBattlerData" format=3 uid="uid://nbhjn2kgb40h"]
+
+[ext_resource type="Script" uid="uid://dqj3kgxgxg16h" path="res://resource_scripts/enemy_battler_data.gd" id="1_7pcs4"]
+[ext_resource type="Texture2D" uid="uid://cnj1unahrpoe3" path="res://enemy_sprites/FungalWizard.png" id="2_v8y5s"]
+
+[resource]
+script = ExtResource("1_7pcs4")
+sprite = ExtResource("2_v8y5s")
+name = "Fungal Wizard"
+hp = 111
+offense = 11
+defense = 11
+speed = 11
+metadata/_custom_type_script = "uid://dqj3kgxgxg16h"
