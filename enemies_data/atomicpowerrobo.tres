@@ -6,6 +6,9 @@
 [resource]
 script = ExtResource("1_k4y1x")
 sprite = ExtResource("2_eqcj5")
+waste_turn_text = "Atomic Power Robo froze in place"
+talk_topic = "Metal"
+can_be_talked_to = false
 name = "Atomic Power Robo"
 hp = 300
 offense = 12

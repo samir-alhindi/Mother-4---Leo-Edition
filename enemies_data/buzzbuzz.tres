@@ -6,6 +6,8 @@
 [resource]
 script = ExtResource("1_0381f")
 sprite = ExtResource("2_4l4l4")
+waste_turn_text = "BuzzBuzz sharpened it's needle"
+talk_topic = "Bees"
 name = "Buzz Buzz"
 hp = 111
 offense = 11

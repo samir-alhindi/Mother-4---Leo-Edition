@@ -6,7 +6,9 @@
 [resource]
 script = ExtResource("1_o8mjm")
 sprite = ExtResource("2_vpvbo")
-name = "Anxious"
+waste_turn_text = "Anxious UFO had a panic attack"
+talk_topic = "Mental Health"
+name = "Anxious UFO"
 hp = 111
 offense = 11
 defense = 11

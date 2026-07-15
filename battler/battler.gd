@@ -9,6 +9,7 @@ var offense: int
 var defense: int
 var speed: int
 var is_alive := true
+var is_talking := false
 var allies:Array[AllyBattler]
 var enemies: Array[EnemyBattler]
 

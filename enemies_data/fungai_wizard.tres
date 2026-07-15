@@ -6,6 +6,8 @@
 [resource]
 script = ExtResource("1_7pcs4")
 sprite = ExtResource("2_v8y5s")
+chance_to_waste_turn = 0.0
+can_be_talked_to = false
 name = "Fungal Wizard"
 hp = 111
 offense = 11

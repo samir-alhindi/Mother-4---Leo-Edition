@@ -3,6 +3,45 @@
 [ext_resource type="Texture2D" uid="uid://bux2w8m1eiksd" path="res://enemy_sprites/atomicpowerrobo.dat.png" id="2_rmqpo"]
 [ext_resource type="Script" uid="uid://fhl48ticapbl" path="res://enemy_battler/enemy_battler.gd" id="2_uhnwk"]
 [ext_resource type="AudioStream" uid="uid://cs218gclj2f8c" path="res://sfx/preEnemyAttack.wav" id="3_rmqpo"]
+[ext_resource type="Texture2D" uid="uid://bgydo2dvs2ndp" path="res://battle_ui/DialogInfo.png" id="4_7au1a"]
+[ext_resource type="FontFile" uid="uid://cxsox0cnux0pr" path="res://battle_ui/numberset2.dat.png" id="5_vkoaf"]
+[ext_resource type="AudioStream" uid="uid://cpwbdeknqmkjf" path="res://sfx/enemyDeath.wav" id="6_bf25p"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vkoaf"]
+atlas = ExtResource("4_7au1a")
+region = Rect2(0, 0, 20, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_bf25p"]
+atlas = ExtResource("4_7au1a")
+region = Rect2(20, 0, 20, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vlnrj"]
+atlas = ExtResource("4_7au1a")
+region = Rect2(40, 0, 20, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_dbg6j"]
+atlas = ExtResource("4_7au1a")
+region = Rect2(60, 0, 20, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_edgap"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vkoaf")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_bf25p")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vlnrj")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_dbg6j")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
 
 [node name="EnemyBattler" type="Control" unique_id=1916119787]
 layout_mode = 3
@@ -16,6 +55,31 @@ unique_name_in_owner = true
 texture_filter = 1
 texture = ExtResource("2_rmqpo")
 
+[node name="TalkAnimation" type="AnimatedSprite2D" parent="TextureRect" unique_id=148961271]
+unique_name_in_owner = true
+visible = false
+position = Vector2(0, -50)
+sprite_frames = SubResource("SpriteFrames_edgap")
+frame_progress = 0.33187103
+
 [node name="PreAttackSound" type="AudioStreamPlayer" parent="." unique_id=1755447558]
 unique_name_in_owner = true
 stream = ExtResource("3_rmqpo")
+
+[node name="DamageLabel" type="Label" parent="." unique_id=1193963364]
+unique_name_in_owner = true
+visible = false
+layout_mode = 0
+offset_left = -15.0
+offset_top = 24.0
+offset_right = 25.0
+offset_bottom = 40.0
+pivot_offset_ratio = Vector2(0.5, 0.5)
+theme_override_fonts/font = ExtResource("5_vkoaf")
+text = "35"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="DeadSound" type="AudioStreamPlayer" parent="." unique_id=350972471]
+unique_name_in_owner = true
+stream = ExtResource("6_bf25p")

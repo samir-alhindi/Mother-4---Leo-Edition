@@ -1,6 +1,6 @@
+res://battle_ui/
 res://enemy_battler/
 res://beam3/
-res://pk_beam/
 res://psi/
 res://ally_battler/
 res://title_screen/
@@ -9,7 +9,4 @@ res://battle_data/
 res://enemies_data/
 res://
 res://psi_animations/
-res://pk_freeze/
-res://pk_fire/
 res://battler/
-res://battle_ui/

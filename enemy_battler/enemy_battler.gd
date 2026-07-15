@@ -3,20 +3,28 @@ class_name EnemyBattler extends Battler
 @onready var texture_rect: Sprite2D = %TextureRect
 @onready var pre_attack_sound: AudioStreamPlayer = %PreAttackSound
 @onready var animation_player: AnimationPlayer = %AnimationPlayer
+@onready var talk_animation: AnimatedSprite2D = %TalkAnimation
+@onready var damage_label: Label = %DamageLabel
+@onready var dead_sound: AudioStreamPlayer = %DeadSound
 
 var data: EnemyBattlerData
 var tween: Tween
 
 func _ready() -> void:
 	texture_rect.texture = data.sprite
+	talk_animation.position.y = -data.talk_bubble_height
 
 func perform_action() -> void:
 	pre_attack_sound.play()
 	await blink()
-	var target: AllyBattler = allies.pick_random()
-	EventBus.display_text.emit("%s attacked %s" % [battler_name, target.battler_name])
-	await EventBus.textbox_closed
-	await target.take_damage(offense)
+	if randf() < data.chance_to_waste_turn:
+		EventBus.display_text.emit(data.waste_turn_text)
+		await EventBus.textbox_closed
+	else:
+		var target: AllyBattler = allies.pick_random()
+		EventBus.display_text.emit("%s attacked %s" % [battler_name, target.battler_name])
+		await EventBus.textbox_closed
+		await target.take_damage(offense)
 	finished_performing_action.emit()
 
 func sprite_flash() -> void:
@@ -42,5 +50,34 @@ func shake() -> void:
 	tween.tween_property(texture_rect, "rotation_degrees", 0, 0.2)
 	await tween.finished
 
-func take_damage(amount: int) -> void:
+func take_damage(amount: int, psi_damage:=false) -> void:
 	hp -= amount
+	damage_label.text = str(amount)
+	damage_label.show()
+	var tween := create_tween().set_ease(Tween.EASE_IN_OUT).set_trans(Tween.TRANS_BOUNCE)
+	tween.tween_property(damage_label, "scale", Vector2.ONE*1.2, 0.2)
+	tween.tween_property(damage_label, "scale", Vector2.ONE, 0.4)
+	await tween.finished
+	damage_label.hide()
+	
+	if not psi_damage:
+		await shake()
+	else:
+		await blink()
+	
+	#if hp <= 0:
+		#dead_sound.play()
+		#texture_rect.hide()
+		#is_alive = false
+
+func can_talk() -> bool:
+	return data.can_be_talked_to
+
+func talk() -> void:
+	is_talking = true
+	talk_animation.show()
+	talk_animation.play()
+	tween = create_tween().set_loops()
+	var y := texture_rect.position.y
+	tween.tween_property(texture_rect, "position:y", y+3, 0.5)
+	tween.tween_property(texture_rect, "position:y", y-3, 0.5)

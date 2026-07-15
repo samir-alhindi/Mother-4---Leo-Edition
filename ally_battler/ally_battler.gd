@@ -23,6 +23,9 @@ signal hide_cursor
 @onready var psi_animation: AnimatedSprite2D = %PsiAnimation
 @onready var pre_psi_sound: AudioStreamPlayer = %PrePsiSound
 @onready var psi_sound: AudioStreamPlayer = %PsiSound
+@onready var talk_sound: AudioStreamPlayer = %TalkSound
+@onready var talk_animation: AnimatedSprite2D = %TalkAnimation
+@onready var damage_label: Label = %DamageLabel
 
 const HUD_ALIVE_REGION = Vector2(198, 0)
 const HUD_DEAD_REGION = Vector2(263, 0)
@@ -160,8 +163,6 @@ func perform_action() -> void:
 		EventBus.display_text.emit("%s attacked %s" % [battler_name, target_battler.battler_name])
 		await EventBus.textbox_closed
 		target_battler.take_damage(offense)
-		hit_sound.play()
-		target_battler.shake()
 		self.size_flags_vertical = Control.SIZE_SHRINK_END
 		finished_performing_action.emit()
 	elif action_type == ActionType.PSI:
@@ -197,6 +198,23 @@ func perform_action() -> void:
 			await enemy.blink()
 		self.size_flags_vertical = Control.SIZE_SHRINK_END
 		finished_performing_action.emit()
+	elif action_type == ActionType.TALK:
+		talk_sound.play()
+		EventBus.display_text.emit("Floyd tried chatting up the %s..." % target_battler.battler_name)
+		await EventBus.textbox_closed
+		var enemy := target_battler as EnemyBattler
+		if enemy.can_talk():
+			EventBus.display_text.emit("It had a lot to say about %s...\nThey really hit it off!" % target_battler.data.talk_topic)
+			await EventBus.textbox_closed
+			enemy.talk()
+			self.is_talking = true
+			talk_animation.show()
+			talk_animation.play()
+		else:
+			EventBus.display_text.emit("It didn't seem interested...")
+			await EventBus.textbox_closed
+		self.size_flags_vertical = Control.SIZE_SHRINK_END
+		finished_performing_action.emit()
 
 func _on_button_focus_entered() -> void:
 	button_focus_sound.play()
@@ -206,12 +224,7 @@ func _on_button_pressed() -> void:
 
 func _on_bash_button_pressed() -> void:
 	action_type = ActionType.BASH
-	ui.hide()
-	state = States.SELECTING
-	selection_index = 0
-	var enemy := get_valid_enemy()
-	enemy.sprite_flash()
-	move_cursor_to.emit(enemy.global_position)
+	start_selecting()
 
 func get_valid_enemy() -> EnemyBattler:
 	var enemy := enemies[selection_index % enemies.size()]
@@ -254,9 +267,16 @@ func _on_psi_button_pressed() -> void:
 		ui.hide()
 		finished_deciding_action.emit()
 		return
+	start_selecting()
+
+func start_selecting() -> void:
 	ui.hide()
 	state = States.SELECTING
 	selection_index = 0
 	var enemy := get_valid_enemy()
 	enemy.sprite_flash()
 	move_cursor_to.emit(enemy.global_position)
+
+func _on_talk_button_pressed() -> void:
+	action_type = ActionType.TALK
+	start_selecting()

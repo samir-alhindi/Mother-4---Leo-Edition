@@ -1,0 +1,25 @@
+[remap]
+
+importer="font_data_image"
+type="FontFile"
+uid="uid://cxsox0cnux0pr"
+path="res://.godot/imported/numberset2.dat.png-8fe68a856e640a1ea82844971373558d.fontdata"
+
+[deps]
+
+source_file="res://battle_ui/numberset2.dat.png"
+dest_files=["res://.godot/imported/numberset2.dat.png-8fe68a856e640a1ea82844971373558d.fontdata"]
+
+[params]
+
+character_ranges=PackedStringArray("48-57")
+kerning_pairs=PackedStringArray()
+columns=10
+rows=1
+image_margin=Rect2i(0, 0, 0, 0)
+character_margin=Rect2i(0, 0, 0, 0)
+ascent=0
+descent=0
+fallbacks=[]
+compress=true
+scaling_mode=2

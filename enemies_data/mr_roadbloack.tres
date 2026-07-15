@@ -6,6 +6,7 @@
 [resource]
 script = ExtResource("1_4vyap")
 sprite = ExtResource("2_lx4yk")
+can_be_talked_to = false
 name = "Mr. Roadblock"
 hp = 320
 offense = 25

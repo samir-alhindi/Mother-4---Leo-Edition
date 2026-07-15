@@ -6,6 +6,9 @@
 [resource]
 script = ExtResource("1_y0pvg")
 sprite = ExtResource("2_t2oio")
+waste_turn_text = "Hermit Can started polishing it's own shell"
+talk_topic = "Soda"
+talk_bubble_height = 30
 name = "Hermit Can"
 hp = 100
 offense = 12

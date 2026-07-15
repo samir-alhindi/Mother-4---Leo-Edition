@@ -43,6 +43,8 @@ func _ready() -> void:
 	
 	while true:
 		for ally in allies:
+			if not ally.is_alive or ally.is_talking:
+				continue
 			ally.decide_action()
 			await ally.finished_deciding_action
 			await get_tree().create_timer(0.1).timeout
@@ -55,7 +57,7 @@ func _ready() -> void:
 		battlers.sort_custom(sort_by_highest_speed)
 		
 		for battler in battlers:
-			if not battler.is_alive:
+			if not battler.is_alive or battler.is_talking:
 				continue
 			battler.perform_action()
 			await battler.finished_performing_action

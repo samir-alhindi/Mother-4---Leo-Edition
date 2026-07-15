@@ -10,6 +10,8 @@
 [ext_resource type="AudioStream" uid="uid://cujdnnn87hqxi" path="res://sfx/hitA.wav" id="8_14ci8"]
 [ext_resource type="AudioStream" uid="uid://r7fopcvl2t03" path="res://sfx/046 Player hurt.wav" id="9_v1bk8"]
 [ext_resource type="AudioStream" uid="uid://dyt3wbsuhapaf" path="res://sfx/prePsi.wav" id="10_v4ran"]
+[ext_resource type="AudioStream" uid="uid://cy4kt71fjuose" path="res://sfx/floydTalk.wav" id="11_e1yxm"]
+[ext_resource type="Texture2D" uid="uid://bgydo2dvs2ndp" path="res://battle_ui/DialogInfo.png" id="12_0c1ty"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_e1yxm"]
 atlas = ExtResource("2_s0x1t")
@@ -18,6 +20,14 @@ region = Rect2(0, 0, 57, 15)
 [sub_resource type="AtlasTexture" id="AtlasTexture_v1bk8"]
 atlas = ExtResource("2_s0x1t")
 region = Rect2(58, 0, 57, 15)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jy1p1"]
+atlas = ExtResource("2_s0x1t")
+region = Rect2(0, 80, 52, 15)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_bw4lb"]
+atlas = ExtResource("2_s0x1t")
+region = Rect2(53, 80, 52, 15)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_7pvb6"]
 atlas = ExtResource("2_s0x1t")
@@ -42,14 +52,6 @@ region = Rect2(0, 32, 64, 15)
 [sub_resource type="AtlasTexture" id="AtlasTexture_xv44e"]
 atlas = ExtResource("2_s0x1t")
 region = Rect2(65, 32, 64, 15)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_jy1p1"]
-atlas = ExtResource("2_s0x1t")
-region = Rect2(0, 80, 52, 15)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_bw4lb"]
-atlas = ExtResource("2_s0x1t")
-region = Rect2(53, 80, 52, 15)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_2bvwm"]
 atlas = ExtResource("2_s0x1t")
@@ -718,6 +720,42 @@ region = Rect2(240, 111, 15, 8)
 atlas = ExtResource("7_v1bk8")
 region = Rect2(199, 57, 59, 53)
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_vkoaf"]
+atlas = ExtResource("12_0c1ty")
+region = Rect2(0, 0, 20, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_bf25p"]
+atlas = ExtResource("12_0c1ty")
+region = Rect2(20, 0, 20, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vlnrj"]
+atlas = ExtResource("12_0c1ty")
+region = Rect2(40, 0, 20, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_dbg6j"]
+atlas = ExtResource("12_0c1ty")
+region = Rect2(60, 0, 20, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_jn50p"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vkoaf")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_bf25p")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vlnrj")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_dbg6j")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
 [node name="AllyBattler" type="Control" unique_id=847787726]
 custom_minimum_size = Vector2(59, 55)
 layout_mode = 3
@@ -748,6 +786,14 @@ size_flags_vertical = 0
 texture_normal = SubResource("AtlasTexture_e1yxm")
 texture_focused = SubResource("AtlasTexture_v1bk8")
 
+[node name="TalkButton" type="TextureButton" parent="Ui/Buttons" unique_id=516972350]
+unique_name_in_owner = true
+visible = false
+layout_mode = 2
+size_flags_vertical = 0
+texture_normal = SubResource("AtlasTexture_jy1p1")
+texture_focused = SubResource("AtlasTexture_bw4lb")
+
 [node name="PsiButton" type="TextureButton" parent="Ui/Buttons" unique_id=1431312329]
 unique_name_in_owner = true
 visible = false
@@ -770,14 +816,6 @@ layout_mode = 2
 size_flags_vertical = 0
 texture_normal = SubResource("AtlasTexture_jn50p")
 texture_focused = SubResource("AtlasTexture_xv44e")
-
-[node name="TalkButton" type="TextureButton" parent="Ui/Buttons" unique_id=516972350]
-unique_name_in_owner = true
-visible = false
-layout_mode = 2
-size_flags_vertical = 0
-texture_normal = SubResource("AtlasTexture_jy1p1")
-texture_focused = SubResource("AtlasTexture_bw4lb")
 
 [node name="RunButton" type="TextureButton" parent="Ui/Buttons" unique_id=1244390663]
 unique_name_in_owner = true
@@ -928,6 +966,21 @@ value = 50.0
 fill_mode = 3
 texture_progress = SubResource("AtlasTexture_2fwon")
 
+[node name="DamageLabel" type="Label" parent="HUD" unique_id=194543247]
+unique_name_in_owner = true
+visible = false
+texture_filter = 1
+layout_mode = 0
+offset_left = 3.0
+offset_top = -15.0
+offset_right = 55.0
+offset_bottom = 1.0
+pivot_offset_ratio = Vector2(0.5, 0.5)
+theme_override_constants/outline_size = 2
+text = "1234"
+horizontal_alignment = 1
+vertical_alignment = 1
+
 [node name="HpOdometerTimer" type="Timer" parent="." unique_id=333683866]
 unique_name_in_owner = true
 wait_time = 0.1
@@ -973,7 +1026,18 @@ stream = ExtResource("10_v4ran")
 [node name="PsiSound" type="AudioStreamPlayer" parent="." unique_id=1701619136]
 unique_name_in_owner = true
 
+[node name="TalkSound" type="AudioStreamPlayer" parent="." unique_id=1074364805]
+unique_name_in_owner = true
+stream = ExtResource("11_e1yxm")
+
+[node name="TalkAnimation" type="AnimatedSprite2D" parent="." unique_id=1997415224]
+unique_name_in_owner = true
+visible = false
+position = Vector2(29, -11)
+sprite_frames = SubResource("SpriteFrames_jn50p")
+
 [connection signal="pressed" from="Ui/Buttons/BashButton" to="." method="_on_bash_button_pressed"]
+[connection signal="pressed" from="Ui/Buttons/TalkButton" to="." method="_on_talk_button_pressed"]
 [connection signal="pressed" from="Ui/Buttons/PsiButton" to="." method="_on_psi_button_pressed"]
 [connection signal="frame_changed" from="HUD/HudBackGround/MarginContainer/VBoxContainer/HpHBoxContainer/HpOdometer/Digits/HpOnesPlace" to="." method="_on_hp_ones_place_frame_changed"]
 [connection signal="frame_changed" from="HUD/HudBackGround/MarginContainer/VBoxContainer/HpHBoxContainer/HpOdometer/Digits/HpTensPlace" to="." method="_on_hp_tens_place_frame_changed"]

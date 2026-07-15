@@ -6,6 +6,8 @@
 [resource]
 script = ExtResource("1_j3pk7")
 sprite = ExtResource("2_rgxag")
+waste_turn_text = "Amoeballpon floated around"
+talk_topic = "Micro-Biology"
 name = "Amoeballpon"
 hp = 111
 offense = 11

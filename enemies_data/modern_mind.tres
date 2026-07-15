@@ -6,6 +6,9 @@
 [resource]
 script = ExtResource("1_7bhd4")
 sprite = ExtResource("2_hmoty")
+chance_to_waste_turn = 0.0
+waste_turn_text = ""
+can_be_talked_to = false
 name = "Modern Mind"
 hp = 300
 offense = 30

@@ -6,6 +6,7 @@
 [resource]
 script = ExtResource("1_mom4g")
 sprite = ExtResource("2_bb1eb")
+talk_topic = "Fuga"
 name = "Rambling Mushroom"
 hp = 111
 offense = 11

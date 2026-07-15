@@ -6,6 +6,8 @@
 [resource]
 script = ExtResource("1_avjj3")
 sprite = ExtResource("2_lu781")
+waste_turn_text = "Carbon Pup started chasing it's own tail"
+talk_topic = "Lava"
 name = "Carbon Pup"
 hp = 111
 offense = 11

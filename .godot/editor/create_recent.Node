@@ -1,10 +1,10 @@
-AnimatedSprite2D
 AudioStreamPlayer
+Label
+AnimatedSprite2D
 MarginContainer
 Button
 ScrollContainer
 VBoxContainer
-Label
 TextureRect
 ColorRect
 CanvasLayer
