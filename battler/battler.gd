@@ -1,6 +1,8 @@
 @abstract
 class_name Battler extends Control
 
+@onready var talk_animation: AnimatedSprite2D = %TalkAnimation
+
 signal finished_performing_action
 signal died
 
@@ -13,6 +15,8 @@ var is_alive := true
 var is_talking := false
 var allies:Array[AllyBattler]
 var enemies: Array[EnemyBattler]
+var number_of_turns_left_to_talk: int
+var battler_i_am_talking_to: Battler
 
 static func create(data: BattlerData, allies: Array[AllyBattler], enemies: Array[EnemyBattler]) -> Battler:
 	var battler: Battler
@@ -40,3 +44,11 @@ func perform_action() -> void
 
 @abstract
 func take_damage(amount: int) -> void
+
+func stop_talking() -> void:
+	is_talking = false
+	number_of_turns_left_to_talk = 0
+	talk_animation.hide()
+
+static func battler_is_alive(battler: Battler) -> bool:
+	return battler.is_alive

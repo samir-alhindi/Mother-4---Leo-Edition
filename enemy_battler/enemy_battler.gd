@@ -2,7 +2,6 @@ class_name EnemyBattler extends Battler
 
 @onready var texture_rect: Sprite2D = %TextureRect
 @onready var pre_attack_sound: AudioStreamPlayer = %PreAttackSound
-@onready var talk_animation: AnimatedSprite2D = %TalkAnimation
 @onready var damage_label: Label = %DamageLabel
 @onready var dead_sound: AudioStreamPlayer = %DeadSound
 @onready var hurt_sound: AudioStreamPlayer = %HurtSound
@@ -17,11 +16,25 @@ func _ready() -> void:
 func perform_action() -> void:
 	pre_attack_sound.play()
 	await blink()
+	if is_talking:
+		if battler_i_am_talking_to.is_alive:
+			EventBus.display_text.emit("%s is busy talking" % battler_name)
+			await EventBus.textbox_closed
+			finished_performing_action.emit()
+			return
+		else:
+			stop_talking()
 	if randf() < data.chance_to_waste_turn:
 		EventBus.display_text.emit(data.waste_turn_text)
 		await EventBus.textbox_closed
 	else:
-		var target: AllyBattler = allies.pick_random()
+		var living_allies := allies.filter(battler_is_alive)
+		var target: AllyBattler = living_allies.pick_random()
+		if not target:
+			EventBus.display_text.emit("%s wanted to attack...\nBut nobody was left" % battler_name)
+			await EventBus.textbox_closed
+			finished_performing_action.emit()
+			return
 		EventBus.display_text.emit("%s attacked %s" % [battler_name, target.battler_name])
 		await EventBus.textbox_closed
 		await target.take_damage(offense)
@@ -30,12 +43,12 @@ func perform_action() -> void:
 func sprite_flash() -> void:
 	tween = create_tween()
 	tween.set_loops()
-	tween.tween_property(texture_rect, "modulate:v", 7, 2)
-	tween.tween_property(texture_rect, "modulate:v", 1, 1)
+	tween.tween_property(texture_rect.material, "shader_parameter/white_progress", 1, 1.0)
+	tween.tween_property(texture_rect.material, "shader_parameter/white_progress", 0, 1.0)
 
 func stop_flash() -> void:
 	tween.kill()
-	texture_rect.modulate.v = 1.0
+	(texture_rect.material as ShaderMaterial).set_shader_parameter("white_progress", 0.0)
 
 func blink() -> void:
 	tween = create_tween().set_ease(Tween.EASE_IN_OUT).set_trans(Tween.TRANS_BOUNCE)
@@ -76,6 +89,8 @@ func take_damage(amount: int, psi_damage:=false) -> void:
 		tween.tween_property(talk_animation, "modulate:a", 0, 0.2)
 		is_alive = false
 		died.emit()
+		if is_talking:
+			stop_talking()
 		await tween.finished
 
 func can_talk() -> bool:

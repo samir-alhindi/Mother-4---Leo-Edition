@@ -24,15 +24,15 @@ signal hide_cursor
 @onready var pre_psi_sound: AudioStreamPlayer = %PrePsiSound
 @onready var psi_sound: AudioStreamPlayer = %PsiSound
 @onready var talk_sound: AudioStreamPlayer = %TalkSound
-@onready var talk_animation: AnimatedSprite2D = %TalkAnimation
 @onready var damage_label: Label = %DamageLabel
 
 const HUD_ALIVE_REGION = Vector2(198, 0)
 const HUD_DEAD_REGION = Vector2(263, 0)
 const ODOMETER_FRAME_COUNT := 9
+const GUARD_DEFENSE_INCREASE := 40
 var data: AllyBattlerData
 var frames_to_roll: int
-var hp_odometer_speed_scale := 1
+var hp_odometer_speed_scale := 0
 var pp: int
 var psi: Array
 var state := States.NONE
@@ -40,6 +40,7 @@ var action_type: ActionType
 var selection_index := 0
 var target_battler: Battler
 var target_battlers: Array[EnemyBattler]
+var is_guarding := false
 
 enum States {
 	NONE,
@@ -96,6 +97,9 @@ func take_damage(amount: int) -> void:
 	tween.tween_property(self, "scale", Vector2.ONE, 0.2)
 	await tween.finished
 	
+	if not is_alive:
+		return
+	
 	if is_taking_damage():
 		await hp_ones_place.frame_changed
 		frames_to_roll += amount * ODOMETER_FRAME_COUNT
@@ -115,6 +119,9 @@ func take_damage(amount: int) -> void:
 
 func _on_hp_ones_place_frame_changed() -> void:
 	
+	if (not is_healing()) and (not is_taking_damage()):
+		return
+	
 	if hp_ones_place.frame % ODOMETER_FRAME_COUNT == 0:
 		hp += 1 if is_healing() else -1
 		var hp_str := "%03d" % hp
@@ -130,6 +137,9 @@ func _on_hp_ones_place_frame_changed() -> void:
 		(hud_back_ground.texture as AtlasTexture).region.position = HUD_DEAD_REGION
 		died.emit()
 		is_alive = false
+		if is_talking:
+			stop_talking()
+			battler_i_am_talking_to.stop_talking()
 		return
 	
 	frames_to_roll -= 1
@@ -145,21 +155,28 @@ func _on_hp_hundreds_place_frame_changed() -> void:
 		hp_hundreds_place.pause()
 
 func is_healing() -> bool:
-	return hp_odometer_speed_scale > 0 and frames_to_roll != 0
+	return is_alive and hp_odometer_speed_scale > 0 and frames_to_roll != 0
 
 func is_taking_damage() -> bool:
-	return hp_odometer_speed_scale < 0 and frames_to_roll != 0
+	return is_alive and hp_odometer_speed_scale < 0 and frames_to_roll != 0
 
 func _process(delta: float) -> void:
 	%HpLabel.text = "HP=%d" % hp
 
 func decide_action() -> void:
+	if is_guarding:
+		is_guarding = false
+		defense -= GUARD_DEFENSE_INCREASE
 	ui.show()
 	self.size_flags_vertical = Control.SIZE_SHRINK_BEGIN
 	bash_button.grab_focus()
 
 func perform_action() -> void:
 	self.size_flags_vertical = Control.SIZE_SHRINK_BEGIN
+	if is_talking:
+		talking_logic()
+		return
+	
 	if action_type == ActionType.BASH:
 		var enemy := get_valid_enemy() as EnemyBattler
 		pre_attack_sound.play()
@@ -188,7 +205,8 @@ func perform_action() -> void:
 		await psi_animation.animation_finished
 		psi_animation.hide()
 		if psi.target_all_enemies:
-			for enemy in enemies:
+			var targets := enemies.filter(battler_is_alive)
+			for enemy in targets:
 				await enemy.take_damage(psi.strength, true)
 		else:
 			var enemy := get_valid_enemy()
@@ -197,19 +215,28 @@ func perform_action() -> void:
 		finished_performing_action.emit()
 	elif action_type == ActionType.TALK:
 		talk_sound.play()
-		EventBus.display_text.emit("Floyd tried chatting up the %s..." % target_battler.battler_name)
+		var enemy := get_valid_enemy()
+		EventBus.display_text.emit("Floyd tried chatting up the %s..." % enemy.battler_name)
 		await EventBus.textbox_closed
-		var enemy := target_battler as EnemyBattler
 		if enemy.can_talk():
-			EventBus.display_text.emit("It had a lot to say about %s...\nThey really hit it off!" % target_battler.data.talk_topic)
+			EventBus.display_text.emit("It had a lot to say about %s...\nThey really hit it off!" % enemy.data.talk_topic)
 			await EventBus.textbox_closed
 			enemy.talk()
+			battler_i_am_talking_to = enemy
+			enemy.battler_i_am_talking_to = self
+			number_of_turns_left_to_talk = 3
 			self.is_talking = true
 			talk_animation.show()
 			talk_animation.play()
 		else:
 			EventBus.display_text.emit("It didn't seem interested...")
 			await EventBus.textbox_closed
+		self.size_flags_vertical = Control.SIZE_SHRINK_END
+		finished_performing_action.emit()
+	
+	elif action_type == ActionType.GUARD:
+		EventBus.display_text.emit("%s is on guard" % battler_name)
+		await EventBus.textbox_closed
 		self.size_flags_vertical = Control.SIZE_SHRINK_END
 		finished_performing_action.emit()
 
@@ -260,7 +287,6 @@ func _on_psi_button_pressed() -> void:
 	var psi := data.psi[0]
 	if psi.target_all_enemies:
 		self.size_flags_vertical = Control.SIZE_SHRINK_END
-		target_battlers = enemies
 		ui.hide()
 		finished_deciding_action.emit()
 		return
@@ -280,3 +306,25 @@ func _on_talk_button_pressed() -> void:
 
 func on_battle_won() -> void:
 	talk_animation.hide()
+
+func _on_guard_button_pressed() -> void:
+	action_type = ActionType.GUARD
+	defense += GUARD_DEFENSE_INCREASE
+	self.size_flags_vertical = Control.SIZE_SHRINK_END
+	ui.hide()
+	finished_deciding_action.emit()
+	return
+
+func talking_logic() -> void:
+	
+	number_of_turns_left_to_talk -= 1
+	if number_of_turns_left_to_talk == 0 or not battler_i_am_talking_to.is_alive:
+		EventBus.display_text.emit("%s just finished talking" % battler_name)
+		stop_talking()
+		battler_i_am_talking_to.stop_talking()
+	else:
+		EventBus.display_text.emit("%s is busy talking" % battler_name)
+	await EventBus.textbox_closed
+	self.size_flags_vertical = Control.SIZE_SHRINK_END
+	finished_performing_action.emit()
+	return

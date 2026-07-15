@@ -989,10 +989,10 @@ wait_time = 0.1
 unique_name_in_owner = true
 visible = false
 layout_mode = 0
-offset_left = 11.0
-offset_top = -15.0
-offset_right = 51.0
-offset_bottom = -2.0
+offset_left = 7.0
+offset_top = -17.0
+offset_right = 47.0
+offset_bottom = -4.0
 text = "HP=%d"
 
 [node name="ButtonFocusSound" type="AudioStreamPlayer" parent="." unique_id=1156110958]
@@ -1016,9 +1016,6 @@ unique_name_in_owner = true
 stream = ExtResource("9_v1bk8")
 volume_db = 15.0
 
-[node name="PsiAnimation" type="AnimatedSprite2D" parent="." unique_id=256478557]
-unique_name_in_owner = true
-
 [node name="PrePsiSound" type="AudioStreamPlayer" parent="." unique_id=296266745]
 unique_name_in_owner = true
 stream = ExtResource("10_v4ran")
@@ -1030,6 +1027,9 @@ unique_name_in_owner = true
 unique_name_in_owner = true
 stream = ExtResource("11_e1yxm")
 
+[node name="PsiAnimation" type="AnimatedSprite2D" parent="." unique_id=256478557]
+unique_name_in_owner = true
+
 [node name="TalkAnimation" type="AnimatedSprite2D" parent="." unique_id=1997415224]
 unique_name_in_owner = true
 visible = false
@@ -1039,6 +1039,7 @@ sprite_frames = SubResource("SpriteFrames_jn50p")
 [connection signal="pressed" from="Ui/Buttons/BashButton" to="." method="_on_bash_button_pressed"]
 [connection signal="pressed" from="Ui/Buttons/TalkButton" to="." method="_on_talk_button_pressed"]
 [connection signal="pressed" from="Ui/Buttons/PsiButton" to="." method="_on_psi_button_pressed"]
+[connection signal="pressed" from="Ui/Buttons/GuardButton" to="." method="_on_guard_button_pressed"]
 [connection signal="frame_changed" from="HUD/HudBackGround/MarginContainer/VBoxContainer/HpHBoxContainer/HpOdometer/Digits/HpOnesPlace" to="." method="_on_hp_ones_place_frame_changed"]
 [connection signal="frame_changed" from="HUD/HudBackGround/MarginContainer/VBoxContainer/HpHBoxContainer/HpOdometer/Digits/HpTensPlace" to="." method="_on_hp_tens_place_frame_changed"]
 [connection signal="frame_changed" from="HUD/HudBackGround/MarginContainer/VBoxContainer/HpHBoxContainer/HpOdometer/Digits/HpHundredsPlace" to="." method="_on_hp_hundreds_place_frame_changed"]

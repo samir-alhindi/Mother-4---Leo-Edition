@@ -64,7 +64,7 @@ func _ready() -> void:
 		battlers.sort_custom(sort_by_highest_speed)
 		
 		for battler in battlers:
-			if not battler.is_alive or battler.is_talking:
+			if not battler.is_alive:
 				continue
 			battler.perform_action()
 			await battler.finished_performing_action
