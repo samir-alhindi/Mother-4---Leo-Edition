@@ -6,6 +6,7 @@
 [ext_resource type="Texture2D" uid="uid://b66w2n8hd16if" path="res://battle_ui/realcursor.dat.png" id="5_4mnim"]
 [ext_resource type="Texture2D" uid="uid://bllwe05cltxdf" path="res://battle_ui/textbox2.png" id="6_7fucf"]
 [ext_resource type="Texture2D" uid="uid://x8ugvpjcx5ol" path="res://battle_ui/textbox.png" id="6_l1kiu"]
+[ext_resource type="AudioStream" uid="uid://dhmbtx3dwcjfu" path="res://sfx/win1.wav" id="7_7fucf"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_l1kiu"]
 shader = ExtResource("3_6hnvb")
@@ -192,6 +193,10 @@ text = "Heal"
 [node name="Music" type="AudioStreamPlayer" parent="." unique_id=554734809]
 unique_name_in_owner = true
 autoplay = true
+
+[node name="BattleWonSound" type="AudioStreamPlayer" parent="." unique_id=1030744762]
+unique_name_in_owner = true
+stream = ExtResource("7_7fucf")
 
 [connection signal="timeout" from="CanvasLayer/TextBoxTimer" to="." method="_on_text_box_timer_timeout"]
 [connection signal="pressed" from="DamageButton" to="." method="_on_damage_button_pressed"]

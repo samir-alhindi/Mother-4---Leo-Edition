@@ -24,7 +24,7 @@ shader_parameter/viewport_size = Vector2(320, 180)
 [resource]
 script = ExtResource("3_wp707")
 name = "Flamingo And Hermit Can"
-allies_data = Array[ExtResource("1_ii1qv")]([ExtResource("2_msx37"), ExtResource("3_7e6kw"), ExtResource("4_y824o")])
+allies_data = Array[ExtResource("1_ii1qv")]([ExtResource("3_7e6kw"), ExtResource("2_msx37"), ExtResource("4_y824o")])
 enemies_data = Array[ExtResource("2_q5n0g")]([ExtResource("7_y824o"), ExtResource("8_8fvey")])
 battle_music = ExtResource("6_8fvey")
 battle_background = ExtResource("2_wp707")

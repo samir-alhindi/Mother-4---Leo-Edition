@@ -8,11 +8,14 @@ class_name Battle extends Node2D
 @onready var text_label: Label = %TextLabel
 @onready var text_box_timer: Timer = %TextBoxTimer
 @onready var music: AudioStreamPlayer = %Music
+@onready var battle_won_sound: AudioStreamPlayer = %BattleWonSound
 
 static var data: BattleData
 
 var allies: Array[AllyBattler]
 var enemies: Array[EnemyBattler]
+var number_of_living_allies: int
+var number_of_living_enemies: int
 
 func _ready() -> void:
 	EventBus.display_text.connect(_on_display_text)
@@ -23,9 +26,11 @@ func _ready() -> void:
 		background.material = data.background_shader
 	
 	for i in (data.allies_data.size()):
+		number_of_living_allies += 1
 		var ally := Battler.create(data.allies_data[i], allies, enemies) as AllyBattler
 		ally.move_cursor_to.connect(_on_move_cursor_to)
 		ally.hide_cursor.connect(func(): cursor.hide())
+		ally.died.connect(func(): number_of_living_allies -= 1)
 		allies_parent.add_child(ally)
 		allies.append(ally)
 	
@@ -33,7 +38,9 @@ func _ready() -> void:
 	var smaller_screen_width = screen_size.x / 2
 	var step = smaller_screen_width / (data.enemies_data.size()-1)
 	for i in range(data.enemies_data.size()):
+		number_of_living_enemies += 1
 		var enemy := Battler.create(data.enemies_data[i], allies, enemies)
+		enemy.died.connect(func(): number_of_living_enemies -= 1)
 		enemies.append(enemy)
 		enemies_parent.add_child(enemy)
 		if data.enemies_data.size() == 1:
@@ -41,7 +48,7 @@ func _ready() -> void:
 		else:
 			enemy.global_position = Vector2(step*i+smaller_screen_width/2, screen_size.y/2)
 	
-	while true:
+	while not is_battle_finished():
 		for ally in allies:
 			if not ally.is_alive or ally.is_talking:
 				continue
@@ -62,9 +69,12 @@ func _ready() -> void:
 			battler.perform_action()
 			await battler.finished_performing_action
 			await get_tree().create_timer(0.1).timeout
+			if is_battle_finished():
+				finish_battle()
+				return
 
 func sort_by_highest_speed(b1: Battler, b2: Battler) -> bool:
-	if b1.speed < b2.speed:
+	if b1.speed > b2.speed:
 		return true
 	return false
 
@@ -98,3 +108,28 @@ func _on_damage_button_pressed() -> void:
 
 func _on_heal_button_pressed() -> void:
 	allies[0].heal(20)
+
+func is_battle_finished() -> bool:
+	return enemies_won() or allies_won()
+
+func enemies_won() -> bool:
+	return number_of_living_allies == 0
+
+func allies_won() -> bool:
+	return number_of_living_enemies == 0
+
+func finish_battle() -> void:
+	music.stop()
+	if allies_won():
+		for ally in allies:
+			ally.on_battle_won()
+		battle_won_sound.play()
+		EventBus.display_text.emit("You Won!")
+		await EventBus.textbox_closed
+		EventBus.display_text.emit("Travis and friends got 142 XP")
+		await EventBus.textbox_closed
+		get_tree().change_scene_to_file("res://title_screen/title_screen.tscn")
+	else:
+		EventBus.display_text.emit("You Lost...")
+		await EventBus.textbox_closed
+		get_tree().change_scene_to_file("res://title_screen/title_screen.tscn")

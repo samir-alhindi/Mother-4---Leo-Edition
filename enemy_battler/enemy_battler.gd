@@ -2,10 +2,10 @@ class_name EnemyBattler extends Battler
 
 @onready var texture_rect: Sprite2D = %TextureRect
 @onready var pre_attack_sound: AudioStreamPlayer = %PreAttackSound
-@onready var animation_player: AnimationPlayer = %AnimationPlayer
 @onready var talk_animation: AnimatedSprite2D = %TalkAnimation
 @onready var damage_label: Label = %DamageLabel
 @onready var dead_sound: AudioStreamPlayer = %DeadSound
+@onready var hurt_sound: AudioStreamPlayer = %HurtSound
 
 var data: EnemyBattlerData
 var tween: Tween
@@ -40,8 +40,8 @@ func stop_flash() -> void:
 func blink() -> void:
 	tween = create_tween().set_ease(Tween.EASE_IN_OUT).set_trans(Tween.TRANS_BOUNCE)
 	tween.set_loops(2)
-	tween.tween_property(texture_rect, "modulate:a", 0, 0.1)
-	tween.tween_property(texture_rect, "modulate:a", 1, 0.15)
+	tween.tween_property(texture_rect.material, "shader_parameter/flash_alpha", 0, 0.1)
+	tween.tween_property(texture_rect.material, "shader_parameter/flash_alpha", 1, 0.15)
 	await tween.finished
 
 func shake() -> void:
@@ -51,24 +51,32 @@ func shake() -> void:
 	await tween.finished
 
 func take_damage(amount: int, psi_damage:=false) -> void:
-	hp -= amount
 	damage_label.text = str(amount)
 	damage_label.show()
 	var tween := create_tween().set_ease(Tween.EASE_IN_OUT).set_trans(Tween.TRANS_BOUNCE)
 	tween.tween_property(damage_label, "scale", Vector2.ONE*1.2, 0.2)
 	tween.tween_property(damage_label, "scale", Vector2.ONE, 0.4)
-	await tween.finished
-	damage_label.hide()
+	tween.tween_property(damage_label, "visible", false, 0.01)
 	
+	hurt_sound.play()
 	if not psi_damage:
 		await shake()
 	else:
 		await blink()
 	
-	#if hp <= 0:
-		#dead_sound.play()
-		#texture_rect.hide()
-		#is_alive = false
+	hp -= amount
+	if hp <= 0:
+		EventBus.display_text.emit(data.death_text)
+		await EventBus.textbox_closed
+		dead_sound.play()
+		tween = create_tween()
+		tween.tween_property(texture_rect.material, "shader_parameter/white_progress", 1.0, 0.2)
+		tween.tween_property(texture_rect.material, "shader_parameter/flash_alpha", 0.0, 0.2)
+		tween.set_parallel()
+		tween.tween_property(talk_animation, "modulate:a", 0, 0.2)
+		is_alive = false
+		died.emit()
+		await tween.finished
 
 func can_talk() -> bool:
 	return data.can_be_talked_to

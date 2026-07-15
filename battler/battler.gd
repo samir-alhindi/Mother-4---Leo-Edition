@@ -2,6 +2,7 @@
 class_name Battler extends Control
 
 signal finished_performing_action
+signal died
 
 var battler_name: String
 var hp: int

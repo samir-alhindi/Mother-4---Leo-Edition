@@ -128,6 +128,8 @@ func _on_hp_ones_place_frame_changed() -> void:
 		hp_tens_place.stop()
 		hp_hundreds_place.stop()
 		(hud_back_ground.texture as AtlasTexture).region.position = HUD_DEAD_REGION
+		died.emit()
+		is_alive = false
 		return
 	
 	frames_to_roll -= 1
@@ -159,10 +161,11 @@ func decide_action() -> void:
 func perform_action() -> void:
 	self.size_flags_vertical = Control.SIZE_SHRINK_BEGIN
 	if action_type == ActionType.BASH:
+		var enemy := get_valid_enemy() as EnemyBattler
 		pre_attack_sound.play()
-		EventBus.display_text.emit("%s attacked %s" % [battler_name, target_battler.battler_name])
+		EventBus.display_text.emit("%s attacked %s" % [battler_name, enemy.battler_name])
 		await EventBus.textbox_closed
-		target_battler.take_damage(offense)
+		await enemy.take_damage(offense)
 		self.size_flags_vertical = Control.SIZE_SHRINK_END
 		finished_performing_action.emit()
 	elif action_type == ActionType.PSI:
@@ -185,17 +188,11 @@ func perform_action() -> void:
 		await psi_animation.animation_finished
 		psi_animation.hide()
 		if psi.target_all_enemies:
-			for i in range(enemies.size()-1):
-				enemies[i].take_damage(psi.strength)
-				enemies[i].blink()
-			enemies[enemies.size()-1].take_damage(psi.strength)
-			hit_sound.play()
-			await enemies[enemies.size()-1].blink()
+			for enemy in enemies:
+				await enemy.take_damage(psi.strength, true)
 		else:
 			var enemy := get_valid_enemy()
-			enemy.take_damage(psi.strength)
-			hit_sound.play()
-			await enemy.blink()
+			await enemy.take_damage(psi.strength)
 		self.size_flags_vertical = Control.SIZE_SHRINK_END
 		finished_performing_action.emit()
 	elif action_type == ActionType.TALK:
@@ -280,3 +277,6 @@ func start_selecting() -> void:
 func _on_talk_button_pressed() -> void:
 	action_type = ActionType.TALK
 	start_selecting()
+
+func on_battle_won() -> void:
+	talk_animation.hide()

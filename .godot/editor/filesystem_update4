@@ -14,3 +14,14 @@ res://battle/fourth.gdshader
 res://enemy_battler/enemy_battler.gd
 res://ally_battler/ally_battler.tscn
 res://ally_battler/ally_battler.gd
+res://resource_scripts/enemy_battler_data.gd
+res://enemy_battler/flash_white.gdshader
+res://enemies_data/flamingo.tres
+res://enemies_data/hermit_crab.tres
+res://battler/battler.gd
+res://battle/battle.tscn
+res://battle/battle.gd
+res://allies_data/floyd.tres
+res://title_screen/title_screen.tscn
+res://allies_data/travis.tres
+res://battle_data/test_battle.tres

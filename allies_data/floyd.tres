@@ -1,6 +1,7 @@
 [gd_resource type="Resource" script_class="AllyBattlerData" format=3 uid="uid://b78esr3oxqfqj"]
 
 [ext_resource type="Script" uid="uid://dg72lty02kan7" path="res://resource_scripts/ally_battler_data.gd" id="1_r4s56"]
+[ext_resource type="Script" uid="uid://lxo20rbxhpf0" path="res://resource_scripts/psi.gd" id="1_yx4xj"]
 
 [resource]
 script = ExtResource("1_r4s56")
@@ -9,5 +10,5 @@ name = "Floyd"
 hp = 180
 offense = 12
 defense = 13
-speed = 12
+speed = 999
 metadata/_custom_type_script = "uid://dg72lty02kan7"

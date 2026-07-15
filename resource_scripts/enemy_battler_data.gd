@@ -6,3 +6,4 @@ class_name EnemyBattlerData extends BattlerData
 @export var talk_topic: String = "Food"
 @export var can_be_talked_to := true
 @export var talk_bubble_height := 40
+@export_multiline() var death_text := "The Enemy disappeared into thin air"
