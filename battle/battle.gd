@@ -98,14 +98,18 @@ func _process(delta: float) -> void:
 	if Input.is_action_just_pressed("exit"):
 		get_tree().change_scene_to_file("res://title_screen/title_screen.tscn")
 	
-	for i in range(3):
-		var ally := allies[i]
-		var label: Label = labels.get_children()[i]
-		var text := "HP=%d\n" % ally.hp
-		text += "frames_to_roll=%d\n" % ally.frames_to_roll
-		text += "hp_odometer_speed_scale=%d\n" % ally.hp_odometer_speed_scale
-		text += "is_taking_damage=%s\n" % ally.is_taking_damage()
-		label.text = text
+	#for i in range(3):
+		#var ally := allies[i]
+		#var label: Label = labels.get_children()[i]
+		#var text := "HP=%d\n" % ally.hp
+		#text += "frames_to_roll=%d\n" % ally.frames_to_roll
+		#text += "hp_odometer_speed_scale=%d\n" % ally.hp_odometer_speed_scale
+		#text += "is_taking_damage=%s\n" % ally.is_taking_damage()
+		#label.text = text
+	
+	var floyd := allies[1]
+	%Label1.text = "is_talking=%s\nturns_to_talk=%d" % [floyd.is_talking, floyd.number_of_turns_left_to_talk]
+	%Label2.text = "is_talking=%s\n" % enemies[0].is_talking
 
 func _on_text_box_timer_timeout() -> void:
 	if text_label.visible_ratio == 1.0:

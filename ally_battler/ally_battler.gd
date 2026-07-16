@@ -225,7 +225,7 @@ func perform_action() -> void:
 			enemy.talk()
 			battler_i_am_talking_to = enemy
 			enemy.battler_i_am_talking_to = self
-			number_of_turns_left_to_talk = 3
+			number_of_turns_left_to_talk = randi_range(2, 3)
 			self.is_talking = true
 			talk_animation.show()
 			talk_animation.play()
@@ -329,3 +329,7 @@ func talking_logic() -> void:
 	self.size_flags_vertical = Control.SIZE_SHRINK_END
 	finished_performing_action.emit()
 	return
+
+func stop_talking() -> void:
+	super.stop_talking()
+	action_type = ActionType.BASH
