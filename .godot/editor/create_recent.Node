@@ -1,5 +1,6 @@
-AudioStreamPlayer
+HBoxContainer
 Label
+AudioStreamPlayer
 AnimatedSprite2D
 MarginContainer
 Button
@@ -9,6 +10,5 @@ TextureRect
 ColorRect
 CanvasLayer
 CanvasGroup
-HBoxContainer
 Control
 Timer

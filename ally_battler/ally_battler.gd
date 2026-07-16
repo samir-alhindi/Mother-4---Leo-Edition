@@ -103,10 +103,6 @@ func take_damage(amount: int) -> void:
 	if is_taking_damage():
 		await hp_ones_place.frame_changed
 		frames_to_roll += amount * ODOMETER_FRAME_COUNT
-	elif is_healing():
-		await hp_ones_place.frame_changed
-		hp_odometer_speed_scale = -1
-		frames_to_roll = amount * ODOMETER_FRAME_COUNT
 	else:
 		frames_to_roll = amount * ODOMETER_FRAME_COUNT
 		hp_odometer_speed_scale = -1
@@ -122,15 +118,20 @@ func _on_hp_ones_place_frame_changed() -> void:
 	if (not is_healing()) and (not is_taking_damage()):
 		return
 	
+	frames_to_roll -= 1
+	
 	if hp_ones_place.frame % ODOMETER_FRAME_COUNT == 0:
-		hp += 1 if is_healing() else -1
-		var hp_str := "%03d" % hp
-		if hp_str[2] == "0":
-			hp_tens_place.play("default", hp_odometer_speed_scale)
-			if hp_str[1] == "0":
-				hp_hundreds_place.play("default", hp_odometer_speed_scale)
+		hp -= 1
+		if frames_to_roll > 0:
+			var hp_str := "%03d" % hp
+			if hp_str[2] == "0":
+				hp_tens_place.play("default", hp_odometer_speed_scale)
+				if hp_str[1] == "0":
+					hp_hundreds_place.play("default", hp_odometer_speed_scale)
 	
 	if hp == 0:
+		hp_odometer_speed_scale = 0
+		frames_to_roll = 0
 		hp_ones_place.stop()
 		hp_tens_place.stop()
 		hp_hundreds_place.stop()
@@ -142,9 +143,9 @@ func _on_hp_ones_place_frame_changed() -> void:
 			battler_i_am_talking_to.stop_talking()
 		return
 	
-	frames_to_roll -= 1
 	if frames_to_roll == 0:
 		hp_ones_place.pause()
+		hp_odometer_speed_scale = 0
 
 func _on_hp_tens_place_frame_changed() -> void:
 	if hp_tens_place.frame % ODOMETER_FRAME_COUNT == 0:
@@ -161,7 +162,7 @@ func is_taking_damage() -> bool:
 	return is_alive and hp_odometer_speed_scale < 0 and frames_to_roll != 0
 
 func _process(delta: float) -> void:
-	%HpLabel.text = "HP=%d" % hp
+	assert(not is_healing(), "Can't heal yet")
 
 func decide_action() -> void:
 	if is_guarding:

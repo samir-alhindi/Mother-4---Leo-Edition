@@ -132,6 +132,27 @@ unique_name_in_owner = true
 wait_time = 0.02
 one_shot = true
 
+[node name="Labels" type="HBoxContainer" parent="CanvasLayer" unique_id=1535841529]
+unique_name_in_owner = true
+offset_top = 19.0
+offset_right = 40.0
+offset_bottom = 59.0
+
+[node name="Label1" type="Label" parent="CanvasLayer/Labels" unique_id=1650069864]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_constants/outline_size = 5
+
+[node name="Label2" type="Label" parent="CanvasLayer/Labels" unique_id=2060214159]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_constants/outline_size = 5
+
+[node name="Label3" type="Label" parent="CanvasLayer/Labels" unique_id=19152527]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_constants/outline_size = 5
+
 [node name="BlackBoxDown" type="ColorRect" parent="." unique_id=1510778951]
 anchors_preset = 12
 anchor_top = 1.0

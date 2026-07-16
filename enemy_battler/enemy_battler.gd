@@ -91,6 +91,7 @@ func take_damage(amount: int, psi_damage:=false) -> void:
 		died.emit()
 		if is_talking:
 			stop_talking()
+			battler_i_am_talking_to.stop_talking()
 		await tween.finished
 
 func can_talk() -> bool:

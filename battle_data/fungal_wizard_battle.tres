@@ -4,15 +4,17 @@
 [ext_resource type="Resource" uid="uid://f0tq4v43rx3k" path="res://allies_data/travis.tres" id="2_mtin4"]
 [ext_resource type="Script" uid="uid://dqj3kgxgxg16h" path="res://resource_scripts/enemy_battler_data.gd" id="2_qt8b2"]
 [ext_resource type="Texture2D" uid="uid://b10fyo2p4j7jy" path="res://battle_backgrounds/DiamondgradeMerge.png" id="3_f77d3"]
+[ext_resource type="Resource" uid="uid://b78esr3oxqfqj" path="res://allies_data/floyd.tres" id="3_k8mad"]
 [ext_resource type="Script" uid="uid://3tlnqby8bnsa" path="res://resource_scripts/battle_data.gd" id="3_mtin4"]
 [ext_resource type="AudioStream" uid="uid://cs6t5fel0dlb7" path="res://battle_songs/Mother 4 Music_ Lamp of Sanctuary.mp3" id="4_f77d3"]
+[ext_resource type="Resource" uid="uid://bwi51gf2y6aj2" path="res://allies_data/meryl.tres" id="4_m4tep"]
 [ext_resource type="Resource" uid="uid://bn1di80bxipdr" path="res://enemies_data/mushroom.tres" id="4_ttpur"]
 [ext_resource type="Resource" uid="uid://nbhjn2kgb40h" path="res://enemies_data/fungai_wizard.tres" id="5_tq0tp"]
 
 [resource]
 script = ExtResource("3_mtin4")
 name = "Fungal Wizard Boss"
-allies_data = Array[ExtResource("1_ec558")]([ExtResource("2_mtin4")])
+allies_data = Array[ExtResource("1_ec558")]([ExtResource("2_mtin4"), ExtResource("3_k8mad"), ExtResource("4_m4tep")])
 enemies_data = Array[ExtResource("2_qt8b2")]([ExtResource("4_ttpur"), ExtResource("5_tq0tp"), ExtResource("4_ttpur")])
 battle_music = ExtResource("4_f77d3")
 battle_background = ExtResource("3_f77d3")

@@ -9,6 +9,7 @@ class_name Battle extends Node2D
 @onready var text_box_timer: Timer = %TextBoxTimer
 @onready var music: AudioStreamPlayer = %Music
 @onready var battle_won_sound: AudioStreamPlayer = %BattleWonSound
+@onready var labels: HBoxContainer = %Labels
 
 static var data: BattleData
 
@@ -96,6 +97,15 @@ func _process(delta: float) -> void:
 	
 	if Input.is_action_just_pressed("exit"):
 		get_tree().change_scene_to_file("res://title_screen/title_screen.tscn")
+	
+	for i in range(3):
+		var ally := allies[i]
+		var label: Label = labels.get_children()[i]
+		var text := "HP=%d\n" % ally.hp
+		text += "frames_to_roll=%d\n" % ally.frames_to_roll
+		text += "hp_odometer_speed_scale=%d\n" % ally.hp_odometer_speed_scale
+		text += "is_taking_damage=%s\n" % ally.is_taking_damage()
+		label.text = text
 
 func _on_text_box_timer_timeout() -> void:
 	if text_label.visible_ratio == 1.0:
