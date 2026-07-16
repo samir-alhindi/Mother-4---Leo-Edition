@@ -25,22 +25,33 @@ signal hide_cursor
 @onready var psi_sound: AudioStreamPlayer = %PsiSound
 @onready var talk_sound: AudioStreamPlayer = %TalkSound
 @onready var damage_label: Label = %DamageLabel
+@onready var pp_ones_place: AnimatedSprite2D = %PpOnesPlace
+@onready var pp_tens_place: AnimatedSprite2D = %PpTensPlace
+@onready var pp_hundreds_place: AnimatedSprite2D = %PpHundredsPlace
+@onready var pp_odometers: Array[AnimatedSprite2D] = [
+	pp_ones_place,
+	pp_tens_place,
+	pp_hundreds_place
+]
+
 
 const HUD_ALIVE_REGION = Vector2(198, 0)
 const HUD_DEAD_REGION = Vector2(263, 0)
 const ODOMETER_FRAME_COUNT := 9
 const GUARD_DEFENSE_INCREASE := 40
 var data: AllyBattlerData
-var frames_to_roll: int
+var hp_frames_to_roll: int
+var pp_frames_to_roll: int
 var hp_odometer_speed_scale := 0
 var pp: int
-var psi: Array
+var psi: Array[Psi]
 var state := States.NONE
 var action_type: ActionType
 var selection_index := 0
 var target_battler: Battler
 var target_battlers: Array[EnemyBattler]
 var is_guarding := false
+var started_battle := false
 
 enum States {
 	NONE,
@@ -75,17 +86,28 @@ func _ready() -> void:
 	hp_ones_place.frame = int(hp_digits[2]) * ODOMETER_FRAME_COUNT
 	hp_tens_place.frame = int(hp_digits[1]) * ODOMETER_FRAME_COUNT
 	hp_hundreds_place.frame = int(hp_digits[0]) * ODOMETER_FRAME_COUNT
+	
+	if psi.is_empty():
+		for odometer in pp_odometers:
+			odometer.hide()
+	
+	var pp_digits := "%03d" % pp
+	pp_ones_place.frame = int(pp_digits[2]) * ODOMETER_FRAME_COUNT
+	pp_tens_place.frame = int(pp_digits[1]) * ODOMETER_FRAME_COUNT
+	pp_hundreds_place.frame = int(pp_digits[0]) * ODOMETER_FRAME_COUNT
+	
+	started_battle = true
 
 func heal(amount: int) -> void:
 	if is_healing():
 		await hp_ones_place.frame_changed
-		frames_to_roll += amount * ODOMETER_FRAME_COUNT
+		hp_frames_to_roll += amount * ODOMETER_FRAME_COUNT
 	elif is_taking_damage():
 		await hp_ones_place.frame_changed
 		hp_odometer_speed_scale = 1
-		frames_to_roll = amount * ODOMETER_FRAME_COUNT
+		hp_frames_to_roll = amount * ODOMETER_FRAME_COUNT
 	else:
-		frames_to_roll = amount * ODOMETER_FRAME_COUNT
+		hp_frames_to_roll = amount * ODOMETER_FRAME_COUNT
 		hp_odometer_speed_scale = 1
 		hp_ones_place.play("default", hp_odometer_speed_scale)
 
@@ -102,9 +124,9 @@ func take_damage(amount: int) -> void:
 	
 	if is_taking_damage():
 		await hp_ones_place.frame_changed
-		frames_to_roll += amount * ODOMETER_FRAME_COUNT
+		hp_frames_to_roll += amount * ODOMETER_FRAME_COUNT
 	else:
-		frames_to_roll = amount * ODOMETER_FRAME_COUNT
+		hp_frames_to_roll = amount * ODOMETER_FRAME_COUNT
 		hp_odometer_speed_scale = -1
 		hp_ones_place.play("default", hp_odometer_speed_scale)
 		var hp_str := "%03d" % hp
@@ -118,11 +140,11 @@ func _on_hp_ones_place_frame_changed() -> void:
 	if (not is_healing()) and (not is_taking_damage()):
 		return
 	
-	frames_to_roll -= 1
+	hp_frames_to_roll -= 1
 	
 	if hp_ones_place.frame % ODOMETER_FRAME_COUNT == 0:
 		hp -= 1
-		if frames_to_roll > 0:
+		if hp_frames_to_roll > 0:
 			var hp_str := "%03d" % hp
 			if hp_str[2] == "0":
 				hp_tens_place.play("default", hp_odometer_speed_scale)
@@ -139,7 +161,7 @@ func _on_hp_ones_place_frame_changed() -> void:
 		state = States.NONE
 		ui.hide()
 		hp_odometer_speed_scale = 0
-		frames_to_roll = 0
+		hp_frames_to_roll = 0
 		hp_ones_place.stop()
 		hp_tens_place.stop()
 		hp_hundreds_place.stop()
@@ -150,7 +172,7 @@ func _on_hp_ones_place_frame_changed() -> void:
 			battler_i_am_talking_to.stop_talking()
 		return
 	
-	if frames_to_roll == 0:
+	if hp_frames_to_roll == 0:
 		hp_ones_place.pause()
 		hp_odometer_speed_scale = 0
 
@@ -163,10 +185,10 @@ func _on_hp_hundreds_place_frame_changed() -> void:
 		hp_hundreds_place.pause()
 
 func is_healing() -> bool:
-	return is_alive and hp_odometer_speed_scale > 0 and frames_to_roll != 0
+	return is_alive and hp_odometer_speed_scale > 0 and hp_frames_to_roll != 0
 
 func is_taking_damage() -> bool:
-	return is_alive and hp_odometer_speed_scale < 0 and frames_to_roll != 0
+	return is_alive and hp_odometer_speed_scale < 0 and hp_frames_to_roll != 0
 
 func _process(delta: float) -> void:
 	assert(not is_healing(), "Can't heal yet")
@@ -203,11 +225,23 @@ func perform_action() -> void:
 		if not is_alive:
 			finish_performing_action()
 			return
+		
+		# Update PP Odometer:
+		pp_frames_to_roll = psi.pp_cost * ODOMETER_FRAME_COUNT
+		pp_ones_place.play("default", -1)
+		var pp_string := "%03d" % pp
+		if pp_string[2] == "0":
+			pp_tens_place.play("default", -1)
+			if pp_string[1] == "0":
+				pp_hundreds_place.play("default", -1)
+		
 		if psi.target_all_enemies:
 			psi_animation.global_position = Vector2.ZERO
 			psi_animation.centered = false
 		else:
 			psi_animation.global_position = get_valid_enemy().global_position
+			if psi.frame_to_move_to_enemy != 0:
+				psi_animation.global_position.x = get_viewport_rect().size.x / 2
 			psi_animation.centered = true
 		psi_animation.sprite_frames = psi.sprite_frames
 		psi_animation.show()
@@ -223,7 +257,7 @@ func perform_action() -> void:
 				await enemy.take_damage(psi.strength, true)
 		else:
 			var enemy := get_valid_enemy()
-			await enemy.take_damage(psi.strength)
+			await enemy.take_damage(psi.strength, true)
 		finish_performing_action()
 	elif action_type == ActionType.TALK:
 		talk_sound.play()
@@ -353,3 +387,33 @@ func stop_talking() -> void:
 func finish_performing_action() -> void:
 	finished_performing_action.emit()
 	self.size_flags_vertical = Control.SIZE_SHRINK_END
+
+func _on_pp_ones_place_frame_changed() -> void:
+	
+	if not started_battle:
+		pp_ones_place.pause()
+		return
+	
+	pp_frames_to_roll -= 1
+	
+	if pp_frames_to_roll == 0:
+		pp_ones_place.pause()
+		return
+	
+	if pp_ones_place.frame % ODOMETER_FRAME_COUNT == 0:
+		pp -= 1
+		if pp_frames_to_roll > 0:
+			var pp_string := "%03d" % pp
+			if pp_string[2] == "0":
+				pp_tens_place.play("default", -1)
+				if pp_string[1] == "0":
+					pp_hundreds_place.play("default", -1)
+
+func _on_pp_tens_place_frame_changed() -> void:
+	if pp_tens_place.frame % ODOMETER_FRAME_COUNT == 0:
+		pp_tens_place.pause()
+
+
+func _on_psi_animation_frame_changed() -> void:
+	if not psi[0].target_all_enemies and psi_animation.frame == psi[0].frame_to_move_to_enemy:
+		psi_animation.global_position.x = get_valid_enemy().global_position.x

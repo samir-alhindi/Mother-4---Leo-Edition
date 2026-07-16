@@ -6,7 +6,7 @@
 
 [resource]
 script = ExtResource("1_edpil")
-pp = 40
+pp = 56
 psi = Array[ExtResource("1_1abyr")]([ExtResource("2_scskn")])
 name = "Meryl"
 hp = 30

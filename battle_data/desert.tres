@@ -6,6 +6,7 @@
 [ext_resource type="Resource" uid="uid://b78esr3oxqfqj" path="res://allies_data/floyd.tres" id="3_6phvy"]
 [ext_resource type="Script" uid="uid://3tlnqby8bnsa" path="res://resource_scripts/battle_data.gd" id="3_qtkdg"]
 [ext_resource type="Resource" uid="uid://bwi51gf2y6aj2" path="res://allies_data/meryl.tres" id="4_0j2a8"]
+[ext_resource type="Resource" uid="uid://bf150y3s3gwcj" path="res://allies_data/leo.tres" id="5_n1rhh"]
 [ext_resource type="AudioStream" uid="uid://ciu4n8ioes06a" path="res://battle_songs/Battle Against a Far Away Foe.mp3" id="5_noxrh"]
 [ext_resource type="Texture2D" uid="uid://cq8iqfysc02mu" path="res://battle_backgrounds/RolledGold.png" id="5_wgmk5"]
 [ext_resource type="Resource" uid="uid://byl7m40qoeqkb" path="res://enemies_data/scorpion.tres" id="6_0j2a8"]
@@ -14,7 +15,7 @@
 [resource]
 script = ExtResource("3_qtkdg")
 name = "The Desert"
-allies_data = Array[ExtResource("1_63wpf")]([ExtResource("2_atob2"), ExtResource("3_6phvy"), ExtResource("4_0j2a8")])
+allies_data = Array[ExtResource("1_63wpf")]([ExtResource("2_atob2"), ExtResource("3_6phvy"), ExtResource("4_0j2a8"), ExtResource("5_n1rhh")])
 enemies_data = Array[ExtResource("2_pq3fr")]([ExtResource("6_0j2a8"), ExtResource("7_noxrh"), ExtResource("6_0j2a8")])
 battle_music = ExtResource("5_noxrh")
 battle_background = ExtResource("5_wgmk5")

@@ -110,7 +110,7 @@ animations = [{
 [resource]
 script = ExtResource("1_52xn1")
 name = "PK Fire α"
-pp_cost = 7
+pp_cost = 1
 sprite_frames = SubResource("SpriteFrames_7ligu")
 strength = 45
 sound = ExtResource("2_its6v")

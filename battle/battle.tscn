@@ -134,7 +134,6 @@ one_shot = true
 
 [node name="Labels" type="HBoxContainer" parent="CanvasLayer" unique_id=1535841529]
 unique_name_in_owner = true
-visible = false
 offset_top = 19.0
 offset_right = 40.0
 offset_bottom = 59.0
@@ -150,6 +149,11 @@ layout_mode = 2
 theme_override_constants/outline_size = 5
 
 [node name="Label3" type="Label" parent="CanvasLayer/Labels" unique_id=19152527]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_constants/outline_size = 5
+
+[node name="Label4" type="Label" parent="CanvasLayer/Labels" unique_id=313062422]
 unique_name_in_owner = true
 layout_mode = 2
 theme_override_constants/outline_size = 5

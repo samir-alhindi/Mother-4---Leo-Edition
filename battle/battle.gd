@@ -111,6 +111,13 @@ func _process(delta: float) -> void:
 	#var floyd := allies[1]
 	#%Label1.text = "is_talking=%s\nturns_to_talk=%d" % [floyd.is_talking, floyd.number_of_turns_left_to_talk]
 	#%Label2.text = "is_talking=%s\n" % enemies[0].is_talking
+	
+	#for i in range(4):
+		#var ally := allies[i]
+		#var label: Label = labels.get_children()[i]
+		#var text := "PP=%d\n" % ally.pp
+		#text += "frames=%d\n" % ally.pp_frames_to_roll
+		#label.text = text
 
 func _on_text_box_timer_timeout() -> void:
 	if text_label.visible_ratio == 1.0:

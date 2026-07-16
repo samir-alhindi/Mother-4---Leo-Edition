@@ -70,7 +70,9 @@ animations = [{
 [resource]
 script = ExtResource("1_nak30")
 name = "PK Freeze β"
+pp_cost = 1
 sprite_frames = SubResource("SpriteFrames_lghvd")
 strength = 75
 sound = ExtResource("2_vntn7")
+frame_to_move_to_enemy = 1
 metadata/_custom_type_script = "uid://lxo20rbxhpf0"

@@ -938,7 +938,6 @@ unique_name_in_owner = true
 texture_filter = 1
 position = Vector2(17, 1)
 sprite_frames = SubResource("SpriteFrames_k5y0q")
-frame_progress = 0.02240548
 centered = false
 
 [node name="PpTensPlace" type="AnimatedSprite2D" parent="HUD/HudBackGround/MarginContainer/VBoxContainer/PpHBoxContainer/PpOdometer/Digits" unique_id=2051020058]
@@ -954,7 +953,6 @@ unique_name_in_owner = true
 texture_filter = 1
 position = Vector2(1, 1)
 sprite_frames = SubResource("SpriteFrames_k5y0q")
-frame_progress = 0.02240548
 centered = false
 
 [node name="GroovyProgress" type="TextureProgressBar" parent="HUD" unique_id=1344588548]
@@ -1043,3 +1041,6 @@ sprite_frames = SubResource("SpriteFrames_jn50p")
 [connection signal="frame_changed" from="HUD/HudBackGround/MarginContainer/VBoxContainer/HpHBoxContainer/HpOdometer/Digits/HpOnesPlace" to="." method="_on_hp_ones_place_frame_changed"]
 [connection signal="frame_changed" from="HUD/HudBackGround/MarginContainer/VBoxContainer/HpHBoxContainer/HpOdometer/Digits/HpTensPlace" to="." method="_on_hp_tens_place_frame_changed"]
 [connection signal="frame_changed" from="HUD/HudBackGround/MarginContainer/VBoxContainer/HpHBoxContainer/HpOdometer/Digits/HpHundredsPlace" to="." method="_on_hp_hundreds_place_frame_changed"]
+[connection signal="frame_changed" from="HUD/HudBackGround/MarginContainer/VBoxContainer/PpHBoxContainer/PpOdometer/Digits/PpOnesPlace" to="." method="_on_pp_ones_place_frame_changed"]
+[connection signal="frame_changed" from="HUD/HudBackGround/MarginContainer/VBoxContainer/PpHBoxContainer/PpOdometer/Digits/PpTensPlace" to="." method="_on_pp_tens_place_frame_changed"]
+[connection signal="frame_changed" from="PsiAnimation" to="." method="_on_psi_animation_frame_changed"]

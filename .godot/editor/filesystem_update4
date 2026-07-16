@@ -19,3 +19,9 @@ res://allies_data/meryl.tres
 res://title_screen/title_screen.tscn
 res://battle/battle.tscn
 res://battle/battle.gd
+res://allies_data/leo.tres
+res://psi_animations/pk_beam/pk_beam.tscn
+res://psi/pk_beam_alpha.tres
+res://enemy_battler/enemy_battler.tscn
+res://resource_scripts/psi.gd
+res://battle_data/desert.tres
