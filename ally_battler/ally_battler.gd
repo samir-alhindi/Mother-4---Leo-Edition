@@ -130,6 +130,14 @@ func _on_hp_ones_place_frame_changed() -> void:
 					hp_hundreds_place.play("default", hp_odometer_speed_scale)
 	
 	if hp == 0:
+		is_alive = false
+		finished_deciding_action.emit()
+		if state == States.SELECTING:
+			hide_cursor.emit()
+			get_valid_enemy().stop_flash()
+		self.size_flags_vertical = Control.SIZE_SHRINK_END
+		state = States.NONE
+		ui.hide()
 		hp_odometer_speed_scale = 0
 		frames_to_roll = 0
 		hp_ones_place.stop()
@@ -137,7 +145,6 @@ func _on_hp_ones_place_frame_changed() -> void:
 		hp_hundreds_place.stop()
 		(hud_back_ground.texture as AtlasTexture).region.position = HUD_DEAD_REGION
 		died.emit()
-		is_alive = false
 		if is_talking:
 			stop_talking()
 			battler_i_am_talking_to.stop_talking()

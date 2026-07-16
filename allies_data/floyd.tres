@@ -7,7 +7,7 @@
 script = ExtResource("1_r4s56")
 can_talk = true
 name = "Floyd"
-hp = 1
+hp = 30
 offense = 35
 defense = 13
 speed = 999

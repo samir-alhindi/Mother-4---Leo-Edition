@@ -19,6 +19,7 @@ var number_of_living_allies: int
 var number_of_living_enemies: int
 
 func _ready() -> void:
+	randomize()
 	EventBus.display_text.connect(_on_display_text)
 	background.texture = data.battle_background
 	music.stream = data.battle_music
