@@ -2,7 +2,6 @@ class_name Battle extends Node2D
 
 @onready var background: Sprite2D = %Background
 @onready var allies_parent: Control = %Allies
-@onready var cursor: AnimatedSprite2D = %Cursor
 @onready var enemies_parent: Node2D = %Enemies
 @onready var text_box: Control = %TextBox
 @onready var text_label: Label = %TextLabel
@@ -30,8 +29,6 @@ func _ready() -> void:
 	for i in (data.allies_data.size()):
 		number_of_living_allies += 1
 		var ally := Battler.create(data.allies_data[i], allies, enemies) as AllyBattler
-		ally.move_cursor_to.connect(_on_move_cursor_to)
-		ally.hide_cursor.connect(func(): cursor.hide())
 		ally.died.connect(func(): number_of_living_allies -= 1)
 		allies_parent.add_child(ally)
 		allies.append(ally)
@@ -79,11 +76,6 @@ func sort_by_highest_speed(b1: Battler, b2: Battler) -> bool:
 	if b1.speed > b2.speed:
 		return true
 	return false
-
-func _on_move_cursor_to(pos: Vector2) -> void:
-	cursor.show()
-	pos.x -= 20
-	cursor.global_position = pos
 
 func _on_display_text(text: String) -> void:
 	text_box.show()

@@ -1,8 +1,6 @@
 class_name AllyBattler extends Battler
 
 signal finished_deciding_action
-signal move_cursor_to(pos: Vector2)
-signal hide_cursor
 
 @onready var bash_button: TextureButton = %BashButton
 @onready var name_label: Label = %NameLabel
@@ -33,7 +31,7 @@ signal hide_cursor
 	pp_tens_place,
 	pp_hundreds_place
 ]
-
+@onready var cancel_sound: AudioStreamPlayer = %CancelSound
 
 const HUD_ALIVE_REGION = Vector2(198, 0)
 const HUD_DEAD_REGION = Vector2(263, 0)
@@ -46,12 +44,11 @@ var hp_odometer_speed_scale := 0
 var pp: int
 var psi: Array[Psi]
 var state := States.NONE
-var action_type: ActionType
+var last_button_pressed_type: ActionType
 var selection_index := 0
-var target_battler: Battler
-var target_battlers: Array[EnemyBattler]
 var is_guarding := false
 var started_battle := false
+var targeting_type: TargetType
 
 enum States {
 	NONE,
@@ -66,6 +63,10 @@ var odometer_state: OdoMeterStates
 
 enum ActionType {
 	BASH, GUARD, GOODS, PSI, TALK, RUN
+}
+
+enum TargetType {
+	SINGLE_ENEMY, ALL_ENEMIES
 }
 
 func _ready() -> void:
@@ -112,6 +113,10 @@ func heal(amount: int) -> void:
 		hp_ones_place.play("default", hp_odometer_speed_scale)
 
 func take_damage(amount: int) -> void:
+	
+	amount -= defense
+	amount = max(amount, 1)
+	
 	hurt_sound.play()
 	var tween := create_tween()
 	tween.set_loops(1)
@@ -155,7 +160,6 @@ func _on_hp_ones_place_frame_changed() -> void:
 		is_alive = false
 		finished_deciding_action.emit()
 		if state == States.SELECTING:
-			hide_cursor.emit()
 			get_valid_enemy().stop_flash()
 		self.size_flags_vertical = Control.SIZE_SHRINK_END
 		state = States.NONE
@@ -207,7 +211,7 @@ func perform_action() -> void:
 		talking_logic()
 		return
 	
-	if action_type == ActionType.BASH:
+	if last_button_pressed_type == ActionType.BASH:
 		var enemy := get_valid_enemy() as EnemyBattler
 		pre_attack_sound.play()
 		EventBus.display_text.emit("%s attacked %s" % [battler_name, enemy.battler_name])
@@ -217,7 +221,7 @@ func perform_action() -> void:
 			return
 		await enemy.take_damage(offense)
 		finish_performing_action()
-	elif action_type == ActionType.PSI:
+	elif last_button_pressed_type == ActionType.PSI:
 		var psi := data.psi[0]
 		pre_psi_sound.play()
 		EventBus.display_text.emit("%s tried %s" % [battler_name, psi.name])
@@ -235,10 +239,10 @@ func perform_action() -> void:
 			if pp_string[1] == "0":
 				pp_hundreds_place.play("default", -1)
 		
-		if psi.target_all_enemies:
+		if psi.target_type == TargetType.ALL_ENEMIES:
 			psi_animation.global_position = Vector2.ZERO
 			psi_animation.centered = false
-		else:
+		elif psi.target_type == TargetType.SINGLE_ENEMY:
 			psi_animation.global_position = get_valid_enemy().global_position
 			if psi.frame_to_move_to_enemy != 0:
 				psi_animation.global_position.x = get_viewport_rect().size.x / 2
@@ -251,15 +255,15 @@ func perform_action() -> void:
 		psi_sound.play()
 		await psi_animation.animation_finished
 		psi_animation.hide()
-		if psi.target_all_enemies:
+		if psi.target_type == TargetType.ALL_ENEMIES:
 			var targets := enemies.filter(battler_is_alive)
 			for enemy in targets:
 				await enemy.take_damage(psi.strength, true)
-		else:
+		elif psi.target_type == TargetType.SINGLE_ENEMY:
 			var enemy := get_valid_enemy()
 			await enemy.take_damage(psi.strength, true)
 		finish_performing_action()
-	elif action_type == ActionType.TALK:
+	elif last_button_pressed_type == ActionType.TALK:
 		talk_sound.play()
 		var enemy := get_valid_enemy()
 		EventBus.display_text.emit("Floyd tried chatting up the %s..." % enemy.battler_name)
@@ -285,7 +289,7 @@ func perform_action() -> void:
 			await EventBus.textbox_closed
 		finish_performing_action()
 	
-	elif action_type == ActionType.GUARD:
+	elif last_button_pressed_type == ActionType.GUARD:
 		EventBus.display_text.emit("%s is on guard" % battler_name)
 		await EventBus.textbox_closed
 		self.size_flags_vertical = Control.SIZE_SHRINK_END
@@ -298,7 +302,8 @@ func _on_button_pressed() -> void:
 	button_pressed_sound.play()
 
 func _on_bash_button_pressed() -> void:
-	action_type = ActionType.BASH
+	last_button_pressed_type = ActionType.BASH
+	targeting_type = TargetType.SINGLE_ENEMY
 	start_selecting()
 
 func get_valid_enemy() -> EnemyBattler:
@@ -310,56 +315,68 @@ func get_valid_enemy() -> EnemyBattler:
 
 func _input(event: InputEvent) -> void:
 	if state == States.SELECTING:
-		if event.is_action_pressed("ui_right"):
+		if event.is_action_pressed("ui_right") and targeting_type == TargetType.SINGLE_ENEMY:
 			get_valid_enemy().stop_flash()
 			selection_index += 1
 			get_valid_enemy().sprite_flash()
-			move_cursor_to.emit(get_valid_enemy().global_position)
 			button_focus_sound.play()
-		elif event.is_action_pressed("ui_left"):
+		elif event.is_action_pressed("ui_left") and targeting_type == TargetType.SINGLE_ENEMY:
 			get_valid_enemy().stop_flash()
 			selection_index -= 1
 			get_valid_enemy().sprite_flash()
-			move_cursor_to.emit(get_valid_enemy().global_position)
 			button_focus_sound.play()
-		elif event.is_action_pressed("ui_accept"):
-			hide_cursor.emit()
+		elif event.is_action_pressed("confirm"):
 			state = States.NONE
 			self.size_flags_vertical = Control.SIZE_SHRINK_END
 			button_pressed_sound.play()
-			var enemy := get_valid_enemy()
-			enemy.stop_flash()
-			target_battler = enemy
+			if targeting_type == TargetType.ALL_ENEMIES:
+				for enemy in enemies:
+					enemy.stop_flash()
+			elif targeting_type == TargetType.SINGLE_ENEMY:
+				get_valid_enemy().stop_flash()
 			ui.hide()
 			finished_deciding_action.emit()
+		elif event.is_action_pressed("cancel"):
+			state = States.NONE
+			cancel_sound.play()
+			for enemy in enemies:
+				enemy.stop_flash()
+			ui.show()
+			match last_button_pressed_type:
+				ActionType.BASH:
+					bash_button.grab_focus()
+				ActionType.PSI:
+					psi_button.grab_focus()
+				ActionType.TALK:
+					talk_button.grab_focus()
 
 func _on_psi_button_pressed() -> void:
-	action_type = ActionType.PSI
+	last_button_pressed_type = ActionType.PSI
 	var psi := data.psi[0]
-	if psi.target_all_enemies:
-		self.size_flags_vertical = Control.SIZE_SHRINK_END
-		ui.hide()
-		finished_deciding_action.emit()
-		return
+	targeting_type = psi.target_type
 	start_selecting()
 
 func start_selecting() -> void:
 	ui.hide()
 	state = States.SELECTING
-	selection_index = 0
-	var enemy := get_valid_enemy()
-	enemy.sprite_flash()
-	move_cursor_to.emit(enemy.global_position)
+	if targeting_type == TargetType.SINGLE_ENEMY:
+		selection_index = 0
+		var enemy := get_valid_enemy()
+		enemy.sprite_flash()
+	elif targeting_type == TargetType.ALL_ENEMIES:
+		for enemy: EnemyBattler in enemies.filter(battler_is_alive):
+			enemy.sprite_flash()
 
 func _on_talk_button_pressed() -> void:
-	action_type = ActionType.TALK
+	last_button_pressed_type = ActionType.TALK
+	targeting_type = TargetType.SINGLE_ENEMY
 	start_selecting()
 
 func on_battle_won() -> void:
 	talk_animation.hide()
 
 func _on_guard_button_pressed() -> void:
-	action_type = ActionType.GUARD
+	last_button_pressed_type = ActionType.GUARD
 	defense += GUARD_DEFENSE_INCREASE
 	self.size_flags_vertical = Control.SIZE_SHRINK_END
 	ui.hide()
@@ -382,7 +399,7 @@ func talking_logic() -> void:
 
 func stop_talking() -> void:
 	super.stop_talking()
-	action_type = ActionType.BASH
+	last_button_pressed_type = ActionType.BASH
 
 func finish_performing_action() -> void:
 	finished_performing_action.emit()
@@ -413,7 +430,11 @@ func _on_pp_tens_place_frame_changed() -> void:
 	if pp_tens_place.frame % ODOMETER_FRAME_COUNT == 0:
 		pp_tens_place.pause()
 
-
 func _on_psi_animation_frame_changed() -> void:
-	if not psi[0].target_all_enemies and psi_animation.frame == psi[0].frame_to_move_to_enemy:
+	if psi[0].target_type == TargetType.SINGLE_ENEMY and psi_animation.frame == psi[0].frame_to_move_to_enemy:
 		psi_animation.global_position.x = get_valid_enemy().global_position.x
+
+
+func _on_pp_hundreds_place_frame_changed() -> void:
+	if pp_hundreds_place.frame % ODOMETER_FRAME_COUNT == 0:
+		pp_hundreds_place.pause()

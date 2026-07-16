@@ -12,7 +12,7 @@
 
 [resource]
 script = ExtResource("3_12mtv")
-name = "Carbon Puppies"
+name = "Hot Foes"
 allies_data = Array[ExtResource("1_o3721")]([ExtResource("2_uxmfm"), ExtResource("3_57j8w"), ExtResource("4_5wk64")])
 enemies_data = Array[ExtResource("2_c6v76")]([ExtResource("6_57j8w"), ExtResource("6_57j8w")])
 battle_music = ExtResource("5_5wk64")

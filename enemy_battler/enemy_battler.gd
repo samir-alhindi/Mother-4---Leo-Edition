@@ -5,6 +5,7 @@ class_name EnemyBattler extends Battler
 @onready var damage_label: Label = %DamageLabel
 @onready var dead_sound: AudioStreamPlayer = %DeadSound
 @onready var hurt_sound: AudioStreamPlayer = %HurtSound
+@onready var cursor: AnimatedSprite2D = %Cursor
 
 var data: EnemyBattlerData
 var tween: Tween
@@ -41,12 +42,14 @@ func perform_action() -> void:
 	finished_performing_action.emit()
 
 func sprite_flash() -> void:
+	cursor.show()
 	tween = create_tween()
 	tween.set_loops()
 	tween.tween_property(texture_rect.material, "shader_parameter/white_progress", 1, 1.0)
 	tween.tween_property(texture_rect.material, "shader_parameter/white_progress", 0, 1.0)
 
 func stop_flash() -> void:
+	cursor.hide()
 	tween.kill()
 	(texture_rect.material as ShaderMaterial).set_shader_parameter("white_progress", 0.0)
 
@@ -64,6 +67,8 @@ func shake() -> void:
 	await tween.finished
 
 func take_damage(amount: int, psi_damage:=false) -> void:
+	amount -= defense
+	amount = max(amount, 1)
 	damage_label.text = str(amount)
 	damage_label.show()
 	var tween := create_tween().set_ease(Tween.EASE_IN_OUT).set_trans(Tween.TRANS_BOUNCE)

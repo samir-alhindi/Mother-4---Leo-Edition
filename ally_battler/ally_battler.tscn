@@ -12,6 +12,7 @@
 [ext_resource type="AudioStream" uid="uid://dyt3wbsuhapaf" path="res://sfx/prePsi.wav" id="10_v4ran"]
 [ext_resource type="AudioStream" uid="uid://cy4kt71fjuose" path="res://sfx/floydTalk.wav" id="11_e1yxm"]
 [ext_resource type="Texture2D" uid="uid://bgydo2dvs2ndp" path="res://battle_ui/DialogInfo.png" id="12_0c1ty"]
+[ext_resource type="AudioStream" uid="uid://bf167rqp4ejtf" path="res://sfx/cancel.wav" id="13_jn50p"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_e1yxm"]
 atlas = ExtResource("2_s0x1t")
@@ -1025,6 +1026,10 @@ unique_name_in_owner = true
 unique_name_in_owner = true
 stream = ExtResource("11_e1yxm")
 
+[node name="CancelSound" type="AudioStreamPlayer" parent="." unique_id=1784248058]
+unique_name_in_owner = true
+stream = ExtResource("13_jn50p")
+
 [node name="PsiAnimation" type="AnimatedSprite2D" parent="." unique_id=256478557]
 unique_name_in_owner = true
 
@@ -1043,4 +1048,5 @@ sprite_frames = SubResource("SpriteFrames_jn50p")
 [connection signal="frame_changed" from="HUD/HudBackGround/MarginContainer/VBoxContainer/HpHBoxContainer/HpOdometer/Digits/HpHundredsPlace" to="." method="_on_hp_hundreds_place_frame_changed"]
 [connection signal="frame_changed" from="HUD/HudBackGround/MarginContainer/VBoxContainer/PpHBoxContainer/PpOdometer/Digits/PpOnesPlace" to="." method="_on_pp_ones_place_frame_changed"]
 [connection signal="frame_changed" from="HUD/HudBackGround/MarginContainer/VBoxContainer/PpHBoxContainer/PpOdometer/Digits/PpTensPlace" to="." method="_on_pp_tens_place_frame_changed"]
+[connection signal="frame_changed" from="HUD/HudBackGround/MarginContainer/VBoxContainer/PpHBoxContainer/PpOdometer/Digits/PpHundredsPlace" to="." method="_on_pp_hundreds_place_frame_changed"]
 [connection signal="frame_changed" from="PsiAnimation" to="." method="_on_psi_animation_frame_changed"]

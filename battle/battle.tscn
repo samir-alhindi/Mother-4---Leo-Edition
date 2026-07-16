@@ -3,7 +3,6 @@
 [ext_resource type="Script" uid="uid://6178htxl168n" path="res://battle/battle.gd" id="1_mqutd"]
 [ext_resource type="Shader" uid="uid://c478xmggly1q3" path="res://battle/other_shader.gdshader" id="3_6hnvb"]
 [ext_resource type="Texture2D" uid="uid://ctk6tvffk3c4n" path="res://battle_backgrounds/cosmic.png" id="4_7fucf"]
-[ext_resource type="Texture2D" uid="uid://b66w2n8hd16if" path="res://battle_ui/realcursor.dat.png" id="5_4mnim"]
 [ext_resource type="Texture2D" uid="uid://bllwe05cltxdf" path="res://battle_ui/textbox2.png" id="6_7fucf"]
 [ext_resource type="Texture2D" uid="uid://x8ugvpjcx5ol" path="res://battle_ui/textbox.png" id="6_l1kiu"]
 [ext_resource type="AudioStream" uid="uid://dhmbtx3dwcjfu" path="res://sfx/win1.wav" id="7_7fucf"]
@@ -16,42 +15,6 @@ shader_parameter/scanline_wave_frequency = 40.0
 shader_parameter/scanline_wave_speed = 2.0
 shader_parameter/alternate_direction = true
 shader_parameter/viewport_size = Vector2(320, 180)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_l1kiu"]
-atlas = ExtResource("5_4mnim")
-region = Rect2(0, 0, 9, 9)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_7fucf"]
-atlas = ExtResource("5_4mnim")
-region = Rect2(9, 0, 9, 9)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_iorop"]
-atlas = ExtResource("5_4mnim")
-region = Rect2(18, 0, 9, 9)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_rxlun"]
-atlas = ExtResource("5_4mnim")
-region = Rect2(27, 0, 9, 9)
-
-[sub_resource type="SpriteFrames" id="SpriteFrames_vlrs1"]
-animations = [{
-"frames": [{
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_l1kiu")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_7fucf")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_iorop")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_rxlun")
-}],
-"loop": true,
-"name": &"default",
-"speed": 5.0
-}]
 
 [node name="Battle" type="Node2D" unique_id=1547738634]
 script = ExtResource("1_mqutd")
@@ -180,15 +143,6 @@ offset_bottom = 15.0
 grow_horizontal = 2
 grow_vertical = 0
 color = Color(0, 0, 0, 1)
-
-[node name="Cursor" type="AnimatedSprite2D" parent="." unique_id=99218751]
-unique_name_in_owner = true
-visible = false
-z_index = 1
-texture_filter = 1
-sprite_frames = SubResource("SpriteFrames_vlrs1")
-autoplay = "default"
-frame_progress = 0.10077586
 
 [node name="Enemies" type="Node2D" parent="." unique_id=1329638567]
 unique_name_in_owner = true

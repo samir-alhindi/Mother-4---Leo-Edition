@@ -6,10 +6,12 @@
 [resource]
 script = ExtResource("1_mom4g")
 sprite = ExtResource("2_bb1eb")
-talk_topic = "Fuga"
+waste_turn_text = "Rambling Mushroom started walking around in circles"
+talk_topic = "Fugai"
+death_text = "Rambling Mushroom returned to the earth"
 name = "Rambling Mushroom"
-hp = 111
-offense = 11
-defense = 11
-speed = 11
+hp = 100
+offense = 30
+defense = 20
+speed = 20
 metadata/_custom_type_script = "uid://dqj3kgxgxg16h"

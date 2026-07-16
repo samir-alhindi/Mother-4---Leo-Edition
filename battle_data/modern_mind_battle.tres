@@ -23,7 +23,7 @@ shader_parameter/viewport_size = Vector2(320, 180)
 
 [resource]
 script = ExtResource("3_u1bs3")
-name = "Modern Mind Boss"
+name = "Modern Mind"
 allies_data = Array[ExtResource("1_fk6yk")]([ExtResource("2_cyheh"), ExtResource("3_406dp"), ExtResource("4_blrgy"), ExtResource("5_r4dp6")])
 enemies_data = Array[ExtResource("2_rc3ns")]([ExtResource("7_406dp")])
 battle_music = ExtResource("7_r4dp6")

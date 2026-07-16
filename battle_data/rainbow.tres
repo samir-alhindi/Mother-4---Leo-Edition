@@ -21,7 +21,7 @@ shader_parameter/viewport_size = Vector2(320, 180)
 
 [resource]
 script = ExtResource("3_d61vv")
-name = "Magic Snails"
+name = "Clueless Foes"
 allies_data = Array[ExtResource("1_2ihy8")]([ExtResource("3_taudr"), ExtResource("3_v6hbi")])
 enemies_data = Array[ExtResource("2_p7hnp")]([ExtResource("5_taudr"), ExtResource("5_taudr"), ExtResource("5_taudr")])
 battle_music = ExtResource("4_mqmss")

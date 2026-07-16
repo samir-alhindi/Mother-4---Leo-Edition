@@ -1,0 +1,18 @@
+[gd_resource type="Resource" script_class="EnemyBattlerData" format=3 uid="uid://b5861ufra6m8"]
+
+[ext_resource type="Script" uid="uid://dqj3kgxgxg16h" path="res://resource_scripts/enemy_battler_data.gd" id="1_xs1bs"]
+[ext_resource type="Texture2D" uid="uid://bux2w8m1eiksd" path="res://enemy_sprites/atomicpowerrobo.dat.png" id="2_lghhx"]
+
+[resource]
+script = ExtResource("1_xs1bs")
+sprite = ExtResource("2_lghhx")
+waste_turn_text = "Atomic Power Robo froze in place"
+talk_topic = "Metal"
+can_be_talked_to = false
+death_text = "The Atomic Power Robo broke down into scraps"
+name = "Atomic Power Robo"
+hp = 180
+offense = 80
+defense = 40
+speed = 10
+metadata/_custom_type_script = "uid://dqj3kgxgxg16h"

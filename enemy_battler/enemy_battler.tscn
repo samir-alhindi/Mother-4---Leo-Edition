@@ -8,6 +8,7 @@
 [ext_resource type="FontFile" uid="uid://cxsox0cnux0pr" path="res://battle_ui/numberset2.dat.png" id="5_vkoaf"]
 [ext_resource type="AudioStream" uid="uid://cpwbdeknqmkjf" path="res://sfx/enemyDeath.wav" id="6_bf25p"]
 [ext_resource type="AudioStream" uid="uid://cujdnnn87hqxi" path="res://sfx/hitA.wav" id="7_vlnrj"]
+[ext_resource type="Texture2D" uid="uid://b66w2n8hd16if" path="res://battle_ui/realcursor.dat.png" id="9_edgap"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_edgap"]
 resource_local_to_scene = true
@@ -45,6 +46,42 @@ animations = [{
 }, {
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_dbg6j")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_l1kiu"]
+atlas = ExtResource("9_edgap")
+region = Rect2(0, 0, 9, 9)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7fucf"]
+atlas = ExtResource("9_edgap")
+region = Rect2(9, 0, 9, 9)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_iorop"]
+atlas = ExtResource("9_edgap")
+region = Rect2(18, 0, 9, 9)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_rxlun"]
+atlas = ExtResource("9_edgap")
+region = Rect2(27, 0, 9, 9)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_15e4a"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_l1kiu")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_7fucf")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_iorop")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_rxlun")
 }],
 "loop": true,
 "name": &"default",
@@ -96,3 +133,13 @@ stream = ExtResource("6_bf25p")
 [node name="HurtSound" type="AudioStreamPlayer" parent="." unique_id=741710617]
 unique_name_in_owner = true
 stream = ExtResource("7_vlnrj")
+
+[node name="Cursor" type="AnimatedSprite2D" parent="." unique_id=1435390846]
+unique_name_in_owner = true
+visible = false
+z_index = 1
+texture_filter = 1
+position = Vector2(-30, 0)
+sprite_frames = SubResource("SpriteFrames_15e4a")
+autoplay = "default"
+frame_progress = 0.14620385

@@ -8,6 +8,7 @@ script = ExtResource("1_twg6r")
 sprite = ExtResource("2_ivt78")
 waste_turn_text = "Magic Snail Zoned out"
 talk_topic = "Colors"
+death_text = "Magic Snail became tame"
 name = "Magic Snail"
 hp = 111
 offense = 11

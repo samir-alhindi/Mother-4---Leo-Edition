@@ -7,8 +7,8 @@
 script = ExtResource("1_r4s56")
 can_talk = true
 name = "Floyd"
-hp = 30
-offense = 35
-defense = 13
-speed = 999
+hp = 150
+offense = 60
+defense = 33
+speed = 18
 metadata/_custom_type_script = "uid://dg72lty02kan7"

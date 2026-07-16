@@ -6,11 +6,11 @@
 
 [resource]
 script = ExtResource("1_5cftm")
-pp = 41
+pp = 66
 psi = Array[ExtResource("1_abp7u")]([ExtResource("2_abp7u")])
 name = "Leo"
-hp = 120
-offense = 12
-defense = 12
-speed = 12
+hp = 170
+offense = 70
+defense = 40
+speed = 15
 metadata/_custom_type_script = "uid://dg72lty02kan7"

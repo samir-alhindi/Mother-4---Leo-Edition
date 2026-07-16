@@ -1,0 +1,46 @@
+[gd_scene format=3 uid="uid://bd1iyxsaw5xpg"]
+
+[ext_resource type="Script" uid="uid://7ib2nogvgyml" path="res://title_screen/title_screen.gd" id="1_g2mvh"]
+[ext_resource type="Script" uid="uid://3tlnqby8bnsa" path="res://resource_scripts/battle_data.gd" id="2_0m3ch"]
+[ext_resource type="Resource" uid="uid://bxmlte1nwymdf" path="res://battle_data/booples.tres" id="3_fk0fn"]
+[ext_resource type="Resource" uid="uid://bnfkfdcfp27g3" path="res://battle_data/modern_mind_battle.tres" id="4_oqrgu"]
+[ext_resource type="Resource" uid="uid://dipjohsabnasi" path="res://battle_data/fungal_wizard_battle.tres" id="5_fv0o7"]
+[ext_resource type="AudioStream" uid="uid://cytv6lgbqfa4g" path="res://sfx/cursory.wav" id="6_fk0fn"]
+[ext_resource type="Resource" uid="uid://ba0hmt8n5ocal" path="res://battle_data/2_bees.tres" id="6_uiiip"]
+[ext_resource type="Resource" uid="uid://cb7i7jwhna8ih" path="res://battle_data/desert.tres" id="7_p7x7j"]
+[ext_resource type="Resource" uid="uid://cmfnocte4elp8" path="res://battle_data/rainbow.tres" id="8_4h7y4"]
+[ext_resource type="Resource" uid="uid://bbrgjyry4r68l" path="res://battle_data/atomic_robo_fight.tres" id="9_3eqcd"]
+[ext_resource type="Resource" uid="uid://pu3hyoilqb32" path="res://battle_data/hot_fight.tres" id="10_mag7y"]
+[ext_resource type="Resource" uid="uid://na48ltq35jw6" path="res://battle_data/test_battle.tres" id="11_3d3o2"]
+
+[node name="TitleScreen" type="CanvasLayer" unique_id=1585168080]
+script = ExtResource("1_g2mvh")
+battles = Array[ExtResource("2_0m3ch")]([ExtResource("3_fk0fn"), ExtResource("7_p7x7j"), ExtResource("4_oqrgu"), ExtResource("5_fv0o7"), ExtResource("6_uiiip"), ExtResource("8_4h7y4"), ExtResource("9_3eqcd"), ExtResource("10_mag7y"), ExtResource("11_3d3o2")])
+
+[node name="CursorSound" type="AudioStreamPlayer" parent="." unique_id=825431195]
+unique_name_in_owner = true
+stream = ExtResource("6_fk0fn")
+
+[node name="ColorRect" type="ColorRect" parent="." unique_id=603670357]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 1)
+
+[node name="ScrollContainer" type="ScrollContainer" parent="." unique_id=1478886849]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+follow_focus = true
+
+[node name="Buttons" type="VBoxContainer" parent="ScrollContainer" unique_id=1105241360]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
