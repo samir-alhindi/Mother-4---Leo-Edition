@@ -108,9 +108,9 @@ func _process(delta: float) -> void:
 		#text += "is_taking_damage=%s\n" % ally.is_taking_damage()
 		#label.text = text
 	
-	var floyd := allies[1]
-	%Label1.text = "is_talking=%s\nturns_to_talk=%d" % [floyd.is_talking, floyd.number_of_turns_left_to_talk]
-	%Label2.text = "is_talking=%s\n" % enemies[0].is_talking
+	#var floyd := allies[1]
+	#%Label1.text = "is_talking=%s\nturns_to_talk=%d" % [floyd.is_talking, floyd.number_of_turns_left_to_talk]
+	#%Label2.text = "is_talking=%s\n" % enemies[0].is_talking
 
 func _on_text_box_timer_timeout() -> void:
 	if text_label.visible_ratio == 1.0:

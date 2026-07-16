@@ -14,3 +14,8 @@ res://battle/third.gdshader
 res://battle/fourth.gdshader
 res://ally_battler/ally_battler.gd
 res://enemies_data/flamingo.tres
+res://allies_data/travis.tres
+res://allies_data/meryl.tres
+res://title_screen/title_screen.tscn
+res://battle/battle.tscn
+res://battle/battle.gd

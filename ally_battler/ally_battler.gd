@@ -190,14 +190,19 @@ func perform_action() -> void:
 		pre_attack_sound.play()
 		EventBus.display_text.emit("%s attacked %s" % [battler_name, enemy.battler_name])
 		await EventBus.textbox_closed
+		if not is_alive:
+			finish_performing_action()
+			return
 		await enemy.take_damage(offense)
-		self.size_flags_vertical = Control.SIZE_SHRINK_END
-		finished_performing_action.emit()
+		finish_performing_action()
 	elif action_type == ActionType.PSI:
 		var psi := data.psi[0]
 		pre_psi_sound.play()
 		EventBus.display_text.emit("%s tried %s" % [battler_name, psi.name])
 		await EventBus.textbox_closed
+		if not is_alive:
+			finish_performing_action()
+			return
 		if psi.target_all_enemies:
 			psi_animation.global_position = Vector2.ZERO
 			psi_animation.centered = false
@@ -219,16 +224,21 @@ func perform_action() -> void:
 		else:
 			var enemy := get_valid_enemy()
 			await enemy.take_damage(psi.strength)
-		self.size_flags_vertical = Control.SIZE_SHRINK_END
-		finished_performing_action.emit()
+		finish_performing_action()
 	elif action_type == ActionType.TALK:
 		talk_sound.play()
 		var enemy := get_valid_enemy()
 		EventBus.display_text.emit("Floyd tried chatting up the %s..." % enemy.battler_name)
 		await EventBus.textbox_closed
+		if not is_alive:
+			finish_performing_action()
+			return
 		if enemy.can_talk():
 			EventBus.display_text.emit("It had a lot to say about %s...\nThey really hit it off!" % enemy.data.talk_topic)
 			await EventBus.textbox_closed
+			if not is_alive:
+				finish_performing_action()
+				return
 			enemy.talk()
 			battler_i_am_talking_to = enemy
 			enemy.battler_i_am_talking_to = self
@@ -239,8 +249,7 @@ func perform_action() -> void:
 		else:
 			EventBus.display_text.emit("It didn't seem interested...")
 			await EventBus.textbox_closed
-		self.size_flags_vertical = Control.SIZE_SHRINK_END
-		finished_performing_action.emit()
+		finish_performing_action()
 	
 	elif action_type == ActionType.GUARD:
 		EventBus.display_text.emit("%s is on guard" % battler_name)
@@ -340,3 +349,7 @@ func talking_logic() -> void:
 func stop_talking() -> void:
 	super.stop_talking()
 	action_type = ActionType.BASH
+
+func finish_performing_action() -> void:
+	finished_performing_action.emit()
+	self.size_flags_vertical = Control.SIZE_SHRINK_END

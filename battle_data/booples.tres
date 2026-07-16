@@ -6,6 +6,7 @@
 [ext_resource type="Resource" uid="uid://b78esr3oxqfqj" path="res://allies_data/floyd.tres" id="3_7e6kw"]
 [ext_resource type="Script" uid="uid://3tlnqby8bnsa" path="res://resource_scripts/battle_data.gd" id="3_wp707"]
 [ext_resource type="Resource" uid="uid://bwi51gf2y6aj2" path="res://allies_data/meryl.tres" id="4_3dyo3"]
+[ext_resource type="Resource" uid="uid://f0tq4v43rx3k" path="res://allies_data/travis.tres" id="4_id2p1"]
 [ext_resource type="Shader" uid="uid://c478xmggly1q3" path="res://battle/other_shader.gdshader" id="5_3dyo3"]
 [ext_resource type="AudioStream" uid="uid://cs10h2au4d6br" path="res://battle_songs/Battle Against an Intense Opponent.wav" id="6_8fvey"]
 [ext_resource type="Resource" uid="uid://bksqrmrryld5l" path="res://enemies_data/flamingo.tres" id="7_y824o"]
@@ -23,7 +24,7 @@ shader_parameter/viewport_size = Vector2(320, 180)
 [resource]
 script = ExtResource("3_wp707")
 name = "Flamingo And Hermit Can"
-allies_data = Array[ExtResource("1_ii1qv")]([ExtResource("3_7e6kw"), ExtResource("4_3dyo3")])
+allies_data = Array[ExtResource("1_ii1qv")]([ExtResource("4_id2p1"), ExtResource("3_7e6kw"), ExtResource("4_3dyo3")])
 enemies_data = Array[ExtResource("2_q5n0g")]([ExtResource("7_y824o"), ExtResource("8_8fvey")])
 battle_music = ExtResource("6_8fvey")
 battle_background = ExtResource("2_wp707")
