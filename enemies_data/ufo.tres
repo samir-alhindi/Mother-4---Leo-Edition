@@ -12,6 +12,6 @@ death_text = "Anxious UFO passed out"
 name = "Anxious UFO"
 hp = 200
 offense = 60
-defense = 100
+defense = 70
 speed = 26
 metadata/_custom_type_script = "uid://dqj3kgxgxg16h"

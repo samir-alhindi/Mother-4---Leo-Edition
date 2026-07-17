@@ -1,0 +1,22 @@
+[gd_resource type="Resource" script_class="BattleData" format=3 uid="uid://na48ltq35jw6"]
+
+[ext_resource type="Script" uid="uid://dg72lty02kan7" path="res://resource_scripts/ally_battler_data.gd" id="1_h3350"]
+[ext_resource type="Resource" uid="uid://f0tq4v43rx3k" path="res://allies_data/travis.tres" id="2_wy46t"]
+[ext_resource type="Resource" uid="uid://b78esr3oxqfqj" path="res://allies_data/floyd.tres" id="3_4ebjj"]
+[ext_resource type="Resource" uid="uid://bwi51gf2y6aj2" path="res://allies_data/meryl.tres" id="4_y0cgb"]
+[ext_resource type="Resource" uid="uid://bf150y3s3gwcj" path="res://allies_data/leo.tres" id="5_6xwod"]
+[ext_resource type="Resource" uid="uid://ceiywpbn2xd8k" path="res://allies_data/zack.tres" id="6_4uw5w"]
+[ext_resource type="Texture2D" uid="uid://c0p42eebesm4e" path="res://battle_backgrounds/Grid1.PNG" id="7_s22ts"]
+[ext_resource type="AudioStream" uid="uid://bi7pu3tsgpkv0" path="res://battle_songs/Battle Against a Dreamy Foe 4.mp3" id="8_a4m07"]
+[ext_resource type="Script" uid="uid://dqj3kgxgxg16h" path="res://resource_scripts/enemy_battler_data.gd" id="9_apho5"]
+[ext_resource type="Resource" uid="uid://bqsv54fmeev6x" path="res://enemies_data/mr_roadbloack.tres" id="10_h6sj0"]
+[ext_resource type="Script" uid="uid://3tlnqby8bnsa" path="res://resource_scripts/battle_data.gd" id="11_4i2a1"]
+
+[resource]
+script = ExtResource("11_4i2a1")
+name = "Mr. Roadblock"
+allies_data = Array[ExtResource("1_h3350")]([ExtResource("2_wy46t"), ExtResource("3_4ebjj"), ExtResource("4_y0cgb"), ExtResource("5_6xwod"), ExtResource("6_4uw5w")])
+enemies_data = Array[ExtResource("9_apho5")]([ExtResource("10_h6sj0")])
+battle_music = ExtResource("8_a4m07")
+battle_background = ExtResource("7_s22ts")
+metadata/_custom_type_script = "uid://3tlnqby8bnsa"

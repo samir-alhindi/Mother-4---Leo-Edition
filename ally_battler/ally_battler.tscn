@@ -967,22 +967,18 @@ texture_progress = SubResource("AtlasTexture_2fwon")
 
 [node name="DamageLabel" type="Label" parent="HUD" unique_id=194543247]
 unique_name_in_owner = true
-visible = false
+z_index = -1
 texture_filter = 1
 layout_mode = 0
-offset_left = 3.0
-offset_top = -15.0
-offset_right = 55.0
-offset_bottom = 1.0
+offset_left = 4.0
+offset_right = 56.0
+offset_bottom = 16.0
 pivot_offset_ratio = Vector2(0.5, 0.5)
-theme_override_constants/outline_size = 2
-text = "1234"
+theme_override_constants/outline_size = 4
+theme_override_font_sizes/font_size = 18
+text = "70"
 horizontal_alignment = 1
 vertical_alignment = 1
-
-[node name="HpOdometerTimer" type="Timer" parent="." unique_id=333683866]
-unique_name_in_owner = true
-wait_time = 0.1
 
 [node name="HpLabel" type="Label" parent="." unique_id=937244159]
 unique_name_in_owner = true
@@ -993,6 +989,10 @@ offset_top = -17.0
 offset_right = 47.0
 offset_bottom = -4.0
 text = "HP=%d"
+
+[node name="HpOdometerTimer" type="Timer" parent="." unique_id=333683866]
+unique_name_in_owner = true
+wait_time = 0.1
 
 [node name="ButtonFocusSound" type="AudioStreamPlayer" parent="." unique_id=1156110958]
 unique_name_in_owner = true
@@ -1013,7 +1013,7 @@ stream = ExtResource("8_14ci8")
 [node name="HurtSound" type="AudioStreamPlayer" parent="." unique_id=1532943738]
 unique_name_in_owner = true
 stream = ExtResource("9_v1bk8")
-volume_db = 15.0
+volume_db = 24.0
 
 [node name="PrePsiSound" type="AudioStreamPlayer" parent="." unique_id=296266745]
 unique_name_in_owner = true
@@ -1036,6 +1036,7 @@ unique_name_in_owner = true
 [node name="TalkAnimation" type="AnimatedSprite2D" parent="." unique_id=1997415224]
 unique_name_in_owner = true
 visible = false
+z_index = -2
 position = Vector2(29, -11)
 sprite_frames = SubResource("SpriteFrames_jn50p")
 

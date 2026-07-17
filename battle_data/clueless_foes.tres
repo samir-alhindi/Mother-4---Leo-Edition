@@ -1,0 +1,33 @@
+[gd_resource type="Resource" script_class="BattleData" format=3 uid="uid://cmfnocte4elp8"]
+
+[ext_resource type="Script" uid="uid://dg72lty02kan7" path="res://resource_scripts/ally_battler_data.gd" id="1_7ogqk"]
+[ext_resource type="Resource" uid="uid://f0tq4v43rx3k" path="res://allies_data/travis.tres" id="2_bsara"]
+[ext_resource type="Resource" uid="uid://b78esr3oxqfqj" path="res://allies_data/floyd.tres" id="3_bsara"]
+[ext_resource type="Resource" uid="uid://ceiywpbn2xd8k" path="res://allies_data/zack.tres" id="3_snb5c"]
+[ext_resource type="Shader" uid="uid://c478xmggly1q3" path="res://battle/other_shader.gdshader" id="4_m7y5n"]
+[ext_resource type="Texture2D" uid="uid://cy522no6txp6a" path="res://battle_backgrounds/Rainbowband.png" id="5_36qlx"]
+[ext_resource type="AudioStream" uid="uid://dp3vaheqtt5jx" path="res://battle_songs/Battle Against a Clueless Foe.wav" id="6_myu0t"]
+[ext_resource type="Script" uid="uid://dqj3kgxgxg16h" path="res://resource_scripts/enemy_battler_data.gd" id="7_8auh2"]
+[ext_resource type="Resource" uid="uid://dqmes6mdmnfpr" path="res://enemies_data/snail.tres" id="8_tyumu"]
+[ext_resource type="Resource" uid="uid://rrybc424b574" path="res://enemies_data/froog.tres" id="9_1pk8q"]
+[ext_resource type="Resource" uid="uid://cxxu777ils6hg" path="res://enemies_data/ballon.tres" id="10_85s84"]
+[ext_resource type="Script" uid="uid://3tlnqby8bnsa" path="res://resource_scripts/battle_data.gd" id="11_qt5vn"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_m8m3a"]
+shader = ExtResource("4_m7y5n")
+shader_parameter/horizontal_oscillation = 0.01
+shader_parameter/vertical_oscillation = 0.01
+shader_parameter/scanline_wave_frequency = 40.0
+shader_parameter/scanline_wave_speed = 2.0
+shader_parameter/alternate_direction = false
+shader_parameter/viewport_size = Vector2(320, 180)
+
+[resource]
+script = ExtResource("11_qt5vn")
+name = "Clueless Foes"
+allies_data = Array[ExtResource("1_7ogqk")]([ExtResource("2_bsara"), ExtResource("3_bsara"), ExtResource("3_snb5c")])
+enemies_data = Array[ExtResource("7_8auh2")]([ExtResource("8_tyumu"), ExtResource("9_1pk8q"), ExtResource("10_85s84")])
+battle_music = ExtResource("6_myu0t")
+battle_background = ExtResource("5_36qlx")
+background_shader = SubResource("ShaderMaterial_m8m3a")
+metadata/_custom_type_script = "uid://3tlnqby8bnsa"

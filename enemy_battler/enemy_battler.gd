@@ -106,7 +106,7 @@ func talk() -> void:
 	is_talking = true
 	talk_animation.show()
 	talk_animation.play()
-	tween = create_tween().set_loops()
+	tween = create_tween().set_loops().set_ease(Tween.EASE_IN_OUT).set_trans(Tween.TRANS_CUBIC)
 	var y := texture_rect.position.y
 	tween.tween_property(texture_rect, "position:y", y+3, 0.5)
 	tween.tween_property(texture_rect, "position:y", y-3, 0.5)

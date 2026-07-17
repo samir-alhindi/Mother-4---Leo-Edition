@@ -6,9 +6,12 @@
 [resource]
 script = ExtResource("1_fprh3")
 sprite = ExtResource("2_xg5xq")
+waste_turn_text = "Snagtagious Froog just stood there"
+talk_bubble_height = 55
+death_text = "Snagtagious Froog fell to the ground"
 name = "Snagtagious Froog"
-hp = 111
-offense = 11
-defense = 11
-speed = 11
+hp = 220
+offense = 85
+defense = 40
+speed = 20
 metadata/_custom_type_script = "uid://dqj3kgxgxg16h"

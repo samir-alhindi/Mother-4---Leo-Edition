@@ -6,11 +6,12 @@
 [resource]
 script = ExtResource("1_j3pk7")
 sprite = ExtResource("2_rgxag")
-waste_turn_text = "Amoeballpon floated around"
+waste_turn_text = "Amoeballoon floated around"
 talk_topic = "Micro-Biology"
-name = "Amoeballpon"
-hp = 111
-offense = 11
-defense = 11
-speed = 11
+death_text = "Amoeballoon popped"
+name = "Amoeballoon"
+hp = 240
+offense = 100
+defense = 10
+speed = 25
 metadata/_custom_type_script = "uid://dqj3kgxgxg16h"

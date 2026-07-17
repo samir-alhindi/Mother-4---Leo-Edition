@@ -116,9 +116,16 @@ func take_damage(amount: int) -> void:
 	
 	amount -= defense
 	amount = max(amount, 1)
+	damage_label.text = str(amount)
+	
+	var tween := create_tween().set_ease(Tween.EASE_IN_OUT).set_trans(Tween.TRANS_CUBIC)
+	tween.tween_property(damage_label, "visible", true, 0.1)
+	tween.tween_property(damage_label, "position:y", -20, 0.2)
+	tween.tween_property(damage_label, "visible", false, 0.5)
+	tween.tween_property(damage_label, "position:y", 0, 0.01)
 	
 	hurt_sound.play()
-	var tween := create_tween()
+	tween = create_tween()
 	tween.set_loops(1)
 	tween.tween_property(self, "scale", Vector2.ONE*1.3, 0.1)
 	tween.tween_property(self, "scale", Vector2.ONE, 0.2)

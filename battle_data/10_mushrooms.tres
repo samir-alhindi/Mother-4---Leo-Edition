@@ -1,0 +1,18 @@
+[gd_resource type="Resource" script_class="BattleData" format=3 uid="uid://crgppaiah4fee"]
+
+[ext_resource type="Script" uid="uid://dg72lty02kan7" path="res://resource_scripts/ally_battler_data.gd" id="1_6ysbd"]
+[ext_resource type="Resource" uid="uid://f0tq4v43rx3k" path="res://allies_data/travis.tres" id="2_2i8gf"]
+[ext_resource type="Script" uid="uid://dqj3kgxgxg16h" path="res://resource_scripts/enemy_battler_data.gd" id="2_wbqur"]
+[ext_resource type="Script" uid="uid://3tlnqby8bnsa" path="res://resource_scripts/battle_data.gd" id="3_2i8gf"]
+[ext_resource type="AudioStream" uid="uid://bi7pu3tsgpkv0" path="res://battle_songs/Battle Against a Dreamy Foe 4.mp3" id="3_ae70i"]
+[ext_resource type="Texture2D" uid="uid://b5dvtr574q43n" path="res://battle_backgrounds/Grassy1.png" id="3_o2b6j"]
+[ext_resource type="Resource" uid="uid://bn1di80bxipdr" path="res://enemies_data/mushroom.tres" id="4_2i8gf"]
+
+[resource]
+script = ExtResource("3_2i8gf")
+name = "Mushroom Soup"
+allies_data = Array[ExtResource("1_6ysbd")]([ExtResource("2_2i8gf")])
+enemies_data = Array[ExtResource("2_wbqur")]([ExtResource("4_2i8gf"), ExtResource("4_2i8gf"), ExtResource("4_2i8gf"), ExtResource("4_2i8gf"), ExtResource("4_2i8gf"), ExtResource("4_2i8gf")])
+battle_music = ExtResource("3_ae70i")
+battle_background = ExtResource("3_o2b6j")
+metadata/_custom_type_script = "uid://3tlnqby8bnsa"

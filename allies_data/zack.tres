@@ -1,0 +1,13 @@
+[gd_resource type="Resource" script_class="AllyBattlerData" format=3 uid="uid://ceiywpbn2xd8k"]
+
+[ext_resource type="Script" uid="uid://lxo20rbxhpf0" path="res://resource_scripts/psi.gd" id="1_xa7xi"]
+[ext_resource type="Script" uid="uid://dg72lty02kan7" path="res://resource_scripts/ally_battler_data.gd" id="2_n7c1c"]
+
+[resource]
+script = ExtResource("2_n7c1c")
+name = "Zack"
+hp = 176
+offense = 90
+defense = 42
+speed = 14
+metadata/_custom_type_script = "uid://dg72lty02kan7"

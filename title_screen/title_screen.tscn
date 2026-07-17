@@ -8,14 +8,15 @@
 [ext_resource type="AudioStream" uid="uid://cytv6lgbqfa4g" path="res://sfx/cursory.wav" id="6_fk0fn"]
 [ext_resource type="Resource" uid="uid://ba0hmt8n5ocal" path="res://battle_data/not_bess.tres" id="6_uiiip"]
 [ext_resource type="Resource" uid="uid://cb7i7jwhna8ih" path="res://battle_data/desert.tres" id="7_p7x7j"]
-[ext_resource type="Resource" uid="uid://cmfnocte4elp8" path="res://battle_data/rainbow.tres" id="8_4h7y4"]
+[ext_resource type="Resource" uid="uid://cmfnocte4elp8" path="res://battle_data/clueless_foes.tres" id="8_4h7y4"]
 [ext_resource type="Resource" uid="uid://bbrgjyry4r68l" path="res://battle_data/atomic_robo_fight.tres" id="9_3eqcd"]
 [ext_resource type="Resource" uid="uid://pu3hyoilqb32" path="res://battle_data/hot_fight.tres" id="10_mag7y"]
-[ext_resource type="Resource" uid="uid://na48ltq35jw6" path="res://battle_data/mr_roadblock.tres" id="11_3d3o2"]
+[ext_resource type="Resource" uid="uid://na48ltq35jw6" path="res://battle_data/mr_roadblock_fight.tres" id="11_3d3o2"]
+[ext_resource type="Resource" uid="uid://crgppaiah4fee" path="res://battle_data/10_mushrooms.tres" id="12_p7x7j"]
 
 [node name="TitleScreen" type="CanvasLayer" unique_id=1585168080]
 script = ExtResource("1_g2mvh")
-battles = Array[ExtResource("2_0m3ch")]([ExtResource("9_3eqcd"), ExtResource("3_fk0fn"), ExtResource("7_p7x7j"), ExtResource("4_oqrgu"), ExtResource("5_fv0o7"), ExtResource("6_uiiip"), ExtResource("8_4h7y4"), ExtResource("10_mag7y"), ExtResource("11_3d3o2")])
+battles = Array[ExtResource("2_0m3ch")]([ExtResource("9_3eqcd"), ExtResource("3_fk0fn"), ExtResource("7_p7x7j"), ExtResource("4_oqrgu"), ExtResource("5_fv0o7"), ExtResource("6_uiiip"), ExtResource("8_4h7y4"), ExtResource("10_mag7y"), ExtResource("11_3d3o2"), ExtResource("12_p7x7j")])
 
 [node name="CursorSound" type="AudioStreamPlayer" parent="." unique_id=825431195]
 unique_name_in_owner = true

@@ -13,7 +13,7 @@
 
 [resource]
 script = ExtResource("3_tgogu")
-name = "Not Bees"
+name = "Bees They are not"
 allies_data = Array[ExtResource("1_qtqrd")]([ExtResource("2_f3iya"), ExtResource("3_r2m7j"), ExtResource("4_8jjwt"), ExtResource("5_8ymfy")])
 enemies_data = Array[ExtResource("2_hm8iq")]([ExtResource("7_r2m7j"), ExtResource("7_r2m7j")])
 battle_music = ExtResource("6_8jjwt")

@@ -1,5 +1,5 @@
+BattleData
+AllyBattlerData
 Psi
 Shader
-BattleData
 EnemyBattlerData
-AllyBattlerData

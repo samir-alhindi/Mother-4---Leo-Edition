@@ -140,7 +140,7 @@ func finish_battle() -> void:
 		battle_won_sound.play()
 		EventBus.display_text.emit("You Won!")
 		await EventBus.textbox_closed
-		EventBus.display_text.emit("Travis and friends got 142 XP")
+		EventBus.display_text.emit("%s and friends got %d XP" % [allies[0].battler_name, randi_range(1000, 2000)])
 		await EventBus.textbox_closed
 		get_tree().change_scene_to_file("res://title_screen/title_screen.tscn")
 	else:
