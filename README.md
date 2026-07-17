@@ -1,16 +1,6 @@
-\# About this project
+### About this project
+a remake of the Mother 4 battle system in the Godot 4.6.3 Game Engine. Try it [Here](https://samir-alhindi.itch.io/mother-4-leo)
 
-\---
-
-
-
-a remake of the Mother 4 battle system in the Godot 4.6.3 Game Engine.
-
-
-
-\# Credits
-
-\---
-
+### Credits
 All Assets and Music belong to the Mother 4 Team. I simply programmed them into Godot.
 
