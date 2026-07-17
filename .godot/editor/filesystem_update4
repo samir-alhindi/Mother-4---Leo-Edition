@@ -36,3 +36,5 @@ res://ally_battler/ally_battler.tscn
 res://ally_battler/ally_battler.gd
 res://enemies_data/atomic_power_robo.tres
 res://enemies_data/carbon_pup.tres
+res://enemies_data/flamingo.tres
+res://enemies_data/hermit_crab.tres

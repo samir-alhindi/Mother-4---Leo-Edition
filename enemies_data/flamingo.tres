@@ -6,11 +6,10 @@
 [resource]
 script = ExtResource("1_lvahk")
 sprite = ExtResource("2_wfkn7")
-chance_to_waste_turn = 0.0
 waste_turn_text = "Flamingo gave you a sassy look"
 talk_topic = "Sass"
 talk_bubble_height = 55
-death_text = "Flamingo list it's balance and fell down"
+death_text = "Flamingo lost it's balance and fell down"
 name = "Flamingo"
 hp = 250
 offense = 90

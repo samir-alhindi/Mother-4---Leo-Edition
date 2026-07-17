@@ -110,3 +110,9 @@ func talk() -> void:
 	var y := texture_rect.position.y
 	tween.tween_property(texture_rect, "position:y", y+3, 0.5)
 	tween.tween_property(texture_rect, "position:y", y-3, 0.5)
+
+func stop_talking() -> void:
+	super.stop_talking()
+	tween.kill()
+	tween = create_tween().set_loops().set_ease(Tween.EASE_IN_OUT).set_trans(Tween.TRANS_CUBIC)
+	tween.tween_property(texture_rect, "global_position:y", get_viewport_rect().size.y / 2, 0.2)
